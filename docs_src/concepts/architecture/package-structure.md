@@ -97,14 +97,15 @@ ______________________________________________________________________
 
 **核心模块**:
 
-- `queue`: 消息队列抽象（Python, Ray, RPC）
+- `queue`: 消息队列抽象（Python, Flownet, RPC）
 - `storage`: KV 存储接口（Dict, Redis, RocksDB）
 - `service`: 服务基类
 
 **公共 API**:
 
 ```python
-from sage.platform.queue import RayQueueDescriptor
+from sage.platform.queue import FlownetQueueDescriptor  # 分布式模式
+from sage.platform.queue import PythonQueueDescriptor    # 本地模式（默认）
 from sage.platform.storage import DictKVBackend
 from sage.platform.service import BaseService
 ```
@@ -229,7 +230,7 @@ ______________________________________________________________________
 
 **核心命令** (生产运维):
 
-- `sage cluster`: Ray 集群管理
+- `sage cluster`: sageFlownet 集群管理
 - `sage head`: 头节点管理
 - `sage worker`: 工作节点管理
 - `sage job`: 作业管理

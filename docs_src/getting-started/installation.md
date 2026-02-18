@@ -437,31 +437,6 @@ python --version
 pip install --force-reinstall isage
 ```
 
-### 问题 5：Ray 初始化失败（分布式模式）
-
-**错误信息**：
-
-```
-ray.exceptions.RaySystemError: System error
-```
-
-**原因分析**：Ray 运行时配置问题
-
-**解决方案**：
-
-```bash
-# 停止所有 Ray 进程
-ray stop
-
-# 重新初始化
-ray start --head
-
-# 或在代码中设置本地模式
-env = LocalEnvironment("my_app")  # 使用本地模式
-```
-
-______________________________________________________________________
-
 ## *G*. 下一步
 
 安装完成后，您可以：

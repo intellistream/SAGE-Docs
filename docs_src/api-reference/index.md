@@ -72,7 +72,7 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 平台抽象层，提供队列、存储、服务等基础设施抽象。
 
 **主要模块**：
-- `sage.platform.queue` - 队列抽象（Python Queue、Ray Queue、RPC Queue）
+- `sage.platform.queue` - 队列抽象（Python Queue、RPC Queue）
 - `sage.platform.storage` - Key-Value 存储后端
 - `sage.platform.service` - 服务基类
 

@@ -11,7 +11,7 @@ communication/
 ├── queue_descriptor/
 │   ├── base_queue_descriptor.py
 │   ├── python_queue_descriptor.py
-│   ├── ray_queue_descriptor.py
+│   ├── flownet_queue_descriptor.py  # 分布式模式（替代已废弃的 ray_queue_descriptor.py）
 │   └── rpc_queue_descriptor.py
 └── router/
     ├── router.py
@@ -24,7 +24,7 @@ communication/
 | 描述符                  | 说明                                                                                                                                       |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `PythonQueueDescriptor` | 默认实现，懒加载 `queue.Queue`，适合本地线程内通信。`maxsize` 可配置，首次访问前可序列化。                                                 |
-| `RayQueueDescriptor`    | 通过命名的 `RayQueueManager` Actor 共享 `ray.util.Queue`。若运行在 Ray local mode，会回退到本地 `queue.Queue`。需要在使用前 `ray.init()`。 |
+| `FlownetQueueDescriptor` | （⚠️ `RayQueueDescriptor` 已废弃）通过 sageFlownet 运行时共享分布式队列。无需 `ray.init()`；运行时自动管理生命周期。 |
 | `RPCQueueDescriptor`    | 预留的远端队列描述符，依赖尚未随仓库发布的 `communication.rpc.rpc_queue.RPCQueue`，目前使用会抛出 `RuntimeError`。                         |
 
 公共基类 `BaseQueueDescriptor` 负责：
@@ -56,8 +56,7 @@ communication/
 
 - **查看路由拓扑**：`TaskContext.get_routing_info()` 会返回每个广播组的连接、目标名称与队列 ID。
 - **队列占用**：`Connection.get_buffer_load()` 能在日志中反映队列占用率（仅对支持 `qsize/maxsize` 的队列准确）。
-- **Ray 依赖**：若使用 `RayQueueDescriptor`，请确认运行环境已安装 `ray` 并在 Dispatcher 构造前调用
-  `ray.init()`。本地模式会自动回退到简单队列，但行为与真实分布式队列略有不同。
+- **分布式队列**：分布式场景请使用 `FlownetQueueDescriptor`（替代已废弃的 `RayQueueDescriptor`）。sageFlownet 运行时会自动管理连接，无需手动调用 `ray.init()`。
 - **RPC 描述符**：由于缺少 `RPCQueue` 实现，使用该描述符时 `_create_queue_instance()` 会抛错，可在补齐网络层后再启用。
 
 ## 相关文档

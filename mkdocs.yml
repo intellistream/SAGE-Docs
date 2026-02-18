@@ -99,6 +99,7 @@ nav:
   - 概览: getting-started/index.md
   - 安装: getting-started/installation.md
   - 快速入门: getting-started/quickstart.md
+  - Flownet 迁移指南: getting-started/flownet-migration-guide.md
   - 基础教程:
     - 流式处理 101: tutorials/basic/streaming-101.md
     - 批处理示例: tutorials/basic/hello_batch.md
@@ -117,6 +118,8 @@ nav:
           - L2 平台层: concepts/architecture/design-decisions/l2-platform-layer.md
           - RPC 队列重构: concepts/architecture/design-decisions/rpc-queue-refactoring.md
           - sage-libs 重构: concepts/architecture/design-decisions/sage-libs-restructuring.md
+          - Flownet→SAGE 迁移边界: concepts/architecture/design-decisions/flownet-migration-boundary.md
+          - SAGE Facade API: concepts/architecture/design-decisions/sage-facade-api.md
 
 - 高级教程:
   - 概览: tutorials/advanced/index.md

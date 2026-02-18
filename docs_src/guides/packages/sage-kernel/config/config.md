@@ -11,7 +11,7 @@ SAGE 项目目前包含以下主要配置文件：
 - `config_bm25s.yaml` - BM25搜索配置
 - `config_for_ingest.yaml` - 数据摄取配置
 - `config_for_qa.yaml` - 问答系统配置
-- `config_ray.yaml` - Ray分布式计算配置
+- `config_ray.yaml` - ⚠️ 已废弃（Ray 分布式配置）；分布式部署请改用 sageFlownet 运行时配置
 - `config_hf.yaml` - HuggingFace模型配置
 - `config_mixed.yaml` - 混合模式配置
 - `config_evaluate.yaml` - 评估配置
@@ -337,7 +337,9 @@ answer_bot:
 
 ### 5. 分布式集群 (`config_ray.yaml`)
 
-- 使用Ray进行分布式处理
+> ⚠️ **已废弃**：`config_ray.yaml` 中基于 Ray 的分布式配置已废弃。新项目请使用 sageFlownet 运行时配置（`config_flownet.yaml`）。
+
+- 使用 sageFlownet 进行分布式处理（替代 Ray）
 - 适用于大规模数据处理
 
 ### 6. HuggingFace模型 (`config_hf.yaml`)

@@ -124,6 +124,6 @@ class Enrich(MapFunction):
 - **纯 Python、易追踪**：没有额外的 C++ 内核或 CLI 依赖，定位问题时可直接在源码中查找。
 - **单实例 JobManager**：`JobManager` 作为单例保障提交入口唯一，`RemoteEnvironment` 通过 TCP 客户端复用相同逻辑。
 - **服务化优先**：运行时提供统一的服务调用通道，让“流水线调用流水线”成为常规操作。
-- **可扩展执行后端**：`task/` 和 `communication/` 中保留了针对多进程、Ray 等模式的扩展点，通过新增 Task 实现即可接入新的后端。
+- **可扩展执行后端**：`task/` 和 `communication/` 中保留了针对多进程、sageFlownet 等模式的扩展点，通过新增 Task 实现即可接入新的后端。
 
 以上就是当前仓库中 SAGE Kernel 的实际结构。阅读时建议结合相应模块的 README 与源码一起查看，能快速定位到具体的实现细节。

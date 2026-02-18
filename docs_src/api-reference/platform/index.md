@@ -8,7 +8,7 @@ Platform services: queue descriptors, storage backends, and service base classes
 
 `sage-platform` provides distributed system infrastructure:
 
-- Queue abstractions (Python, Ray, RPC)
+- Queue abstractions (Python, RPC)
 - KV storage backends
 - Service base classes
 - Platform utilities
@@ -23,7 +23,6 @@ Platform services: queue descriptors, storage backends, and service base classes
       members:
         - BaseQueueDescriptor
         - PythonQueueDescriptor
-        - RayQueueDescriptor
         - RPCQueueDescriptor
 
 ### Storage Backends
@@ -48,10 +47,10 @@ Platform services: queue descriptors, storage backends, and service base classes
 ### Using Queue Descriptors
 
 ```python
-from sage.platform.queue import RayQueueDescriptor
+from sage.platform.queue import RPCQueueDescriptor
 
-# Create a Ray queue descriptor
-queue_desc = RayQueueDescriptor(maxsize=100)
+# Create an RPC queue descriptor
+queue_desc = RPCQueueDescriptor(queue_id="example_queue")
 
 # Use the queue
 queue_desc.put("Hello")

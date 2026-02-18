@@ -103,7 +103,7 @@ SAGE 基于分层架构构建，提供灵活性、可扩展性和可维护性。
 1. **API 层**: LocalEnvironment 和 RemoteEnvironment 用于不同的执行上下文
 1. **核心层**: Dispatcher、Job Manager、Service Manager 和运行时执行引擎
 1. **库层**: RAG 流水线、Agent 框架、Memory 存储、中间件组件
-1. **基础设施层**: 计算后端（Ray、本地）、数据存储、模型服务、监控
+1. **基础设施层**: 计算后端（Flownet、本地）、数据存储、模型服务、监控
 
 ### 模块化设计
 
@@ -256,7 +256,7 @@ HF_TOKEN=your_huggingface_token_here
 Environment 是 SAGE 的执行入口点，提供两种模式：
 
 - **LocalEnvironment**: 本地多线程执行，适合开发和小规模任务
-- **RemoteEnvironment**: 基于 Ray 的分布式执行，适合生产和大规模任务
+- **RemoteEnvironment**: 基于 Flownet 的分布式执行，适合生产和大规模任务
 
 ```python
 from sage.core.api.local_environment import LocalEnvironment

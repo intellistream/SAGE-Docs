@@ -171,9 +171,9 @@ python my_app.py
 Deploy on a single machine with multiple workers:
 
 ```bash
-# Use Ray for distributed execution on single machine
-export SAGE_EXECUTION_MODE=ray
-export RAY_NUM_CPUS=8
+# Use Flownet-oriented distributed execution on single machine
+export SAGE_EXECUTION_MODE=distributed
+export SAGE_RUNTIME=flownet
 
 python my_app.py
 ```
@@ -185,14 +185,12 @@ python my_app.py
 Deploy across multiple machines:
 
 ```bash
-# On head node
-ray start --head --port=6379
-
-# On worker nodes
-ray start --address='head_node_ip:6379'
+# Start cluster runtime (Flownet-aligned)
+sage cluster start
 
 # Run application
 export SAGE_EXECUTION_MODE=distributed
+export SAGE_RUNTIME=flownet
 python my_app.py
 ```
 
@@ -224,8 +222,8 @@ spec:
         env:
         - name: SAGE_EXECUTION_MODE
           value: "distributed"
-        - name: RAY_ADDRESS
-          value: "ray-head:6379"
+        - name: SAGE_RUNTIME
+          value: "flownet"
 ```
 
 **Best for**: Cloud-native deployments, auto-scaling
@@ -263,16 +261,12 @@ docker run -p 8000:8000 my-sage-app
 
 ```bash
 # Execution mode
-export SAGE_EXECUTION_MODE=local|ray|distributed
+export SAGE_EXECUTION_MODE=local|distributed
+export SAGE_RUNTIME=flownet
 
 # API Keys
 export OPENAI_API_KEY=sk-...
 export JINA_API_KEY=jina_...
-
-# Ray configuration
-export RAY_ADDRESS=localhost:6379
-export RAY_NUM_CPUS=8
-export RAY_NUM_GPUS=1
 
 # sageLLM stack
 export SAGE_CHAT_BASE_URL=http://localhost:8901/v1
@@ -298,7 +292,7 @@ Create a `.env` file:
 # .env
 SAGE_EXECUTION_MODE=distributed
 OPENAI_API_KEY=sk-...
-RAY_ADDRESS=ray-cluster:6379
+SAGE_RUNTIME=flownet
 SAGE_LOG_LEVEL=INFO
 ```
 
@@ -379,10 +373,8 @@ api_key = secrets.get("openai_api_key")
 Add more worker nodes:
 
 ```bash
-# Add Ray workers
-for i in {1..5}; do
-  ray start --address='head:6379' &
-done
+# Add workers through cluster manager
+sage cluster scale --workers 5
 ```
 
 ### Vertical Scaling
@@ -473,11 +465,11 @@ config = {"gpu_enabled": True, "gpu_memory_fraction": 0.8}
 
 ### Common Issues
 
-**Ray cluster not connecting**:
+**Distributed cluster not connecting**:
 
 ```bash
-# Check Ray status
-ray status
+# Check cluster status
+sage cluster status
 
 # Check network connectivity
 telnet head_node 6379

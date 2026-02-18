@@ -7,7 +7,7 @@
 
 - `base_service_task.py`：公共的服务任务基类，包含请求队列监听、调用调度、响应回写与资源清理。
 - `local_service_task.py`：默认的本地实现，基于 Python 标准队列。
-- `ray_service_task.py`：可选的 Ray Actor 封装，配合 `RemoteEnvironment` 使用。
+- `ray_service_task.py`：⚠️ **已废弃**。远程服务执行请使用 sageFlownet 调度后端（`LocalServiceTask` + `RemoteEnvironment()`）。
 - `service_caller.py`：`ServiceManager`，统一同步/异步调用、响应匹配、Future 管理与队列缓存。
 - `proxy/proxy_manager.py`：运行时上下文内的轻量代理，为 `call_service` / `call_service_async` 提供缓存和默认超时时间。
 
@@ -41,15 +41,16 @@
 - 调用 `call_method` 执行服务逻辑，构造包含 `success/result/error/execution_time` 的响应并写回指定队列。
 - 提供 `start_running()`、`stop()`、`cleanup()` 等生命周期钩子，保证监听线程与队列被正确关闭。
 
-### Local vs. Ray Service Task
+### Local vs. Flownet Service Task
 
-| 功能点   | `LocalServiceTask`      | `RayServiceTask`                      |
-| -------- | ----------------------- | ------------------------------------- |
-| 队列实现 | Python `queue.Queue`    | Ray 队列/Actor                        |
-| 服务实例 | 直接在当前进程持有      | 运行在 Ray Actor 内，通过远程调用执行 |
-| 适用场景 | 默认模式、开发/单机部署 | 远程平台或需要跨节点伸缩时            |
+| 功能点   | `LocalServiceTask`             | sageFlownet 分布式调度                    |
+| -------- | ------------------------------ | ----------------------------------------- |
+| 队列实现 | Python `queue.Queue`           | `FlownetQueueDescriptor`（替代 Ray 队列） |
+| 服务实例 | 直接在当前进程持有             | 由 sageFlownet 运行时托管，跨节点执行     |
+| 适用场景 | 默认模式、开发/单机部署        | 分布式部署、需要跨节点伸缩时              |
+| 初始化   | 无需额外初始化                 | sageFlownet 自动初始化，无需 `ray.init()` |
 
-Ray 模式会在 Dispatcher 初始化时调用 `ensure_ray_initialized()`，并用 `ActorWrapper` 托管服务任务；当前仓库仍以本地模式为主。
+> ⚠️ `RayServiceTask` 已废弃，请迁移到 `LocalServiceTask` + sageFlownet 调度后端。
 
 ### ServiceManager & ProxyManager
 
@@ -103,7 +104,7 @@ env.submit()
 - ✅ 可复用的 Proxy 缓存，避免重复查询服务队列。
 - ✅ 支持在算子内部、独立脚本（通过 sugar API）进行服务调用。
 - ⚠️ 监控、健康检查、自动重试等功能暂无正式实现；如需这些能力需自行扩展。
-- ⚠️ Ray 模式仍在演进中，生产部署前需要补充持久化和容错策略。
+- ⚠️ `RayServiceTask` 已废弃；分布式部署请使用 `LocalServiceTask` + sageFlownet 后端。
 
 ## 延伸阅读
 

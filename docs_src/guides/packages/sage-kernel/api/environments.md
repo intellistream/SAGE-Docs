@@ -100,7 +100,7 @@ env.submit(autostop=True)
 - 构造函数会保存远程 JobManager 的 `host` / `port`，并把这些信息写入 `config`，便于调试；
 - `client` 属性延迟实例化 `JobManagerClient`，用于 RPC；
 - `submit(autostop=False)`：
-  1. 调用 `trim_object_for_ray(self)` 剔除不可序列化字段；
+  1. 调用 `prepare_for_remote(self)` 剥除不可序列化字段（原 `trim_object_for_ray`，已更名）；
   1. 使用 `serialize_object`（dill）对环境进行序列化；
   1. 通过 `client.submit_job(serialized_env, autostop)` 将任务发送给远程 JobManager；
 - `autostop=True` 同样会触发 `_wait_for_completion()`，该方法周期性调用 `client.get_job_status` 检查作业状态；
