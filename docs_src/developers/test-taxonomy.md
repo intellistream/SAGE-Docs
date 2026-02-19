@@ -155,7 +155,7 @@ The three layer-specific jobs are defined in
 
 | Job name                  | Paths covered                                  | Depends on Flownet? |
 |---------------------------|------------------------------------------------|---------------------|
-| `test-layer-declaration`  | `tests/unit/flow/test_flow_declaration*.py`    | No                  |
+| `test-layer-declaration`  | `tests/unit/flow/test_flow_declaration*.py` + `tests/unit/runtime/context/test_context_propagation.py` | No |
 | `test-layer-contract`     | `tests/unit/flow/test_facade_api*.py` + `test_flow_exceptions*.py` | No  |
 | `test-layer-adapter`      | `tests/integration/flow/`                     | Optional (skipped)  |
 | `report`                  | Aggregates pass/fail from all three layers     | —                   |
@@ -173,7 +173,7 @@ visible even if Layers 2 and 3 are green.
 | New public facade verb or change to existing signature | 2     | `tests/unit/flow/test_facade_api.py`           |
 | New exception class in `sage.common.core`              | 2     | `tests/unit/flow/test_flow_exceptions.py`      |
 | New adapter method / Flownet API change                | 3     | `tests/integration/flow/test_flownet_adapter.py` |
-| Context propagation utils (Issue #1435)                | 1     | `tests/unit/flow/` or `tests/unit/runtime/context/` |
+| Context propagation utils (Issue #1435) ✅ Done        | 1     | `tests/unit/runtime/context/test_context_propagation.py` |
 | Scheduling schema (Issue #1437)                        | 1     | `tests/unit/kernel/scheduler/`                 |
 
 ---
@@ -187,6 +187,10 @@ visible even if Layers 2 and 3 are green.
 - Any PR that introduces a `from sage.flownet` top-level import in a Layer 1
   or Layer 2 test file will be blocked by the `test-layer-declaration` /
   `test-layer-contract` jobs (which assert no static Flownet imports).
+- **Duplicate symbol check (Issue #1435)**: Layer 1 CI runs a `find` check to
+  ensure `sage/flownet/utils/context_vars.py` does not exist. If the file
+  re-appears (e.g. via a stale merge), the `test-layer-declaration` job
+  fails immediately, blocking the PR.
 
 ---
 
