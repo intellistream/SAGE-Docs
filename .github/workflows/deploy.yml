@@ -27,8 +27,8 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
-    - name: Run link tests
-      run: python -m pytest tests/test_links.py
+    - name: Run docs integrity tests
+      run: python -m pytest tests/test_links.py tests/test_legacy_terms.py
 
     - name: Build and deploy
       run: mkdocs gh-deploy --force

@@ -24,7 +24,7 @@ communication/
 | 描述符                  | 说明                                                                                                                                       |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `PythonQueueDescriptor` | 默认实现，懒加载 `queue.Queue`，适合本地线程内通信。`maxsize` 可配置，首次访问前可序列化。                                                 |
-| `FlownetQueueDescriptor` | （⚠️ `RayQueueDescriptor` 已废弃）通过 sageFlownet 运行时共享分布式队列。无需 `ray.init()`；运行时自动管理生命周期。 |
+| `FlownetQueueDescriptor` | 用于分布式模式，通过 sageFlownet 运行时共享分布式队列；运行时自动管理生命周期。 |
 | `RPCQueueDescriptor`    | 预留的远端队列描述符，依赖尚未随仓库发布的 `communication.rpc.rpc_queue.RPCQueue`，目前使用会抛出 `RuntimeError`。                         |
 
 公共基类 `BaseQueueDescriptor` 负责：
@@ -56,8 +56,10 @@ communication/
 
 - **查看路由拓扑**：`TaskContext.get_routing_info()` 会返回每个广播组的连接、目标名称与队列 ID。
 - **队列占用**：`Connection.get_buffer_load()` 能在日志中反映队列占用率（仅对支持 `qsize/maxsize` 的队列准确）。
-- **分布式队列**：分布式场景请使用 `FlownetQueueDescriptor`（替代已废弃的 `RayQueueDescriptor`）。sageFlownet 运行时会自动管理连接，无需手动调用 `ray.init()`。
+- **分布式队列**：分布式场景请使用 `FlownetQueueDescriptor`。sageFlownet 运行时会自动管理连接生命周期。
 - **RPC 描述符**：由于缺少 `RPCQueue` 实现，使用该描述符时 `_create_queue_instance()` 会抛错，可在补齐网络层后再启用。
+
+旧运行时术语与逐项替换映射，请统一参考：[`getting-started/flownet-migration-guide.md`](../../../getting-started/flownet-migration-guide.md)。
 
 ## 相关文档
 

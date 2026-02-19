@@ -270,4 +270,4 @@ echo "✅ No legacy Ray terms found"
 | [RPC 队列重构](../concepts/architecture/design-decisions/rpc-queue-refactoring.md) | 队列描述符迁移（Issue #1436） |
 | [sage-libs 重构](../concepts/architecture/design-decisions/sage-libs-restructuring.md) | 独立算法库结构（Issue #1440） |
 | [架构总览](../concepts/architecture/overview.md) | SAGE L1–L5 层级全景 |
-| [测试分类](../developers/test-taxonomy.md) | 三层测试模型（Issue #1439） |
+| [测试分类](../developers/test-taxonomy.md) | 三层测试模型（Issue #1440） |

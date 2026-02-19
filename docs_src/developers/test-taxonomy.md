@@ -16,7 +16,7 @@ in scope.
 ```
 Layer 1 — Declaration        Layer 2 — API Contract       Layer 3 — Adapter Integration
 ─────────────────────────    ─────────────────────────    ───────────────────────────────
-tests/unit/flow/             tests/unit/flow/             tests/integration/flow/
+tests/declaration/           tests/contract/              tests/adapter/
   test_flow_declaration.py     test_facade_api.py           test_flownet_adapter.py
   (+ type / schema tests)      test_flow_exceptions.py      (+ end-to-end bridge tests)
 No runtime dependency        No runtime dependency         May import sageFlownet
@@ -26,7 +26,7 @@ No runtime dependency        No runtime dependency         May import sageFlowne
 
 ## Layer 1 — Declaration Unit Tests
 
-**Directory**: `packages/sage-kernel/tests/unit/flow/`  
+**Directory**: `packages/sage-kernel/tests/declaration/`  
 **File pattern**: `test_flow_declaration*.py`, `test_*_declaration*.py`  
 **CI job**: `test-layer-declaration`  
 
@@ -65,7 +65,7 @@ def test_basic_creation():
 
 ## Layer 2 — Facade / API Contract Tests
 
-**Directory**: `packages/sage-kernel/tests/unit/flow/`  
+**Directory**: `packages/sage-kernel/tests/contract/`  
 **File pattern**: `test_facade_api*.py`, `test_*_contract*.py`, `test_flow_exceptions*.py`  
 **CI job**: `test-layer-contract`  
 
@@ -105,7 +105,7 @@ def test_no_ray_in_function_names():
 
 ## Layer 3 — Adapter Integration Tests
 
-**Directory**: `packages/sage-kernel/tests/integration/flow/`  
+**Directory**: `packages/sage-kernel/tests/adapter/`  
 **File pattern**: `test_flownet_adapter*.py`, `test_*_adapter*.py`  
 **CI job**: `test-layer-adapter`  
 
@@ -155,9 +155,9 @@ The three layer-specific jobs are defined in
 
 | Job name                  | Paths covered                                  | Depends on Flownet? |
 |---------------------------|------------------------------------------------|---------------------|
-| `test-layer-declaration`  | `tests/unit/flow/test_flow_declaration*.py` + `tests/unit/runtime/context/test_context_propagation.py` | No |
-| `test-layer-contract`     | `tests/unit/flow/test_facade_api*.py` + `test_flow_exceptions*.py` | No  |
-| `test-layer-adapter`      | `tests/integration/flow/`                     | Optional (skipped)  |
+| `test-layer-declaration`  | `tests/declaration/` | No |
+| `test-layer-contract`     | `tests/contract/` | No  |
+| `test-layer-adapter`      | `tests/adapter/` | Optional (skipped)  |
 | `report`                  | Aggregates pass/fail from all three layers     | —                   |
 
 Each job produces an independent exit code, so a Layer 1 regression is
@@ -169,12 +169,12 @@ visible even if Layers 2 and 3 are green.
 
 | New test type                                          | Layer | Directory                                      |
 |--------------------------------------------------------|-------|------------------------------------------------|
-| New `@flow` decorator parameter                        | 1     | `tests/unit/flow/test_flow_declaration.py`     |
-| New public facade verb or change to existing signature | 2     | `tests/unit/flow/test_facade_api.py`           |
-| New exception class in `sage.common.core`              | 2     | `tests/unit/flow/test_flow_exceptions.py`      |
-| New adapter method / Flownet API change                | 3     | `tests/integration/flow/test_flownet_adapter.py` |
-| Context propagation utils (Issue #1435) ✅ Done        | 1     | `tests/unit/runtime/context/test_context_propagation.py` |
-| Scheduling schema (Issue #1437)                        | 1     | `tests/unit/kernel/scheduler/`                 |
+| New `@flow` decorator parameter                        | 1     | `tests/declaration/test_flow_declaration.py`     |
+| New public facade verb or change to existing signature | 2     | `tests/contract/test_facade_api.py`           |
+| New exception class in `sage.common.core`              | 2     | `tests/contract/test_flow_exceptions.py`      |
+| New adapter method / Flownet API change                | 3     | `tests/adapter/test_flownet_adapter.py` |
+| Context propagation utils (Issue #1435) ✅ Done        | 1     | `tests/declaration/test_context_propagation.py` |
+| Scheduling schema (Issue #1437)                        | 1     | `tests/declaration/`                 |
 
 ---
 

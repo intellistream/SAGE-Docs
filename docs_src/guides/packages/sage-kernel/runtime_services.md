@@ -7,7 +7,7 @@
 
 - `base_service_task.py`：公共的服务任务基类，包含请求队列监听、调用调度、响应回写与资源清理。
 - `local_service_task.py`：默认的本地实现，基于 Python 标准队列。
-- `ray_service_task.py`：⚠️ **已废弃**。远程服务执行请使用 sageFlownet 调度后端（`LocalServiceTask` + `RemoteEnvironment()`）。
+- `ray_service_task.py`：历史实现路径（已废弃，保留仅用于迁移说明）。
 - `service_caller.py`：`ServiceManager`，统一同步/异步调用、响应匹配、Future 管理与队列缓存。
 - `proxy/proxy_manager.py`：运行时上下文内的轻量代理，为 `call_service` / `call_service_async` 提供缓存和默认超时时间。
 
@@ -45,12 +45,12 @@
 
 | 功能点   | `LocalServiceTask`             | sageFlownet 分布式调度                    |
 | -------- | ------------------------------ | ----------------------------------------- |
-| 队列实现 | Python `queue.Queue`           | `FlownetQueueDescriptor`（替代 Ray 队列） |
+| 队列实现 | Python `queue.Queue`           | `FlownetQueueDescriptor` |
 | 服务实例 | 直接在当前进程持有             | 由 sageFlownet 运行时托管，跨节点执行     |
 | 适用场景 | 默认模式、开发/单机部署        | 分布式部署、需要跨节点伸缩时              |
-| 初始化   | 无需额外初始化                 | sageFlownet 自动初始化，无需 `ray.init()` |
+| 初始化   | 无需额外初始化                 | sageFlownet 自动初始化 |
 
-> ⚠️ `RayServiceTask` 已废弃，请迁移到 `LocalServiceTask` + sageFlownet 调度后端。
+旧运行时术语与逐项替换映射，请统一参考：[`getting-started/flownet-migration-guide.md`](../../../getting-started/flownet-migration-guide.md)。
 
 ### ServiceManager & ProxyManager
 
@@ -104,7 +104,7 @@ env.submit()
 - ✅ 可复用的 Proxy 缓存，避免重复查询服务队列。
 - ✅ 支持在算子内部、独立脚本（通过 sugar API）进行服务调用。
 - ⚠️ 监控、健康检查、自动重试等功能暂无正式实现；如需这些能力需自行扩展。
-- ⚠️ `RayServiceTask` 已废弃；分布式部署请使用 `LocalServiceTask` + sageFlownet 后端。
+- 分布式部署请使用 `LocalServiceTask` + sageFlownet 后端。
 
 ## 延伸阅读
 
