@@ -43,7 +43,7 @@ SAGE 已建立稳定的分层架构（L1–L5）与统一运行时协议，**取
 | `import ray; ray.init()`             | **无需手动初始化** — sageFlownet 运行时自动管理             |
 | `ray.remote` 装饰器                  | `from sage.kernel.facade import create` 创建远程 actor      |
 | `@ray.remote class MyActor`          | 普通 Python 类 + `create(MyActor, ...)` 提交至 sageFlownet  |
-| `RayQueueDescriptor`                 | `FlownetQueueDescriptor`（或默认 `PythonQueueDescriptor`）  |
+| 旧队列描述符实现                     | `FlownetQueueDescriptor`（或默认 `PythonQueueDescriptor`）  |
 | `RayServiceTask` / `ray_task.py`     | `LocalServiceTask` + sageFlownet 分布式调度                 |
 | `RemoteEnvironment(use_ray=True)`    | `RemoteEnvironment()` — 后端由 sageFlownet 提供             |
 
@@ -76,7 +76,7 @@ env.submit()
 
 ```bash
 # 扫描代码库中的 Ray 遗留导入
-grep -rn "import ray\|from ray\|ray\.init\|ray\.remote\|RayQueueDescriptor\|RayServiceTask\|ray_task" \
+grep -rn "import ray\|from ray\|ray\.init\|ray\.remote\|RayServiceTask\|ray_task" \
     packages/ --include="*.py" | grep -v __pycache__
 ```
 
@@ -118,9 +118,8 @@ handle = submit(my_flow, ingress=source, egress=sink)
 ### 步骤 3：替换队列描述符
 
 ```python
-# ❌ 旧写法（Ray 依赖）
-from sage.kernel.runtime.communication import RayQueueDescriptor
-qd = RayQueueDescriptor("my-queue")
+# ❌ 旧写法（遗留分布式队列描述符实现）
+# 删除旧导入并直接替换为下方新写法
 
 # ✅ 新写法（sageFlownet 原生 / 默认本地模式）
 from sage.platform.queue import FlownetQueueDescriptor  # 分布式模式
@@ -235,7 +234,7 @@ def handle_task_error(exc, ctx):
 |---------|------|---------|
 | `sage.flownet.api.create_actor` | **已废弃** | `sage.kernel.facade.create` |
 | `sage.flownet.api.submit_flow` | **已废弃** | `sage.kernel.facade.submit` |
-| `sage.kernel.runtime.communication.RayQueueDescriptor` | **已废弃** | `sage.platform.queue.FlownetQueueDescriptor` |
+| 旧分布式队列描述符实现（历史接口） | **已废弃** | `sage.platform.queue.FlownetQueueDescriptor` |
 | `sage.kernel.runtime.service.ray_service_task` | **已废弃** | `LocalServiceTask` + sageFlownet 调度 |
 | `sage.kernel.runtime.task.ray_task` | **已废弃** | `LocalTask` + sageFlownet 调度 |
 | `RemoteEnvironment(use_ray=True)` 参数 | **已废弃** | `RemoteEnvironment()` 默认使用 sageFlownet |
