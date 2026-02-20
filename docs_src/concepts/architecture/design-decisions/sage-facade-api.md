@@ -11,9 +11,9 @@
 Prior to Issue #1432, SAGE callers had two mixing public paths for flow
 execution and actor creation:
 
-1. **DataStream pipeline pattern** — `LocalEnvironment` / `RemoteEnvironment`
-   with `env.submit()`.  This path remains valid for streaming pipeline use
-   cases and is not replaced.
+1. **DataStream/Environment pattern** — `LocalEnvironment` /
+  `FlownetEnvironment` with `env.submit()`. This path is a public
+  **advanced/expert API tier** and is not replaced.
 2. **Flownet-direct pattern** — callers imported `create_actor`,
    `submit_flow`, etc. directly from `sage.flownet.api`.  This exposed
    backend-specific concepts and violated the Flownet→SAGE migration boundary.
@@ -56,9 +56,9 @@ All four verbs:
 | `bound_flow.call(...)` | `from sage.kernel.facade import run; run(bound_flow, ...)` |
 | `actor_method_ref.call(...)` | No change — `ActorMethodRef.call()` is still valid internally; prefer `call(actor_method_ref, ...)` for symmetry |
 
-> **Note:** The `LocalEnvironment.submit()` / `env.submit()` path for
-> DataStream pipelines is **not** affected by this migration.  It remains
-> the canonical path for streaming pipeline execution.
+> **Note:** `LocalEnvironment` and `FlownetEnvironment` are public advanced
+> APIs (expert tier), not legacy/deprecated APIs. The facade remains the
+> default API tier for most users.
 
 ---
 

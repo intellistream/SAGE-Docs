@@ -120,6 +120,7 @@ nav:
           - sage-libs 重构: concepts/architecture/design-decisions/sage-libs-restructuring.md
           - Flownet→SAGE 迁移边界: concepts/architecture/design-decisions/flownet-migration-boundary.md
           - SAGE Facade API: concepts/architecture/design-decisions/sage-facade-api.md
+          - Runtime API 分层: concepts/architecture/design-decisions/runtime-api-layering.md
 
 - 高级教程:
   - 概览: tutorials/advanced/index.md
