@@ -57,7 +57,22 @@ function normalizeBenchmarkEntries(records) {
             entry_id: entry.run_id || `${entry.backend || 'sage'}-${workloadName}-${idx}`,
             sage_version: entry.metadata?.sage_version || entry.metadata?.benchmark_version || 'main-dev',
             timestamp,
+            backend: String(entry.backend || 'sage'),
+            nodes,
+            parallelism: Number(entry.parallelism || 1),
+            seed: entry.seed ?? null,
             config_type: nodes > 1 ? 'multi-node' : 'single-chip',
+            hardware: {
+                chip_model: entry.metadata?.hardware || `${nodes} node ${String(entry.backend || 'sage').toUpperCase()}`,
+                chip_count: Number(entry.parallelism || 1),
+            },
+            model: {
+                name: entry.metadata?.model_name || String(entry.backend || 'sage').toUpperCase(),
+                precision: entry.metadata?.precision || 'N/A',
+            },
+            cluster: {
+                node_count: nodes,
+            },
             resource_config: toResource(entry),
             workload: {
                 name: workloadName,
