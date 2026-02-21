@@ -55,14 +55,14 @@ function normalizeBenchmarkEntries(records) {
 
         return {
             entry_id: entry.run_id || `${entry.backend || 'sage'}-${workloadName}-${idx}`,
-            sage_version: entry.metadata?.sage_version || 'unknown',
-            sagellm_version: entry.metadata?.sagellm_version || 'unknown',
+            sage_version: entry.metadata?.sage_version || null,
+            sagellm_version: entry.metadata?.sagellm_version || null,
             timestamp,
             metadata: entry.metadata || {},
             system_profile: entry.metadata?.system_profile || null,
             components: entry.metadata?.component_versions || {},
-            model_name: entry.metadata?.model_name || 'unknown',
-            embedding_model_name: entry.metadata?.embedding_model_name || 'unknown',
+            model_name: entry.metadata?.model_name || null,
+            embedding_model_name: entry.metadata?.embedding_model_name || null,
             backend: String(entry.backend || 'sage'),
             nodes,
             parallelism: Number(entry.parallelism || 1),
@@ -73,7 +73,7 @@ function normalizeBenchmarkEntries(records) {
                 chip_count: Number(entry.parallelism || 1),
             },
             model: {
-                name: entry.metadata?.model_name || 'unknown',
+                name: entry.metadata?.model_name || null,
                 precision: entry.metadata?.precision || 'N/A',
             },
             cluster: {

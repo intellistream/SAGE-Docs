@@ -114,14 +114,33 @@
         return entry.sage_version || 'unknown';
     }
 
+    function normalizeDisplayValue(value, fallback = '-') {
+        if (value === undefined || value === null) return fallback;
+        const normalized = String(value).trim();
+        if (!normalized) return fallback;
+        if (['unknown', 'none', 'null', 'n/a', '-'].includes(normalized.toLowerCase())) {
+            return fallback;
+        }
+        return normalized;
+    }
+
     function getSageLLMVersion(entry) {
-        return entry.sagellm_version || entry.metadata?.sagellm_version || 'unknown';
+        return normalizeDisplayValue(entry.sagellm_version || entry.metadata?.sagellm_version);
     }
 
     function getModelName(entry) {
-        const llm = entry.model_name || entry.metadata?.model_name || entry.model?.name || 'unknown';
-        const emb = entry.embedding_model_name || entry.metadata?.embedding_model_name;
-        return emb ? `${llm} / ${emb}` : llm;
+        const llm = normalizeDisplayValue(
+            entry.model_name || entry.metadata?.model_name || entry.model?.name,
+            '',
+        );
+        const emb = normalizeDisplayValue(
+            entry.embedding_model_name || entry.metadata?.embedding_model_name,
+            '',
+        );
+        if (llm && emb) return `${llm} / ${emb}`;
+        if (llm) return llm;
+        if (emb) return emb;
+        return '-';
     }
 
     function getTimestamp(entry) {
