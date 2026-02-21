@@ -121,6 +121,36 @@
     white-space: nowrap;
 }
 
+/* Compact layout for new metadata/resource columns */
+.leaderboard-table th:nth-child(2),
+.leaderboard-table td:nth-child(2) {
+    width: 88px;
+}
+
+.leaderboard-table th:nth-child(5),
+.leaderboard-table td:nth-child(5) {
+    width: 220px;
+}
+
+.leaderboard-table th:nth-child(6),
+.leaderboard-table td:nth-child(6) {
+    width: 88px;
+}
+
+.leaderboard-table th:nth-child(7),
+.leaderboard-table td:nth-child(7),
+.leaderboard-table th:nth-child(8),
+.leaderboard-table td:nth-child(8) {
+    width: 72px;
+    text-align: center;
+}
+
+.leaderboard-table th:last-child,
+.leaderboard-table td:last-child {
+    width: 52px;
+    text-align: center;
+}
+
 /* Sticky First Column */
 .leaderboard-table th:first-child,
 .leaderboard-table td:first-child {
@@ -170,8 +200,22 @@
     color: #2d3748;
     font-family: 'Fira Code', monospace;
     display: flex;
-    align-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
     gap: 8px;
+}
+
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: 700;
+    margin-top: 6px;
+    color: #718096;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
 }
 
 .version-badge {
@@ -196,6 +240,13 @@
     font-size: 0.9em;
     font-weight: 600;
     line-height: 1.5;
+}
+
+.model-cell {
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .config-cell small {

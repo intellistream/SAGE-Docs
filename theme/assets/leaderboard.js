@@ -111,7 +111,21 @@
     }
 
     function getVersion(entry) {
-        return entry.sage_version || 'main-dev';
+        return entry.sage_version || 'unknown';
+    }
+
+    function getSageLLMVersion(entry) {
+        return entry.sagellm_version || entry.metadata?.sagellm_version || 'unknown';
+    }
+
+    function getModelName(entry) {
+        const llm = entry.model_name || entry.metadata?.model_name || entry.model?.name || 'unknown';
+        const emb = entry.embedding_model_name || entry.metadata?.embedding_model_name;
+        return emb ? `${llm} / ${emb}` : llm;
+    }
+
+    function getTimestamp(entry) {
+        return entry.timestamp || '-';
     }
 
     function getBackend(entry) {
@@ -133,6 +147,54 @@
         const detail = String(entry.resource_config?.details || '');
         const m = detail.match(/parallelism\s*=\s*(\d+)/i);
         return m ? Number(m[1]) : 1;
+    }
+
+    function metricNumber(value) {
+        const n = Number(value);
+        return Number.isFinite(n) ? n : null;
+    }
+
+    function scoreTimestamp(entry) {
+        const ts = Date.parse(getTimestamp(entry));
+        return Number.isFinite(ts) ? ts : 0;
+    }
+
+    function pickBetterEntry(current, candidate) {
+        const currentTp = metricNumber(current.metrics?.throughput_qps);
+        const candidateTp = metricNumber(candidate.metrics?.throughput_qps);
+        if (currentTp !== null && candidateTp !== null && Math.abs(currentTp - candidateTp) > 1e-9) {
+            return candidateTp > currentTp ? candidate : current;
+        }
+
+        const currentLat = metricNumber(current.metrics?.latency_p99);
+        const candidateLat = metricNumber(candidate.metrics?.latency_p99);
+        if (currentLat !== null && candidateLat !== null && Math.abs(currentLat - candidateLat) > 1e-9) {
+            return candidateLat < currentLat ? candidate : current;
+        }
+
+        return scoreTimestamp(candidate) > scoreTimestamp(current) ? candidate : current;
+    }
+
+    function deduplicateEntries(entries) {
+        const merged = new Map();
+        entries.forEach((entry) => {
+            const key = [
+                getVersion(entry),
+                getSageLLMVersion(entry),
+                getModelName(entry),
+                getWorkload(entry),
+                getBackend(entry),
+                String(getNodes(entry)),
+                String(getParallelism(entry)),
+            ].join('|');
+
+            if (!merged.has(key)) {
+                merged.set(key, entry);
+                return;
+            }
+            merged.set(key, pickBetterEntry(merged.get(key), entry));
+        });
+        return Array.from(merged.values());
     }
 
     // Initialize filters
@@ -234,7 +296,7 @@
         const filters = state.filters[state.currentTab];
 
         // SAGE-native multi-dim filter
-        const filtered = data.filter(entry => {
+        const filteredRaw = data.filter(entry => {
             const matchesVersion = filters.version === 'all' || getVersion(entry) === filters.version;
             const matchesBackend = filters.backend === 'all' || getBackend(entry) === filters.backend;
             const matchesWorkload = filters.workload === 'all' || getWorkload(entry) === filters.workload;
@@ -243,8 +305,10 @@
             return matchesVersion && matchesBackend && matchesWorkload && matchesNodes && matchesParallel;
         });
 
+        const filtered = deduplicateEntries(filteredRaw);
+
         if (statsEl) {
-            statsEl.textContent = `Loaded ${state.totalLoadedEntries} entries • Showing ${filtered.length} entries`;
+            statsEl.textContent = `Loaded ${state.totalLoadedEntries} entries • Showing ${filtered.length} unique entries`;
         }
 
         if (filtered.length === 0) {
@@ -256,6 +320,8 @@
 
         // Sort by workload/backend/nodes/parallelism
         filtered.sort((a, b) => {
+            const byVersion = compareVersions(getVersion(b), getVersion(a));
+            if (byVersion !== 0) return byVersion;
             const byWorkload = getWorkload(a).localeCompare(getWorkload(b), undefined, { numeric: true });
             if (byWorkload !== 0) return byWorkload;
             const byBackend = getBackend(a).localeCompare(getBackend(b));
@@ -304,14 +370,25 @@
             return { ...entry, trends, baselineTrends, isBaseline };
         });
 
+        const versionRowSpans = new Map();
+        withTrends.forEach((entry) => {
+            const version = getVersion(entry);
+            versionRowSpans.set(version, (versionRowSpans.get(version) || 0) + 1);
+        });
+
+        let lastVersion = null;
         tbody.innerHTML = withTrends.map((entry, index) => {
-            // For the filtered view (one version), IsLatest applies to the Version, so all rows are "Latest" if version is latest.
-            // But we can simplify: Just show columns
             const isExpanded = state.expandedRows.has(entry.entry_id || index);
             if (!entry.entry_id) entry.entry_id = `entry-${index}`; 
+            const version = getVersion(entry);
+            const showVersionCell = version !== lastVersion;
+            const versionRowSpan = showVersionCell ? (versionRowSpans.get(version) || 1) : 0;
+            if (showVersionCell) {
+                lastVersion = version;
+            }
             
             return `
-                ${renderDataRow(entry, isExpanded)}
+                ${renderDataRow(entry, isExpanded, showVersionCell, versionRowSpan)}
                 ${renderDetailsRow(entry, isExpanded)}
             `;
         }).join('');
@@ -364,34 +441,40 @@
         const trend = {};
         if (cm.throughput_qps && rm.throughput_qps) trend.throughput_qps = ((cm.throughput_qps - rm.throughput_qps) / rm.throughput_qps) * 100;
         if (cm.latency_p99 && rm.latency_p99) trend.latency_p99 = ((cm.latency_p99 - rm.latency_p99) / rm.latency_p99) * 100;
-        if (cm.success_rate && rm.success_rate) trend.success_rate = ((cm.success_rate - rm.success_rate) / rm.success_rate) * 100;
         return trend;
     }
 
-    function renderDataRow(entry, isExpanded) {
+    function renderDataRow(entry, isExpanded, showVersionCell, versionRowSpan) {
         const m = entry.metrics || {};
         const t = entry.trends || {};
         const bt = entry.baselineTrends || {};
-
-        return `
-            <tr data-entry-id="${entry.entry_id}">
-                <td>
+        const versionCell = showVersionCell
+            ? `
+                <td rowspan="${versionRowSpan}">
                     <div class="version-cell">
                         <span>${getVersion(entry)}</span>
                         ${entry.isBaseline ? '<span class="version-badge baseline">Baseline</span>' : ''}
                     </div>
+                    <small class="version-subline">Date: ${getTimestamp(entry)}</small>
                 </td>
+            `
+            : '';
+
+        return `
+            <tr data-entry-id="${entry.entry_id}">
+                ${versionCell}
+                <td>${getSageLLMVersion(entry)}</td>
+                <td class="model-cell">${getModelName(entry)}</td>
                 <td style="font-weight: 500">${getWorkload(entry)}</td>
-                <td class="config-cell">${getBackend(entry).toUpperCase()} • ${getNodes(entry)} node(s) • p=${getParallelism(entry)}</td>
-                <td class="date-cell">${entry.timestamp || entry.metadata?.release_date || '-'}</td>
+                <td class="config-cell">${getBackend(entry).toUpperCase()}</td>
+                <td>${getNodes(entry)}</td>
+                <td>${getParallelism(entry)}</td>
                 <td>${renderMetricCell(m.latency_p99, t.latency_p99, bt.latency_p99, false, false, entry.isBaseline)}</td>
                 <td>${renderMetricCell(m.throughput_qps, t.throughput_qps, bt.throughput_qps, true, false, entry.isBaseline)}</td>
                 <td>${renderMetricCell(m.memory_mb, t.memory_mb, bt.memory_mb, false, false, entry.isBaseline)}</td>
-                <td>${renderMetricCell(m.success_rate, t.success_rate, bt.success_rate, true, true, entry.isBaseline)}</td>
-                <td>${renderMetricCell(m.accuracy_score, t.accuracy_score, bt.accuracy_score, true, false, entry.isBaseline)}</td>
                 <td class="action-cell">
-                    <button class="btn-details" data-entry-id="${entry.entry_id || 'unknown'}">
-                        ${isExpanded ? 'Hide' : 'Details'}
+                    <button class="btn-details" data-entry-id="${entry.entry_id || 'unknown'}" title="${isExpanded ? 'Collapse details' : 'Expand details'}" aria-label="${isExpanded ? 'Collapse details' : 'Expand details'}">
+                        ${isExpanded ? '▴' : '▾'}
                     </button>
                 </td>
             </tr>
@@ -443,13 +526,28 @@
         const rConf = entry.resource_config || {};
         const wConf = entry.workload || {};
         const comps = entry.components || {};
+        const sp = entry.system_profile || {};
 
         // Format component versions list
         const compList = Object.entries(comps).map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('');
+        const machineInfo = Object.keys(sp).length > 0
+            ? `
+            <div class="detail-section">
+                <h4>Machine Configuration</h4>
+                <p><strong>Host:</strong> ${sp.hostname || '-'}</p>
+                <p><strong>OS:</strong> ${sp.os || '-'} (${sp.arch || '-'})</p>
+                <p><strong>CPU:</strong> ${sp.cpu_model || '-'}</p>
+                <p><strong>Cores:</strong> ${sp.cpu_physical_cores ?? '-'}</p>
+                <p><strong>Memory:</strong> ${sp.memory_gb ?? '-'} GB</p>
+                <p><strong>GPU:</strong> ${sp.gpu || '-'}</p>
+                <p><strong>Python:</strong> ${sp.python || '-'}</p>
+            </div>
+            `
+            : '';
         
         return `
             <tr class="details-row">
-                <td colspan="10">
+                <td colspan="11">
                     <div class="details-content">
                         <div class="detail-grid">
                             <div class="detail-section">
@@ -464,7 +562,10 @@
                                 <h4>Workload Details</h4>
                                 <p><strong>Type:</strong> ${wConf.type || '-'}</p>
                                 <p><strong>Description:</strong> ${wConf.description || '-'}</p>
+                                <p><strong>SageLLM Version:</strong> ${getSageLLMVersion(entry)}</p>
+                                <p><strong>Model:</strong> ${getModelName(entry)}</p>
                             </div>
+                            ${machineInfo}
                              ${compList ? `
                             <div class="detail-section">
                                 <h4>Component Versions</h4>
