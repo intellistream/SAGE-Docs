@@ -388,8 +388,8 @@
 
         let lastVersion = null;
         tbody.innerHTML = withTrends.map((entry, index) => {
-            const isExpanded = state.expandedRows.has(entry.entry_id || index);
-            if (!entry.entry_id) entry.entry_id = `entry-${index}`; 
+            if (!entry.entry_id) entry.entry_id = `entry-${index}`;
+            const isExpanded = state.expandedRows.has(entry.entry_id);
             const version = getVersion(entry);
             const showVersionCell = version !== lastVersion;
             const versionRowSpan = showVersionCell ? (versionRowSpans.get(version) || 1) : 0;
@@ -406,7 +406,8 @@
         // Re-attach listeners for details buttons
         document.querySelectorAll('.btn-details').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const id = e.target.dataset.entryId;
+                const id = e.currentTarget?.dataset?.entryId;
+                if (!id) return;
                 toggleDetails(id);
             });
         });
