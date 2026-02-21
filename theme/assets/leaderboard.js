@@ -19,6 +19,7 @@
         singleChipData: [],
         multiChipData: [],
         multiNodeData: [],
+        totalLoadedEntries: 0,
         filters: { // Defaults
             'single-chip': { version: '', resource: '' },
             'multi-chip': { version: '', resource: '' },
@@ -35,6 +36,7 @@
         setupEventListeners();
         renderFilters();
         renderTable();
+        await renderLastUpdated();
     }
 
     // Load JSON data (HF or Local)
@@ -86,6 +88,11 @@
             [state.singleChipData, state.multiChipData, state.multiNodeData].forEach(data => {
                 data.sort(sorter);
             });
+
+            state.totalLoadedEntries =
+                state.singleChipData.length +
+                state.multiChipData.length +
+                state.multiNodeData.length;
 
             initializeFilters();
 
@@ -193,6 +200,7 @@
     function renderTable() {
         const tbody = document.getElementById('leaderboard-tbody');
         const emptyState = document.getElementById('empty-state');
+        const statsEl = document.getElementById('leaderboard-data-stats');
         if (!tbody) return;
 
         const data = getDataByTab(state.currentTab);
@@ -204,6 +212,10 @@
             const rName = getResourceName(entry);
             return entry.sage_version === filters.version && rName === filters.resource;
         });
+
+        if (statsEl) {
+            statsEl.textContent = `Loaded ${state.totalLoadedEntries} entries • Showing ${filtered.length} entries`;
+        }
 
         if (filtered.length === 0) {
             tbody.innerHTML = '';
@@ -270,6 +282,28 @@
                 toggleDetails(id);
             });
         });
+    }
+
+    async function renderLastUpdated() {
+        const el = document.getElementById('leaderboard-last-updated');
+        if (!el) return;
+
+        if (!window.HFDataLoader || typeof window.HFDataLoader.getLastUpdated !== 'function') {
+            el.textContent = 'Last updated: -';
+            return;
+        }
+
+        try {
+            const iso = await window.HFDataLoader.getLastUpdated();
+            if (!iso) {
+                el.textContent = 'Last updated: -';
+                return;
+            }
+            const dt = new Date(iso);
+            el.textContent = `Last updated: ${dt.toLocaleString()}`;
+        } catch (_error) {
+            el.textContent = 'Last updated: -';
+        }
     }
 
     function toggleDetails(id) {
