@@ -125,7 +125,11 @@
     }
 
     function getSageLLMVersion(entry) {
-        return normalizeDisplayValue(entry.sagellm_version || entry.metadata?.sagellm_version);
+        return normalizeDisplayValue(
+            entry.sagellm_version ||
+            entry.metadata?.sagellm_version ||
+            entry.metadata?.component_versions?.isagellm,
+        );
     }
 
     function getModelName(entry) {
