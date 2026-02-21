@@ -111,7 +111,12 @@
     }
 
     function getVersion(entry) {
-        return entry.sage_version || 'unknown';
+        return normalizeDisplayValue(
+            entry.sage_version ||
+            entry.metadata?.sage_version ||
+            entry.metadata?.component_versions?.isage,
+            'unknown',
+        );
     }
 
     function normalizeDisplayValue(value, fallback = '-') {
