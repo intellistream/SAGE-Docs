@@ -46,32 +46,14 @@
         const contentEl = document.getElementById('leaderboard-content');
 
         try {
-            let singleData, multiData;
-
-            // Try HF Loader
-            if (window.HFDataLoader) {
-                console.log('[Leaderboard] Using HF Data Loader...');
-                try {
-                    const data = await window.HFDataLoader.loadLeaderboardData();
-                    singleData = data.single;
-                    multiData = data.multi;
-                } catch (e) {
-                     console.warn('HF Loader failed, using local fallback...');
-                }
+            if (!window.HFDataLoader) {
+                throw new Error('HFDataLoader is required but not available');
             }
-            
-            if (!singleData) {
-                // Local fallback
-                const [singleRes, multiRes] = await Promise.all([
-                    fetch('./data/leaderboard_single.json'),
-                    fetch('./data/leaderboard_multi.json')
-                ]);
 
-                if (!singleRes.ok || !multiRes.ok) throw new Error('Failed to load data');
-
-                singleData = await singleRes.json();
-                multiData = await multiRes.json();
-            }
+            console.log('[Leaderboard] Using HF Data Loader...');
+            const data = await window.HFDataLoader.loadLeaderboardData();
+            const singleData = data.single;
+            const multiData = data.multi;
 
             // Categorize Data
             state.singleChipData = singleData.filter(d => !d.config_type || d.config_type.includes('single'));
