@@ -8,3 +8,4 @@ __pycache__/
 docs_src/assets/js/runtime-config.local.js
 .vscode/settings.json
 .env
+.sage/
