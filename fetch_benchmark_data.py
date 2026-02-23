@@ -87,10 +87,23 @@ def _to_entry(entry: dict, index: int) -> dict:
     }
 
 
+def _is_failed_run(raw: dict) -> bool:
+    """Returns True if the benchmark run had zero successful requests (service offline)."""
+    metadata = raw.get("metadata") or {}
+    successful = metadata.get("successful_requests")
+    # Only filter when the field is explicitly present and is 0
+    return successful is not None and int(successful) == 0
+
+
 def _split_leaderboards(records: list[dict]) -> tuple[list[dict], list[dict]]:
     normalized = [_to_entry(entry, idx) for idx, entry in enumerate(records)]
-    single = [row for row in normalized if row.get("config_type") == "single-chip"]
-    multi = [row for row in normalized if row.get("config_type") == "multi-node"]
+    # Exclude entries where all requests failed (backend/gateway was not running)
+    valid = [row for row in normalized if not _is_failed_run(row.get("raw_record") or {})]
+    skipped = len(normalized) - len(valid)
+    if skipped:
+        print(f"  ⚠️  Skipped {skipped} fully-failed run(s) (successful_requests=0)")
+    single = [row for row in valid if row.get("config_type") == "single-chip"]
+    multi = [row for row in valid if row.get("config_type") == "multi-node"]
     return single, multi
 
 

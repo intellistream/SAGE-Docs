@@ -380,10 +380,19 @@
             return { ...entry, trends, baselineTrends, isBaseline };
         });
 
+        // Count version group sizes, including extra rows for expanded detail rows
+        const versionGroupCounts = new Map();
+        withTrends.forEach((entry) => {
+            const version = getVersion(entry);
+            versionGroupCounts.set(version, (versionGroupCounts.get(version) || 0) + 1);
+        });
+
         const versionRowSpans = new Map();
         withTrends.forEach((entry) => {
             const version = getVersion(entry);
-            versionRowSpans.set(version, (versionRowSpans.get(version) || 0) + 1);
+            const isExpanded = state.expandedRows.has(entry.entry_id);
+            // Each entry contributes 1 row (data) + 1 row if expanded (details)
+            versionRowSpans.set(version, (versionRowSpans.get(version) || 0) + (isExpanded ? 2 : 1));
         });
 
         let lastVersion = null;
@@ -393,13 +402,19 @@
             const version = getVersion(entry);
             const showVersionCell = version !== lastVersion;
             const versionRowSpan = showVersionCell ? (versionRowSpans.get(version) || 1) : 0;
+            // Colspan for detail row: when inside a version group (groupCount > 1 or this
+            // entry itself has an expanded detail row that falls within the rowspan),
+            // column 1 is occupied by the version cell rowspan so only 10 cols are free.
+            // Use 11 only when this version has exactly 1 entry AND it's the first (non-grouped).
+            const versionGroupSize = versionGroupCounts.get(version) || 1;
+            const detailColspan = versionGroupSize > 1 ? 10 : 11;
             if (showVersionCell) {
                 lastVersion = version;
             }
             
             return `
                 ${renderDataRow(entry, isExpanded, showVersionCell, versionRowSpan)}
-                ${renderDetailsRow(entry, isExpanded)}
+                ${renderDetailsRow(entry, isExpanded, detailColspan)}
             `;
         }).join('');
         
@@ -493,7 +508,8 @@
     }
 
     function renderMetricCell(value, prevTrend, baselineTrend, higherIsBetter, isPercentage = false, isBaseline = false) {
-        if (value === undefined || value === null) return '<div class="metric-cell"><span class="metric-neutral">-</span></div>';
+        // Treat null, undefined, and 0 as missing data (0 latency/throughput is physically impossible)
+        if (value === undefined || value === null || value === 0) return '<div class="metric-cell"><span class="metric-neutral">-</span></div>';
         
         const formattedValue = isPercentage ?
             (value).toFixed(1) + '%' :
@@ -530,7 +546,7 @@
         return `<small style="color: #718096; display: block; font-size: 0.7em;">${label}: <span class="${trendClass}">${icon} ${trendText}</span></small>`;
     }
 
-    function renderDetailsRow(entry, isExpanded) {
+    function renderDetailsRow(entry, isExpanded, colspan = 11) {
         if (!isExpanded) return '';
         
         // Build details content
@@ -558,7 +574,7 @@
         
         return `
             <tr class="details-row">
-                <td colspan="11">
+                <td colspan="${colspan}">
                     <div class="details-content">
                         <div class="detail-grid">
                             <div class="detail-section">
@@ -600,3 +616,22 @@
     }
 
 })();
+
+/**
+ * Toggle the Q1-Q8 workload description panel.
+ * Called via onclick from the toggle button in the leaderboard section.
+ */
+function toggleWorkloadDesc() {
+    const btn = document.querySelector('.workload-desc-toggle');
+    const panel = document.getElementById('workload-desc-panel');
+    if (!btn || !panel) return;
+
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('is-open');
+    } else {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
+    }
+}
