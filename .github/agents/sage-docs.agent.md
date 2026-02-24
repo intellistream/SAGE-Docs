@@ -13,6 +13,7 @@ tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'todo', '
 
 ## Rules
 - Preserve existing information architecture and naming.
+- Do not create new local virtual environments (`venv`/`.venv`); use the existing configured Python environment.
 - Prefer updates to existing pages over creating fragmented new docs.
 - Keep commands and paths consistent with current SAGE workflows.
 - Avoid speculative guidance; document only discoverable behavior.
