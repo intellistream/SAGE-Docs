@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sage-pub-docs"
+version = "0.1.0"
+description = "SAGE public documentation site"
+requires-python = ">=3.11"
+
+dependencies = []
+
+[project.optional-dependencies]
+docs = [
+  "mkdocs>=1.4",
+  "mkdocs-material>=9.0,<10",
+  "mkdocs-include-markdown-plugin>=3.0",
+  "mkdocstrings[python]>=0.25",
+]
+test = [
+  "pytest>=8.0",
+]
+
+[tool.setuptools]
+py-modules = []

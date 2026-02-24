@@ -2,13 +2,22 @@ site_name: SAGE Documentation
 site_description: 高性能分布式推理框架 - 数据流原生的模块化、透明、可控的LLM工作流推理框架
 site_author: IntelliStream Lab
 site_url: https://sage.org.ai/
+docs_dir: docs_src
+
+theme:
+  name: material
+  custom_dir: theme
 
 nav:
   - 首页: index.md
   - 关于: about.md
   - 入门: getting-started/index.md
+  - 教程:
+    - 教程总览: tutorials/index.md
+    - 基础教程: tutorials/basic/streaming-101/index.md
+    - 高级教程: tutorials/advanced/index.md
   - 用户指南: guides/index.md
-  - API 参考: api-reference/index.md
+  - API 参考:
     - Middleware 中间件:
       - 概览: guides/packages/sage-middleware/overview.md
       - 仪表化: guides/packages/sage-middleware/middleware_instrument.md
@@ -72,26 +81,26 @@ nav:
               - Middleware 总览: api-reference/middleware/index.md
               - 服务 API: guides/packages/sage-middleware/service/service_api.md
 
-- 开发者:
-  - 贡献指南: developers/commands.md
-  - 开发环境: developers/development-setup.md
-  - CI/CD: developers/ci-cd.md
-  - 变更日志: ../../CHANGELOG.md
+  - 开发者:
+    - 贡献指南: developers/commands.md
+    - 开发环境: developers/development-setup.md
+    - CI/CD: developers/ci-cd.md
+    - 变更日志: ../../CHANGELOG.md
 
-- 社区:
-  - 社区总览: community/readme.md
-  - 社区指南: community/community.md
-  - 常见问题 (FAQ): community/faq.md
-  - 每周会议: community/meetings.md
-  - IntelliStream Lab: community/intellistream.md
-  - 社区成员:
-    - Shuhao Zhang: community/faculty/shuhao zhang.md
+  - 社区:
+    - 社区总览: community/readme.md
+    - 社区指南: community/community.md
+    - 常见问题 (FAQ): community/faq.md
+    - 每周会议: community/meetings.md
+    - IntelliStream Lab: community/intellistream.md
+    - 社区成员:
+      - Shuhao Zhang: community/faculty/shuhao zhang.md
 
 
-- 我们的贡献:
-  - 概览: contributions/index.md
-  - 发表的文章:
-    - 推理引擎: contributions/engine.md
-    - 推理构件: contributions/component.md
-    - 推理平台: contributions/platform.md
+  - 我们的贡献:
+    - 概览: contributions/index.md
+    - 发表的文章:
+      - 推理引擎: contributions/engine.md
+      - 推理构件: contributions/component.md
+      - 推理平台: contributions/platform.md
   
