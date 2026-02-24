@@ -105,7 +105,7 @@
         if (value === undefined || value === null) return fallback;
         const normalized = String(value).trim();
         if (!normalized) return fallback;
-        if (['unknown', 'none', 'null', 'n/a', '-'].includes(normalized.toLowerCase())) {
+        if (['unknown', 'none', 'null', 'n/a', '-', 'not-installed', 'not_installed'].includes(normalized.toLowerCase())) {
             return fallback;
         }
         return normalized;
