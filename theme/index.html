@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAGE</title>
-    <link rel="icon" href="assets/img/isage_light.svg">
+    <link rel="icon" href="{{ '/assets/img/isage_light.svg' | url }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="hero.css">
-    <link rel="stylesheet" href="sections.css">
-    <link rel="stylesheet" href="animations.css">
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="leaderboard.css">
+    <link rel="stylesheet" href="{{ '/styles.css' | url }}">
+    <link rel="stylesheet" href="{{ '/hero.css' | url }}">
+    <link rel="stylesheet" href="{{ '/sections.css' | url }}">
+    <link rel="stylesheet" href="{{ '/animations.css' | url }}">
+    <link rel="stylesheet" href="{{ '/responsive.css' | url }}">
+    <link rel="stylesheet" href="{{ '/leaderboard.css' | url }}">
     
     <!-- Asciinema Player CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.css" />
@@ -66,7 +66,7 @@
 
         <div class="hero-content">
             <h1 class="hero-title animate-fadeInUp" style="display: flex; align-items: center; justify-content: center; gap: 0.5em; color: #ffffff;">
-                <img src="assets/img/isage_light.svg" alt="SAGE Logo" style="vertical-align: middle; height: 1em; margin: 0; filter: brightness(1.5) contrast(1.2) drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));">
+                <img src="{{ '/assets/img/isage_light.svg' | url }}" alt="SAGE Logo" style="vertical-align: middle; height: 1em; margin: 0; filter: brightness(1.5) contrast(1.2) drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));">
                 SAGE
             </h1>
             <p class="hero-subtitle animate-fadeInUp" style="color: #ffffff;">
@@ -325,7 +325,7 @@
                     <div class="example-content">
                         <div class="example-icon">📰</div>
                         <h3 class="example-title">
-                            <a href="guides/article-monitoring/" style="color: inherit; text-decoration: none;">
+                            <a href="{{ '/guides/article-monitoring/' | url }}" style="color: inherit; text-decoration: none;">
                                 文章监控系统
                             </a>
                         </h3>
@@ -348,7 +348,7 @@
                     <div class="example-content">
                         <div class="example-icon">🏠</div>
                         <h3 class="example-title">
-                            <a href="guides/smart-home/" style="color: inherit; text-decoration: none;">
+                            <a href="{{ '/guides/smart-home/' | url }}" style="color: inherit; text-decoration: none;">
                                 分布式智能家居系统
                             </a>
                         </h3>
@@ -371,7 +371,7 @@
                     <div class="example-content">
                         <div class="example-icon">⚡</div>
                         <h3 class="example-title">
-                            <a href="guides/auto-scaling-chat/" style="color: inherit; text-decoration: none;">
+                            <a href="{{ '/guides/auto-scaling-chat/' | url }}" style="color: inherit; text-decoration: none;">
                                 智能扩缩容聊天系统
                             </a>
                         </h3>
@@ -442,7 +442,7 @@ python examples/tutorials/hello_world.py</code></pre>
 
 
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="getting-started/installation/" class="btn btn-secondary" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">
+                    <a href="{{ '/getting-started/installation/' | url }}" class="btn btn-secondary" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">
                         <i class="fas fa-book"></i>
                         查看完整安装文档
                     </a>
@@ -713,7 +713,7 @@ python examples/tutorials/hello_world.py</code></pre>
             </div>
             
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="benchmarks/" class="btn btn-secondary">
+                <a href="{{ '/benchmarks/' | url }}" class="btn btn-secondary">
                     <i class="fas fa-chart-bar"></i> 查看完整基准测试
                 </a>
             </div>
@@ -729,7 +729,7 @@ python examples/tutorials/hello_world.py</code></pre>
             <div class="collaboration-content">
                 <div class="team-info">
                     <div class="team-card">
-                        <img src="assets/img/ours.jpg" alt="Team Photo" class="team-photo">
+                        <img src="{{ '/assets/img/ours.jpg' | url }}" alt="Team Photo" class="team-photo">
                         <div class="team-icon">
                             <i class="fas fa-university"></i>
                         </div>
@@ -746,7 +746,7 @@ python examples/tutorials/hello_world.py</code></pre>
                         <div class="contact-info-card">
                             <div class="contact-header">
                                 <div class="contact-icon">
-                                    <img src="assets/img/shuhao.jpg" alt="张书豪教授" class="contact-photo">
+                                    <img src="{{ '/assets/img/shuhao.jpg' | url }}" alt="张书豪教授" class="contact-photo">
                                 </div>
                                 <div class="contact-title">
                                     <h4>团队负责人：张书豪 教授</h4>
@@ -1006,9 +1006,9 @@ python examples/tutorials/hello_world.py</code></pre>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="getting-started/">快速开始</a>
-                <a href="guides/">用户指南</a>
-                <a href="tutorials/basic/streaming-101/">教程</a>
+                <a href="{{ '/getting-started/' | url }}">快速开始</a>
+                <a href="{{ '/guides/' | url }}">用户指南</a>
+                <a href="{{ '/tutorials/basic/streaming-101/' | url }}">教程</a>
                 <a href="https://github.com/intellistream/SAGE">GitHub</a>
                 <a href="https://grid.hust.edu.cn/">CGCL Lab</a>
             </div>
@@ -1019,7 +1019,7 @@ python examples/tutorials/hello_world.py</code></pre>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="{{ '/script.js' | url }}"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -1037,25 +1037,25 @@ python examples/tutorials/hello_world.py</code></pre>
                 const demos = [
                     {
                         id: 'demo-install',
-                        file: 'assets/demo-install.cast',
+                        file: '{{ "/assets/demo-install.cast" | url }}',
                         cols: 60,
                         rows: 18
                     },
                     {
                         id: 'demo-local',
-                        file: 'assets/demo-local.cast',
+                        file: '{{ "/assets/demo-local.cast" | url }}',
                         cols: 60,
                         rows: 22
                     },
                     {
                         id: 'demo-distributed',
-                        file: 'assets/demo-distributed.cast',
+                        file: '{{ "/assets/demo-distributed.cast" | url }}',
                         cols: 64,
                         rows: 20
                     },
                     {
                         id: 'demo-gateway',
-                        file: 'assets/demo-gateway.cast',
+                        file: '{{ "/assets/demo-gateway.cast" | url }}',
                         cols: 62,
                         rows: 26
                     }
@@ -1096,7 +1096,7 @@ python examples/tutorials/hello_world.py</code></pre>
         })();
     </script>
     <!-- Leaderboard Scripts -->
-    <script src="assets/hf-data-loader.js"></script>
-    <script src="assets/leaderboard.js"></script>
+    <script src="{{ '/assets/hf-data-loader.js' | url }}"></script>
+    <script src="{{ '/assets/leaderboard.js' | url }}"></script>
 </body>
 </html>

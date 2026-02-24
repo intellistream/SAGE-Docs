@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # 1. Install dependencies
-pip install --upgrade pip
-pip install mkdocstrings[python]
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -e ".[docs]"
 
 # 2. Build the site
 mkdocs build --clean

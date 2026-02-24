@@ -23,9 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pytest
+        python -m pip install --upgrade pip
+        python -m pip install -e ".[docs,test]"
 
     - name: Run docs integrity tests
       run: python -m pytest tests/test_links.py tests/test_legacy_terms.py
