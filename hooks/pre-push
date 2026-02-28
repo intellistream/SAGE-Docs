@@ -1,22 +1,20 @@
 #!/bin/bash
-# Pre-push hook — block main push + optional PyPI publish
+# Pre-push hook — version check + post-push PyPI publish
 #
 # Flow:
 #   1. Block direct push to main branch
-#   2. Display current version
-#   3. Check if version already exists on PyPI
-#   4. Offer to publish after push completes (background job)
+#   2. Only proceed for main-dev pushes (other branches: skip cleanly)
+#   3. Auto-bump version if unchanged in recent commits
+#   4. Exit 0 → git push proceeds immediately
+#   5. Background job publishes to PyPI after push finishes (if token present)
 #
-# Version bumping is handled entirely by the post-commit hook.
-# This hook NEVER bumps version or creates additional commits.
-# → Single push only, no double-push.
+# Version bumping: auto-increments last segment if version unchanged.
+# This hook may create one version-bump commit before the push.
 
-# Recursion guard (unused now, kept for safety)
-if [ "${_SAGELLM_PP_RUNNING:-0}" = "1" ]; then
-    exit 0
-fi
+# Recursion guard
+if [ "${_SAGE_PP_RUNNING:-0}" = "1" ]; then exit 0; fi
 
-# Publish mode: "private" for most repos, "public" for sage-pypi-publisher
+# Publish mode: "public" → publish openly; "private" → internal only
 PUBLISH_MODE=public
 
 # Colors
@@ -28,23 +26,29 @@ BLUE='\033[0;34m'
 DIM='\033[2m'
 NC='\033[0m'
 
+WANT_PUBLISH=false
 REPO_DIR="$(pwd)"
 REPO_NAME="$(basename "$REPO_DIR")"
 PUBLISH_LOG="/tmp/${REPO_NAME}-publish-$$.log"
+PUSHING_MAIN_DEV=false
+PUSH_LOCAL_SHA=""
 
-# --- Block direct push to main ---
-block_main_push=false
+# --- Block direct push to main; detect main-dev push ---
 while read -r local_ref local_sha remote_ref remote_sha; do
     if [ "$local_ref" = "refs/heads/main" ] || [ "$remote_ref" = "refs/heads/main" ]; then
-        block_main_push=true
-        break
+        echo -e "${RED}✗ Direct push to main is forbidden${NC}"
+        echo -e "${YELLOW}  Please push to main-dev first, then merge via PR.${NC}"
+        exit 1
+    fi
+    if [ "$local_ref" = "refs/heads/main-dev" ] || [ "$remote_ref" = "refs/heads/main-dev" ]; then
+        PUSHING_MAIN_DEV=true
+        PUSH_LOCAL_SHA="$local_sha"
     fi
 done
 
-if [ "$block_main_push" = true ]; then
-    echo -e "${RED}✗ Direct push to main is forbidden${NC}"
-    echo -e "${YELLOW}  Please push to a feature branch and merge via PR.${NC}"
-    exit 1
+# Version check + publish only applies to main-dev pushes
+if [ "$PUSHING_MAIN_DEV" != true ]; then
+    exit 0
 fi
 
 # Safe read: falls back to default if /dev/tty is unavailable (SSH, IDE, etc.)
@@ -58,15 +62,64 @@ safe_read() {
     fi
 }
 
-# Find _version.py — single source of truth
-find_version_file() {
+# Find all _version.py files in repo
+find_version_files() {
     find . -maxdepth 4 -name '_version.py' \
         -not -path '*/node_modules/*' \
         -not -path '*/.git/*' \
         -not -path '*/dist/*' \
         -not -path '*/.egg-info/*' \
         -not -path '*/build/*' \
-        2>/dev/null | head -1
+        2>/dev/null
+}
+
+# Update version in pyproject.toml (static) and/or _version.py (dynamic)
+update_version() {
+    local old_version="$1"
+    local new_version="$2"
+    local updated=false
+
+    if grep -q '^version = "' pyproject.toml 2>/dev/null; then
+        sed -i "s/version = \"${old_version}\"/version = \"${new_version}\"/" pyproject.toml
+        git add pyproject.toml
+        updated=true
+    fi
+
+    while IFS= read -r VERSION_FILE; do
+        if [ -f "$VERSION_FILE" ] && grep -q '__version__ = "' "$VERSION_FILE" 2>/dev/null; then
+            sed -i "s/__version__ = \"${old_version}\"/__version__ = \"${new_version}\"/" "$VERSION_FILE"
+            git add "$VERSION_FILE"
+            updated=true
+        fi
+    done < <(find_version_files)
+
+    if [ "$updated" = false ]; then
+        echo -e "${RED}✗ Failed to update version (no version file found)${NC}"
+        return 1
+    fi
+
+    return 0
+}
+
+# Auto-increment the last version component by 1 (X.Y.Z → X.Y.Z+1, X.Y.Z.N → X.Y.Z.N+1)
+bump_patch() {
+    local v="$1"
+    local IFS='.'
+    read -ra parts <<< "$v"
+    local last_idx=$(( ${#parts[@]} - 1 ))
+    parts[$last_idx]=$(( parts[$last_idx] + 1 ))
+    echo "${parts[*]}"
+}
+
+# Check if PyPI token is available (no interaction needed)
+has_pypi_token() {
+    [ -n "${TWINE_PASSWORD:-}" ] || [ -n "${TWINE_TOKEN:-}" ] || [ -n "${UV_PUBLISH_TOKEN:-}" ] && return 0
+    if [ -f "$HOME/.pypirc" ] && grep -q "^\[pypi\]" "$HOME/.pypirc" 2>/dev/null; then
+        if grep -A5 "^\[pypi\]" "$HOME/.pypirc" | grep -qE "^(password|token)\s*=" 2>/dev/null; then
+            return 0
+        fi
+    fi
+    return 1
 }
 
 # Schedule PyPI publish as background job after push completes
@@ -84,7 +137,6 @@ schedule_publish() {
     echo -e "${DIM}  Log: tail -f ${PUBLISH_LOG}${NC}"
 
     (
-        # Wait for parent git push to finish
         GIT_PID="$PPID"
         while kill -0 "$GIT_PID" 2>/dev/null; do
             sleep 1
@@ -92,6 +144,17 @@ schedule_publish() {
         sleep 1
 
         cd "$REPO_DIR" || exit 1
+
+        # Verify the push actually landed before publishing
+        remote_sha="$(git ls-remote origin "refs/heads/main-dev" | awk '{print $1}')"
+        if [ -n "$PUSH_LOCAL_SHA" ] && [ -n "$remote_sha" ] && [ "$remote_sha" != "$PUSH_LOCAL_SHA" ]; then
+            {
+                echo "⏭ Skip publish: push SHA mismatch"
+                echo "  expected=${PUSH_LOCAL_SHA}"
+                echo "  remote=${remote_sha}"
+            } >> "$PUBLISH_LOG" 2>&1
+            exit 0
+        fi
 
         {
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -109,11 +172,10 @@ schedule_publish() {
             else
                 echo ""
                 echo "✗ Failed to upload to PyPI (exit code: $?)"
-                echo "  Re-run manually: sage-pypi-publisher build . --upload --no-dry-run --mode ${PUBLISH_MODE}"
+                echo "  Re-run: sage-pypi-publisher build . --upload --no-dry-run --mode ${PUBLISH_MODE}"
             fi
         } >> "$PUBLISH_LOG" 2>&1
 
-        # Print summary to terminal (user sees it after push output)
         if grep -q "Successfully uploaded" "$PUBLISH_LOG" 2>/dev/null; then
             echo -e "\n${GREEN}✓ PyPI: ${package} ${version} published${NC}"
         else
@@ -131,22 +193,33 @@ fi
 
 PACKAGE_NAME=$(grep -oP '^name = "\K[^"]+' pyproject.toml 2>/dev/null || echo "unknown")
 
-# Get version from _version.py (single source of truth)
-VERSION_FILE=$(find_version_file)
+# Get version: prefer _version.py (dynamic), fallback to pyproject.toml (static)
 CURRENT_VERSION=""
-if [ -n "$VERSION_FILE" ]; then
-    CURRENT_VERSION=$(grep -oP '__version__ = "\K[^"]+' "$VERSION_FILE" 2>/dev/null || true)
-fi
+while IFS= read -r VERSION_FILE; do
+    if [ -f "$VERSION_FILE" ]; then
+        CURRENT_VERSION=$(grep -oP '__version__ = "\K[^"]+' "$VERSION_FILE" 2>/dev/null || true)
+        [ -n "$CURRENT_VERSION" ] && break
+    fi
+done < <(find_version_files)
 
 if [ -z "$CURRENT_VERSION" ]; then
+    CURRENT_VERSION=$(grep -oP '^version = "\K[^"]+' pyproject.toml 2>/dev/null || true)
+fi
+
+if [ -z "$CURRENT_VERSION" ] || [ "$CURRENT_VERSION" = "unknown" ]; then
     exit 0
 fi
 
-echo -e "${GREEN}✓ [${REPO_NAME}] Version: ${CURRENT_VERSION}${NC}"
+# --- Version / Publish ---
+# post-commit already bumps the BUILD digit on every commit, so by the time
+# we push the version is always current.  The only thing pre-push needs to
+# guard against is re-pushing a version that was already published to PyPI
+# (e.g. after a failed push/publish on a previous attempt).
 
 # Quick PyPI check (5s timeout, non-blocking)
+# Exit codes: 0=version exists on PyPI, 1=not found, 2=network/other error
 PYPI_CHECK_RESULT=1
-if [ "$PACKAGE_NAME" != "unknown" ] && command -v python3 &> /dev/null; then
+if [ "$PACKAGE_NAME" != "unknown" ] && command -v python3 &>/dev/null; then
     python3 - "$PACKAGE_NAME" "$CURRENT_VERSION" <<'PY' && PYPI_CHECK_RESULT=0 || PYPI_CHECK_RESULT=$?
 import json, sys, urllib.request
 try:
@@ -162,21 +235,31 @@ PY
 fi
 
 if [ "$PYPI_CHECK_RESULT" -eq 0 ]; then
-    echo -e "${YELLOW}⚠ ${PACKAGE_NAME} ${CURRENT_VERSION} already on PyPI — skipping publish${NC}"
+    new_version=$(bump_patch "$CURRENT_VERSION")
+    old_version="$CURRENT_VERSION"
+    echo -e "${YELLOW}⚠ ${PACKAGE_NAME} ${CURRENT_VERSION} already on PyPI — auto-bumping: ${old_version} → ${new_version}${NC}"
+    if update_version "$CURRENT_VERSION" "$new_version"; then
+        git commit -m "chore: bump version to ${new_version}"
+        CURRENT_VERSION="$new_version"
+        echo -e "${GREEN}✓ Bumped to ${new_version}${NC}"
+    else
+        exit 1
+    fi
 elif [ "$PYPI_CHECK_RESULT" -eq 2 ]; then
-    echo -e "${DIM}(PyPI check skipped — network/timeout issue)${NC}"
-    echo -e "${BLUE}📦 Publish ${CURRENT_VERSION} to PyPI after push? [Y/n]:${NC}"
-    safe_read response "y"
-    if [[ ! "$response" =~ ^[Nn]$ ]]; then
-        schedule_publish "$CURRENT_VERSION" "$PACKAGE_NAME"
-    fi
+    echo -e "${DIM}(PyPI check skipped — network/timeout)${NC}"
+fi
+
+echo -e "${GREEN}✓ [${REPO_NAME}] Version: ${CURRENT_VERSION}${NC}"
+
+if has_pypi_token; then
+    echo -e "${BLUE}📦 Auto-publishing ${CURRENT_VERSION} to PyPI (token found)...${NC}"
+    WANT_PUBLISH=true
 else
-    # Version not on PyPI — offer to publish
-    echo -e "${BLUE}📦 Publish ${CURRENT_VERSION} to PyPI after push? [Y/n]:${NC}"
-    safe_read response "y"
-    if [[ ! "$response" =~ ^[Nn]$ ]]; then
-        schedule_publish "$CURRENT_VERSION" "$PACKAGE_NAME"
-    fi
+    echo -e "${DIM}  (no PyPI token — skipping publish. Add token to ~/.pypirc or set TWINE_PASSWORD)${NC}"
+fi
+
+if [ "$WANT_PUBLISH" = true ]; then
+    schedule_publish "$CURRENT_VERSION" "$PACKAGE_NAME"
 fi
 
 # Exit 0 → push proceeds immediately, never blocked by build/upload
