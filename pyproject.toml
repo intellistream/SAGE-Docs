@@ -11,11 +11,13 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
-docs = [
+full = [
   "zensical>=0.0.24",
-]
-test = [
   "pytest>=8.0",
+]
+
+dev = [
+  "sage-pub-docs[full]",
 ]
 
 [tool.setuptools]
