@@ -12,10 +12,7 @@ dependencies = []
 
 [project.optional-dependencies]
 docs = [
-  "mkdocs>=1.4",
-  "mkdocs-material>=9.0,<10",
-  "mkdocs-include-markdown-plugin>=3.0",
-  "mkdocstrings[python]>=0.25",
+  "zensical>=0.0.24",
 ]
 test = [
   "pytest>=8.0",

@@ -2,31 +2,12 @@
 
 > 用于构建透明 LLM 系统的声明式、可组合框架
 
-\[![CI](https://github.com/intellistream/SAGE/actions/workflows/ci.yml/badge.svg?branch=main)\](ht#
-开发者安装 ./quickstart.sh --dev --yes
-
-# 核心运行时安装
-
-./quickstart.sh --core --yes
-
-# 标准安装 + vLLM 支持
-
-./quickstart.sh --standard --vllm --yes
-
-# 使用系统 Python 而非 conda
-
-./quickstart.sh --core --pip --yes
-
-# 查看所有标志
-
-./quickstart.sh --help
-
-````m/intellistream/SAGE/actions/workflows/ci.yml)
+[![CI](https://github.com/intellistream/SAGE/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/intellistream/SAGE/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/intellistream/SAGE/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
 [![PyPI version](https://badge.fury.io/py/isage.svg)](https://badge.fury.io/py/isage)
 
-[![WeChat Group](https://img.shields.io/badge/WeChat-%E5%8A%A0%E5%85%A5%E5%BE%AE%E4%BF%A1%E7%BE%A4-brightgreen?style=flat&logo=wechat)](community/community.md)
+[![WeChat Group](https://img.shields.io/badge/WeChat-%E5%8A%A0%E5%85%A5%E5%BE%AE%E4%BF%A1%E7%BE%A4-brightgreen?style=flat&logo=wechat)](guides/index.md)
 [![QQ Group](https://img.shields.io/badge/%E3%80%90IntelliStream%E8%AF%BE%E9%A2%98%E7%BB%84%E8%AE%A8%E8%AE%BAQQ%E7%BE%A4%E3%80%91-blue?style=flat&logo=tencentqq)](https://qm.qq.com/q/bcnuyQVcvm)
 [![Slack](https://img.shields.io/badge/Slack-Join%20Slack-purple?style=flat&logo=slack)](https://join.slack.com/t/intellistream/shared_invite/zt-2qayp8bs7-v4F71ge0RkO_rn34hBDWQg)
 
@@ -396,14 +377,11 @@ sage chat
 
 ## 下一步
 
-- 📖 阅读 [安装指南](getting-started/installation.md)
-- 🚀 尝试 [快速开始](getting-started/quickstart.md)
+- 📖 阅读 [入门文档](getting-started/index.md)
+- 🚀 尝试 [快速开始](getting-started/index.md)
 - 💻 查看 [示例代码](https://github.com/intellistream/SAGE/tree/main-dev/examples)
-- 🤝 加入 [社区](community/community.md)
+- 🤝 浏览 [用户指南](guides/index.md)
 
 ## 许可证
 
 SAGE 采用 [MIT 许可证](https://github.com/intellistream/SAGE/blob/main/LICENSE)。
-
-```
-```

@@ -35,7 +35,7 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 
 ### 关键环境变量
 
-从 `.env.template` 配置，详见 [配置决策对照表](#配置决策对照表)。
+从 `.env.template` 配置，详见 [配置决策对照表](#config-matrix)。
 
 | 变量 | 用途 | 何时需要真实 Key |
 |------|------|-----------------|
@@ -50,7 +50,7 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 
 ### 🔹 L1: 基础设施层
 
-#### [sage-common API](common/index.md)
+#### sage-common API
 
 基础工具库，提供通用的数据类型、配置管理和工具函数。
 
@@ -61,13 +61,13 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 - `sage.common.config.ports` - **SagePorts** ⭐ (统一端口配置)
 - `sage.common.utils` - 日志、序列化等工具
 
-👉 [查看 Common API](common/index.md)
+👉 详细内容请参考后续分仓文档发布。
 
 ---
 
 ### 🔹 L2: 平台服务层
 
-#### [sage-platform API](platform/index.md)
+#### sage-platform API
 
 平台抽象层，提供队列、存储、服务等基础设施抽象。
 
@@ -76,13 +76,13 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 - `sage.platform.storage` - Key-Value 存储后端
 - `sage.platform.service` - 服务基类
 
-👉 [查看 Platform API](platform/index.md)
+👉 详细内容请参考后续分仓文档发布。
 
 ---
 
 ### 🔹 L3: 核心层
 
-#### [sage-kernel API](kernel/index.md)
+#### sage-kernel API
 
 执行引擎和流式处理核心。
 
@@ -92,17 +92,11 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 - `sage.kernel.runtime` - 运行时系统（通信、任务管理）
 - `sage.kernel.graph` - 图编译器
 
-**详细 API 文档**：
-- [DataStreams API](../guides/packages/sage-kernel/api/datastreams.md) - 数据流 API
-- [Functions API](../guides/packages/sage-kernel/api/functions.md) - 函数接口
-- [Environments API](../guides/packages/sage-kernel/api/environments.md) - 执行环境
-- [Connected Streams API](../guides/packages/sage-kernel/api/connected-streams.md) - 连接流
-
-👉 [查看 Kernel API](kernel/index.md)
+👉 详细内容请参考后续分仓文档发布。
 
 ---
 
-#### [sage-libs API](libs/index.md)
+#### sage-libs API
 
 AI 组件库，包含 RAG、Agents、Embeddings 等高级功能。
 
@@ -113,17 +107,13 @@ AI 组件库，包含 RAG、Agents、Embeddings 等高级功能。
 - `sage.libs.rag` - RAG Pipeline（检索、生成、评估）
 - `sage.libs.tools` - 工具集（搜索、图像、文本处理）
 
-**详细 API 文档**：
-- [RAG API 参考](../guides/packages/sage-libs/rag/api_reference.md) - RAG 组件 API
-- [算子参考](../guides/packages/sage-libs/operators_reference.md) - Libs 算子 API
-
-👉 [查看 Libs API](libs/index.md)
+👉 详细内容请参考后续分仓文档发布。
 
 ---
 
 ### 🔹 L4: 中间件层
 
-#### [sage-middleware API](middleware/index.md)
+#### sage-middleware API
 
 领域特定的中间件服务。
 
@@ -133,10 +123,7 @@ AI 组件库，包含 RAG、Agents、Embeddings 等高级功能。
 - `sage.middleware.components.sage_refiner` - Refiner 服务
 - `sage.middleware.services.autostop` - AutoStop 服务
 
-**详细 API 文档**：
-- [服务 API](../guides/packages/sage-middleware/service/service_api.md) - 中间件服务接口
-
-👉 [查看 Middleware API](middleware/index.md)
+👉 详细内容请参考后续分仓文档发布。
 
 ---
 
@@ -257,27 +244,26 @@ planner = HierarchicalPlanner.from_config(
 
 | 层级 | 包 | API 文档 |
 |------|-----|----------|
-| L1 | sage-common | [Common API](common/index.md) |
-| L2 | sage-platform | [Platform API](platform/index.md) |
-| L3 | sage-kernel | [Kernel API](kernel/index.md) |
-| L3 | sage-libs | [Libs API](libs/index.md) |
-| L4 | sage-middleware | [Middleware API](middleware/index.md) |
+| L1 | sage-common | 详见对应仓库文档 |
+| L2 | sage-platform | 详见对应仓库文档 |
+| L3 | sage-kernel | 详见对应仓库文档 |
+| L3 | sage-libs | 详见对应仓库文档 |
+| L4 | sage-middleware | 详见对应仓库文档 |
 
 ### 常用 API
 
-- [DataStream API](../guides/packages/sage-kernel/api/datastreams.md) - 构建数据流
-- [Functions API](../guides/packages/sage-kernel/api/functions.md) - 自定义函数
-- [RAG API](../guides/packages/sage-libs/rag/api_reference.md) - RAG 组件
-- [算子参考](../guides/packages/sage-libs/operators_reference.md) - Libs 算子
-- [服务 API](../guides/packages/sage-middleware/service/service_api.md) - 中间件服务
+- [入门文档](../getting-started/index.md) - 快速上手 SAGE
+- [用户指南](../guides/index.md) - 当前可用的使用说明
+- [教程总览](../tutorials/index.md) - 示例与实践路径
 
 ## 📚 相关文档
 
 - [用户指南](../guides/index.md) - 各层级的详细使用指南
-- [快速入门](../getting-started/quickstart.md) - 快速开始使用 SAGE
-- [包架构](../concepts/architecture/package-structure.md) - 了解 SAGE 的架构设计
-- [核心概念](../concepts/index.md) - 理解 SAGE 的核心概念
-- [FAQ](../community/faq.md) - 常见问题解答
+- [快速入门](../getting-started/index.md) - 快速开始使用 SAGE
+- [教程总览](../tutorials/index.md) - 逐步学习与示例
+- [用户指南](../guides/index.md) - 现阶段稳定入口
+
+<a id="config-matrix"></a>
 
 ## 配置决策对照表
 

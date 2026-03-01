@@ -2,7 +2,7 @@ sync:
 	python sync_readme.py
 
 serve: sync
-	mkdocs serve
+	zensical serve
 
 build: sync
-	mkdocs build
+	zensical build --clean

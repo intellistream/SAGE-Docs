@@ -4,5 +4,5 @@
 
 建议从以下页面继续：
 
-- [用户指南](../../../guides/)
-- [部署与最佳实践](../../../guides/deployment/)
+- [用户指南](../../guides/index.md)
+- [部署与最佳实践](../../guides/index.md)

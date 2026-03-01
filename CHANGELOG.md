@@ -11,19 +11,22 @@ Checked package name `isage-docs` on PyPI (`https://pypi.org/pypi/isage-docs/jso
 ## [Unreleased]
 
 ### Changed
-- Added repository-level changelog governance for versioned doc updates.
-- Replaced `dev-notes` links in MkDocs navigation and documentation pages with stable references.
-- Consolidated documentation retention policy: aggressively trim non-critical markdown while preserving `README*.md` and Copilot/agent instruction metadata.
-- Preserved key architecture summary in changelog: SAGE migration boundary keeps declaration/API/protocol contracts in SAGE while runtime core execution internals stay in Flownet.
-- Simplified `mkdocs.yml` navigation to a minimal structure aligned with retained entry pages.
+- Compressed historical `dev-notes` maintenance context into changelog summary notes.
+- Kept MkDocs navigation focused on stable, user-facing entry pages.
+- Simplified `README.md` to concise user-facing scope and maintainer build instructions.
+- Fixed `mkdocs.yml` navigation to remove references to non-existent pages and keep only valid entries.
+- Repaired broken links in `docs_src/about.md` and `docs_src/api-reference/index.md` to match current docs structure.
+- Replaced `docs_src/getting-started/index.md` and `docs_src/guides/index.md` with minimal valid entry pages to avoid stale links.
+- Normalized `docs_src/404.md` links to relative targets to remove build-time absolute-link diagnostics.
+- Migrated docs toolchain dependency from MkDocs/Material to `zensical` and updated build/serve commands accordingly.
+- Updated homepage template links in `theme/index.html` to current valid routes (`/guides/`, `/getting-started/`, `/api-reference/`) after docs route consolidation.
+- Updated bottom terminal demo wording/content to Flownet-aligned distributed runtime (`theme/index.html`, `docs_src/assets/demo-distributed.cast`) and removed Ray-specific demo text.
+- Corrected local RAG terminal demo import in `docs_src/assets/demo-local.cast` to current `TerminalSink` path (`sage.libs.foundation.io.sink`) for API consistency.
+- Updated install terminal demo in `docs_src/assets/demo-install.cast` to show conda env prompt (`(base)` before activation) and use `python -m pip install isage`.
+- Added explicit conda-context line in `docs_src/assets/demo-gateway.cast` to clarify the demo runs in activated `(sage)` environment.
+- Added the same activated conda-context hint to `docs_src/assets/demo-local.cast` and `docs_src/assets/demo-distributed.cast` for consistent bottom-demo presentation.
+- Performed one more API-consistency pass on `docs_src/assets/demo-distributed.cast`: replaced legacy `sage.libs.io` imports with `sage.libs.foundation.io.*` and updated `FlownetEnvironment` initialization to current config style.
 
 ### Removed
-- Removed dedicated `docs_src/dev-notes/` content and directory tree.
-- Removed root auxiliary markdown `SUBMODULE.md`.
-- Removed most markdown under `docs_src/`; retained only:
-	- `docs_src/index.md`
-	- `docs_src/about.md`
-	- `docs_src/getting-started/index.md`
-	- `docs_src/guides/index.md`
-	- `docs_src/api-reference/index.md`
-- Markdown footprint reduced from 126 files to 9 files in this repository.
+- Removed legacy `dev-notes` document set and related low-signal auxiliary markdown.
+- Removed unreferenced `devtools/website-demo-kit` artifacts after consolidating documentation scope.
