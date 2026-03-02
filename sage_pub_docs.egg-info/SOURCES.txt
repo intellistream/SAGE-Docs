@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-sage_pub_docs.egg-info/PKG-INFO
-sage_pub_docs.egg-info/SOURCES.txt
-sage_pub_docs.egg-info/dependency_links.txt
-sage_pub_docs.egg-info/requires.txt
-sage_pub_docs.egg-info/top_level.txt
-tests/test_legacy_terms.py
-tests/test_links.py
