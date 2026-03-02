@@ -1,0 +1,7 @@
+
+[dev]
+sage-pub-docs[full]
+
+[full]
+zensical>=0.0.24
+pytest>=8.0
