@@ -57,7 +57,7 @@ port = SagePorts.get_recommended_llm_port()  # 自动检测 WSL2 并选择合适
 **主要模块**：
 - `sage.common.core` - 核心类型和异常
 - `sage.llm` - **UnifiedInferenceClient** ⭐ (LLM + Embedding 统一客户端)
-- `sage.common.components.sage_embedding` - **EmbeddingFactory** (Embedding 服务)
+- `sagellm.embedding` - **EmbeddingFactory** (Embedding 服务)
 - `sage.common.config.ports` - **SagePorts** ⭐ (统一端口配置)
 - `sage.common.utils` - 日志、序列化等工具
 
