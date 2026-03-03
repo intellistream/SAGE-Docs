@@ -64,6 +64,15 @@ else
     echo -e "${YELLOW}⚠  pre-push template not found, skipping${NC}"
 fi
 
+# Install post-commit hook
+if [ -f "$TEMPLATE_DIR/post-commit" ]; then
+    cp "$TEMPLATE_DIR/post-commit" "$HOOKS_DIR/post-commit"
+    chmod +x "$HOOKS_DIR/post-commit"
+    echo -e "${GREEN}✓ Installed post-commit hook${NC}"
+else
+    echo -e "${YELLOW}⚠  post-commit template not found, skipping${NC}"
+fi
+
 echo ""
 
 # Step 2: Check dependencies
@@ -186,6 +195,7 @@ echo -e "  ${CYAN}3.${NC} Read docs: ${CYAN}cat README.md${NC}"
 echo ""
 echo -e "${YELLOW}${BOLD}Git Hooks Installed:${NC}"
 echo -e "  ${GREEN}•${NC} pre-commit: Checks code quality before commits"
+echo -e "  ${GREEN}•${NC} post-commit: Auto-bumps version after commit"
 echo -e "  ${GREEN}•${NC} pre-push: Manages version updates and PyPI publishing"
 echo ""
 echo -e "${BLUE}${BOLD}Useful Commands:${NC}"
