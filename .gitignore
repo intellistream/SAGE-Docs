@@ -3,6 +3,9 @@
 /.idea/
 *.pyc
 __pycache__/
+*.egg-info/
+dist/
+build/
 
 # Local development config (optional)
 docs_src/assets/js/runtime-config.local.js
