@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+
+{% block content %}
+  <h1>页面未找到</h1>
+  <p>页面可能已迁移，正在尝试跳转到新地址…</p>
+
+  <script>
+  (function () {
+    var path = window.location.pathname || "";
+
+    // 兼容旧式 markdown 链接：/a/b/index.md -> /a/b/
+    if (path.endsWith('/index.md')) {
+      var target = path.replace(/\/index\.md$/, '/');
+      window.location.replace(target + window.location.search + window.location.hash);
+      return;
+    }
+
+    // 兼容其他 markdown 链接：/a/b/page.md -> /a/b/page/
+    if (path.endsWith('.md')) {
+      var target2 = path.replace(/\.md$/, '/');
+      window.location.replace(target2 + window.location.search + window.location.hash);
+      return;
+    }
+  })();
+  </script>
+
+  <p>如未自动跳转，请返回 <a href="{{ '/' | url }}">首页</a> 或访问 <a href="{{ '/tutorials/' | url }}">教程总览</a>。</p>
+{% endblock %}

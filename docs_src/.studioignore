@@ -1,0 +1,9 @@
+# Studio知识库忽略的文件和目录
+# 用于减少embedding生成时间
+
+# 暂时跳过所有dev-notes（太多太慢）
+# 只加载用户友好的guides目录
+dev-notes/
+
+# 模板文件
+templates/

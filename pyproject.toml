@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sage-pub-docs"
+version = "0.1.0.2"
+description = "SAGE public documentation site"
+requires-python = ">=3.11"
+
+dependencies = []
+
+[project.optional-dependencies]
+docs = [
+  "zensical>=0.0.24",
+]
+
+test = [
+  "pytest>=8.0",
+]
+
+full = [
+  "sage-pub-docs[docs,test]",
+]
+
+dev = [
+  "sage-pub-docs[full]",
+]
+
+[tool.setuptools]
+py-modules = []
