@@ -17,6 +17,7 @@ tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'todo', '
 - Prefer updates to existing pages over creating fragmented new docs.
 - Keep commands and paths consistent with current SAGE workflows.
 - Avoid speculative guidance; document only discoverable behavior.
+- Branch policy: use `main` as default. For larger changes, use `feature/*` branches and merge via PR into `main`.
 
 ## Workflow
 1. Locate canonical page(s) for the topic.
