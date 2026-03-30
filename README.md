@@ -9,7 +9,7 @@
 入口约定：
 
 - `sage.org.ai` 是 SAGE 产品与文档主入口
-- `intellistream.github.io` 是 IntelliStream 组织门户
+- `lab.sage.org.ai` 是 IntelliStream 组织门户
 - `github.com/intellistream` 是代码与仓库入口
 
 ## 内容范围
