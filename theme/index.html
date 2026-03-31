@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAGE</title>
     <link rel="icon" href="{{ '/assets/img/isage_light.svg' | url }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -16,30 +18,32 @@
     <link rel="stylesheet" href="{{ '/animations.css' | url }}">
     <link rel="stylesheet" href="{{ '/responsive.css' | url }}">
     <link rel="stylesheet" href="{{ '/leaderboard.css' | url }}">
-    
+
     <!-- Asciinema Player CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.css" />
 </head>
+
 <body>
     <!-- Floating Navigation (appears on scroll) -->
     <nav class="floating-nav" id="floatingNav">
         <ul class="floating-nav-links">
             <li><a href="#demo" title="在线演示" class="nav-icon-play">
-                <i class="fas fa-play-circle"></i>
-                <span class="nav-glow"></span>
-            </a></li>
+                    <i class="fas fa-play-circle"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
             <li><a href="#overview" title="核心特性" class="nav-icon-docs">
-                <i class="fas fa-file-code"></i>
-                <span class="nav-glow"></span>
-            </a></li>
+                    <i class="fas fa-file-code"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
             <li><a href="#examples" title="应用案例" class="nav-icon-code">
-                <i class="fas fa-code-branch"></i>
-                <span class="nav-glow"></span>
-            </a></li>
+                    <i class="fas fa-code-branch"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
             <li><a href="https://github.com/intellistream" title="GitHub" class="nav-icon-github">
-                <i class="fab fa-github-alt"></i>
-                <span class="nav-glow"></span>
-            </a></li>
+                    <i class="fab fa-github-alt"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
         </ul>
     </nav>
 
@@ -65,8 +69,10 @@
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title animate-fadeInUp" style="display: flex; align-items: center; justify-content: center; gap: 0.5em; color: #ffffff;">
-                <img src="{{ '/assets/img/isage_light.svg' | url }}" alt="SAGE Logo" style="vertical-align: middle; height: 1em; margin: 0; filter: brightness(1.5) contrast(1.2) drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));">
+            <h1 class="hero-title animate-fadeInUp"
+                style="display: flex; align-items: center; justify-content: center; gap: 0.5em; color: #ffffff;">
+                <img src="{{ '/assets/img/isage_light.svg' | url }}" alt="SAGE Logo"
+                    style="vertical-align: middle; height: 1em; margin: 0; filter: brightness(1.5) contrast(1.2) drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));">
                 SAGE
             </h1>
             <p class="hero-subtitle animate-fadeInUp" style="color: #ffffff;">
@@ -138,23 +144,30 @@
     <section id="overview" class="what-is-sage section-animate">
         <div class="container">
             <h2 class="section-title">什么是 SAGE？</h2>
-            <p class="section-subtitle">SAGE (Streaming-Augmented Generative Execution) 是一个数据流原生的推理框架，<br>专为构建模块化、可控、透明的LLM工作流而设计</p>
+            <p class="section-subtitle">SAGE (Streaming-Augmented Generative Execution)
+                是一个数据流原生的推理框架，<br>专为构建模块化、可控、透明的LLM工作流而设计</p>
 
             <div class="pipeline-building-content">
                 <!-- 连接线容器 -->
                 <div class="connection-lines">
                     <svg class="connection-svg" width="100%" height="100%">
                         <!-- 获取数据源 -> 问题输入 -->
-                        <path class="connection-line" id="line1" d="M 0,0 Q 0,0 0,0" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.7" stroke-dasharray="5,5">
-                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                        <path class="connection-line" id="line1" d="M 0,0 Q 0,0 0,0" stroke="#3b82f6" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
                         </path>
                         <!-- 编码算子 -> 向量检索 -->
-                        <path class="connection-line" id="line2" d="M 0,0 Q 0,0 0,0" stroke="#10b981" stroke-width="2" fill="none" opacity="0.7" stroke-dasharray="5,5">
-                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                        <path class="connection-line" id="line2" d="M 0,0 Q 0,0 0,0" stroke="#10b981" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
                         </path>
                         <!-- 连接Pipeline -> 提问重构和向量检索之间的箭头 -->
-                        <path class="connection-line" id="line3" d="M 0,0 Q 0,0 0,0" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.7" stroke-dasharray="5,5">
-                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                        <path class="connection-line" id="line3" d="M 0,0 Q 0,0 0,0" stroke="#f59e0b" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
                         </path>
                     </svg>
                 </div>
@@ -370,7 +383,8 @@
                                 文章监控系统
                             </a>
                         </h3>
-                        <p class="example-description">源源不断地从arxiv拔文章下来，然后提取标题、摘要，通过词袋匹配等方法初级筛选，再通过语义进行筛选，把用户感兴趣/关注领域的文章提供给用户</p>
+                        <p class="example-description">
+                            源源不断地从arxiv拔文章下来，然后提取标题、摘要，通过词袋匹配等方法初级筛选，再通过语义进行筛选，把用户感兴趣/关注领域的文章提供给用户</p>
                         <div class="example-features">
                             <span class="feature-tag">实时数据流处理</span>
                             <span class="feature-tag">多级筛选</span>
@@ -393,7 +407,8 @@
                                 分布式智能家居系统
                             </a>
                         </h3>
-                        <p class="example-description">展示SAGE的互联互通能力，通过IoT设备网络实现智能家居自动化。洗衣机器人与网络交互，环境监测器、洗衣机和晾衣架协调完成洗衣流程。</p>
+                        <p class="example-description">
+                            展示SAGE的互联互通能力，通过IoT设备网络实现智能家居自动化。洗衣机器人与网络交互，环境监测器、洗衣机和晾衣架协调完成洗衣流程。</p>
                         <div class="example-features">
                             <span class="feature-tag">自动化流程</span>
                             <span class="feature-tag">环境感知</span>
@@ -450,7 +465,7 @@
 
                     <div class="tab-content active" id="wheel">
                         <div class="code-block">
-<pre><code># 1. 创建并激活conda环境
+                            <pre><code># 1. 创建并激活conda环境
 conda create -n sage python=3.11.10
 conda activate sage
 
@@ -468,7 +483,7 @@ python examples/tutorials/hello_world.py</code></pre>
 
                     <div class="tab-content" id="developer">
                         <div class="code-block">
-<pre><code># 1. 克隆仓库 「请提前确保装有conda」
+                            <pre><code># 1. 克隆仓库 「请提前确保装有conda」
 git clone https://github.com/intellistream/SAGE.git
 cd SAGE
 
@@ -483,7 +498,8 @@ python examples/tutorials/hello_world.py</code></pre>
 
 
                 <div style="text-align: center; margin-top: 3rem;">
-                    <a href="{{ '/getting-started/' | url }}" class="btn btn-secondary" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">
+                    <a href="{{ '/getting-started/' | url }}" class="btn btn-secondary"
+                        style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">
                         <i class="fas fa-book"></i>
                         查看完整安装文档
                     </a>
@@ -492,115 +508,117 @@ python examples/tutorials/hello_world.py</code></pre>
         </div>
     </section>
 
-    
+
     <!-- Performance Leaderboard Section -->
     <section id="leaderboard" class="section-animate">
         <div class="container">
             <div class="leaderboard-section">
                 <h2>📊 Performance Leaderboard</h2>
                 <p>
-                  Track SAGE's version evolution with real-world performance metrics. Compare performance across different versions, resource configurations, and standard RAG/Agent workloads.
+                    Track SAGE's version evolution with real-world performance metrics. Compare performance across
+                    different versions, resource configurations, and standard RAG/Agent workloads.
                 </p>
 
                 <!-- Tab Navigation -->
                 <div class="tab-nav">
-                  <button class="tab-button active" data-tab="single-chip">单机单卡</button>
-                  <button class="tab-button" data-tab="multi-chip">单机多卡</button>
-                  <button class="tab-button" data-tab="multi-node">多机多卡</button>
+                    <button class="tab-button active" data-tab="single-chip">单机单卡</button>
+                    <button class="tab-button" data-tab="multi-chip">单机多卡</button>
+                    <button class="tab-button" data-tab="multi-node">多机多卡</button>
                 </div>
 
                 <!-- Loading State -->
                 <div id="leaderboard-loading" class="loading-state">
-                  <div class="spinner"></div>
-                  <p>Loading leaderboard data...</p>
+                    <div class="spinner"></div>
+                    <p>Loading leaderboard data...</p>
                 </div>
 
                 <!-- Error State -->
                 <div id="leaderboard-error" class="empty-state" style="display: none">
-                  <div class="empty-state-icon">⚠️</div>
-                  <h3>Failed to Load Data</h3>
-                  <p>Please refresh the page or check your internet connection.</p>
+                    <div class="empty-state-icon">⚠️</div>
+                    <h3>Failed to Load Data</h3>
+                    <p>Please refresh the page or check your internet connection.</p>
                 </div>
 
                 <!-- Main Content -->
                 <div id="leaderboard-content" style="display: none">
-                                    <p id="leaderboard-data-stats" style="margin: 8px 0 12px; color: #4a5568; font-size: 13px">
-                                        Loaded 0 entries • Showing 0 entries
-                                    </p>
+                    <p id="leaderboard-data-stats" style="margin: 8px 0 12px; color: #4a5568; font-size: 13px">
+                        Loaded 0 entries • Showing 0 entries
+                    </p>
 
-                  <!-- Filters -->
-                  <div class="filters">
-                    <div class="filter-group">
-                                            <label for="filter-version">Version</label>
-                      <select id="filter-version">
-                        <option value="all">All</option>
-                      </select>
+                    <!-- Filters -->
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="filter-version">Version</label>
+                            <select id="filter-version">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-backend">Backend</label>
+                            <select id="filter-backend">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-workload">Workload</label>
+                            <select id="filter-workload">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-nodes">Nodes</label>
+                            <select id="filter-nodes">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-parallelism">Parallelism</label>
+                            <select id="filter-parallelism">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="filter-group">
-                                            <label for="filter-backend">Backend</label>
-                                            <select id="filter-backend">
-                                                <option value="all">All</option>
-                                            </select>
-                                        </div>
-                                        <div class="filter-group">
-                                            <label for="filter-workload">Workload</label>
-                                            <select id="filter-workload">
-                                                <option value="all">All</option>
-                                            </select>
-                                        </div>
-                                        <div class="filter-group">
-                                            <label for="filter-nodes">Nodes</label>
-                                            <select id="filter-nodes">
-                                                <option value="all">All</option>
-                                            </select>
-                                        </div>
-                                        <div class="filter-group">
-                                            <label for="filter-parallelism">Parallelism</label>
-                                            <select id="filter-parallelism">
-                        <option value="all">All</option>
-                      </select>
+
+                    <!-- Table -->
+                    <div class="table-container">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>SAGE Ver</th>
+                                    <th>SageLLM Ver</th>
+                                    <th>Model</th>
+                                    <th>Workload</th>
+                                    <th>Backend</th>
+                                    <th>Nodes</th>
+                                    <th>Parallelism</th>
+                                    <th>Latency (ms) ↓</th>
+                                    <th>QPS ↑</th>
+                                    <th>Memory (MB) ↓</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
                     </div>
-                  </div>
 
-                  <!-- Table -->
-                  <div class="table-container">
-                    <table class="leaderboard-table">
-                      <thead>
-                        <tr>
-                          <th>SAGE Ver</th>
-                                                    <th>SageLLM Ver</th>
-                                                    <th>Model</th>
-                          <th>Workload</th>
-                                                    <th>Backend</th>
-                                                    <th>Nodes</th>
-                                                    <th>Parallelism</th>
-                          <th>Latency (ms) ↓</th>
-                          <th>QPS ↑</th>
-                          <th>Memory (MB) ↓</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody id="leaderboard-tbody">
-                        <!-- Populated by JS -->
-                      </tbody>
-                    </table>
-                  </div>
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state" style="display: none">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No Results Found</h3>
+                        <p>Try adjusting your filters to see more data.</p>
+                    </div>
 
-                  <!-- Empty State -->
-                  <div id="empty-state" class="empty-state" style="display: none">
-                    <div class="empty-state-icon">🔍</div>
-                    <h3>No Results Found</h3>
-                    <p>Try adjusting your filters to see more data.</p>
-                  </div>
-
-                                    <p id="leaderboard-last-updated" style="margin-top: 12px; color: #718096; font-size: 13px">
-                                        Last updated: -
-                                    </p>
+                    <p id="leaderboard-last-updated" style="margin-top: 12px; color: #718096; font-size: 13px">
+                        Last updated: -
+                    </p>
                 </div>
 
                 <!-- Workload Descriptions Toggle -->
                 <div class="workload-desc-section">
-                    <button class="workload-desc-toggle" onclick="toggleWorkloadDesc()" aria-expanded="false" aria-controls="workload-desc-panel">
+                    <button class="workload-desc-toggle" onclick="toggleWorkloadDesc()" aria-expanded="false"
+                        aria-controls="workload-desc-panel">
                         <span class="wdt-left">
                             <span class="wdt-icon">🧪</span>
                             <span class="wdt-texts">
@@ -611,13 +629,16 @@ python examples/tutorials/hello_world.py</code></pre>
                         <span class="wdt-right">
                             <span class="wdt-count">8 workloads</span>
                             <svg class="wdt-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd"
+                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
                             </svg>
                         </span>
                     </button>
                     <div id="workload-desc-panel" class="workload-desc-panel">
                         <div class="wdp-intro">
-                            <p>以下 8 类工作负载覆盖 RAG 流水线、调度策略、弹性扩缩、故障恢复等典型分布式推理场景，提供可重现的标准化评测基准。每项实验均在 2× A100 GPU、64 核 CPU、256 GB 内存环境下运行。</p>
+                            <p>以下 8 类工作负载覆盖 RAG 流水线、调度策略、弹性扩缩、故障恢复等典型分布式推理场景，提供可重现的标准化评测基准。每项实验均在 2× A100 GPU、64 核
+                                CPU、256 GB 内存环境下运行。</p>
                         </div>
                         <div class="workload-desc-grid">
                             <div class="workload-card" data-q="1">
@@ -629,7 +650,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">🔗</span>
                                 </div>
-                                <p class="workload-detail">端到端 RAG 流水线工作负载族。模拟完整的检索增强生成场景：用户请求依次经过 Embedding、向量检索、Rerank 和 LLM 生成各阶段，测量全流程端到端延迟与吞吐量。</p>
+                                <p class="workload-detail">端到端 RAG 流水线工作负载族。模拟完整的检索增强生成场景：用户请求依次经过 Embedding、向量检索、Rerank
+                                    和 LLM 生成各阶段，测量全流程端到端延迟与吞吐量。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,000 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 60%</span>
@@ -645,7 +667,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">⚖️</span>
                                 </div>
-                                <p class="workload-detail">混合 LLM + Embedding 调度工作负载族。将聊天生成与向量编码请求混合发送至 Control Plane，评估统一调度器对两类异构请求的优先级决策、资源分配与 SLO 满足率。</p>
+                                <p class="workload-detail">混合 LLM + Embedding 调度工作负载族。将聊天生成与向量编码请求混合发送至 Control
+                                    Plane，评估统一调度器对两类异构请求的优先级决策、资源分配与 SLO 满足率。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,000 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 70%</span>
@@ -661,7 +684,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">🔇</span>
                                 </div>
-                                <p class="workload-detail">多租户干扰/隔离工作负载族。在同一实例中注入高强度干扰租户，测试 SAGE 对正常优先级请求的隔离保护能力，评估 p99 延迟劣化程度与资源抢占策略有效性。</p>
+                                <p class="workload-detail">多租户干扰/隔离工作负载族。在同一实例中注入高强度干扰租户，测试 SAGE 对正常优先级请求的隔离保护能力，评估 p99
+                                    延迟劣化程度与资源抢占策略有效性。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>600 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 70%</span>
@@ -677,7 +701,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">📈</span>
                                 </div>
-                                <p class="workload-detail">横向扩容吞吐/延迟工作负载族。逐步增加节点数与并行度，测量系统线性扩展能力。对比 FIFO、Priority、SLO-Aware、Hybrid 四种调度策略在不同规模下的性能表现。</p>
+                                <p class="workload-detail">横向扩容吞吐/延迟工作负载族。逐步增加节点数与并行度，测量系统线性扩展能力。对比
+                                    FIFO、Priority、SLO-Aware、Hybrid 四种调度策略在不同规模下的性能表现。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,500 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 70%</span>
@@ -693,7 +718,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">🖥️</span>
                                 </div>
-                                <p class="workload-detail">异构部署与故障恢复工作负载族。在 GPU/CPU 混合节点环境中发送请求，模拟节点故障与重启，评估系统的异构感知调度以及在局部故障下的自动恢复和请求重路由能力。</p>
+                                <p class="workload-detail">异构部署与故障恢复工作负载族。在 GPU/CPU
+                                    混合节点环境中发送请求，模拟节点故障与重启，评估系统的异构感知调度以及在局部故障下的自动恢复和请求重路由能力。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,000 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 60%</span>
@@ -709,7 +735,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">💥</span>
                                 </div>
-                                <p class="workload-detail">突发混合优先级事务工作负载族。模拟业务高峰期流量突增场景，混合高/低优先级请求以极高速率注入，评估系统在峰值负载下的优先级抢占调度与尾延迟控制能力。</p>
+                                <p class="workload-detail">
+                                    突发混合优先级事务工作负载族。模拟业务高峰期流量突增场景，混合高/低优先级请求以极高速率注入，评估系统在峰值负载下的优先级抢占调度与尾延迟控制能力。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,400 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 75%</span>
@@ -725,7 +752,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">🔧</span>
                                 </div>
-                                <p class="workload-detail">在线热重配置演练工作负载族。在持续负载下触发引擎参数变更（并行度、模型切换、资源限额调整），测量重配置操作对服务延迟的瞬态影响与恢复时间，验证零停机重配置能力。</p>
+                                <p class="workload-detail">
+                                    在线热重配置演练工作负载族。在持续负载下触发引擎参数变更（并行度、模型切换、资源限额调整），测量重配置操作对服务延迟的瞬态影响与恢复时间，验证零停机重配置能力。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>900 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 65%</span>
@@ -741,7 +769,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                     </div>
                                     <span class="workload-icon">🛡️</span>
                                 </div>
-                                <p class="workload-detail">故障恢复长时浸泡工作负载族。在长时间连续负载中周期性注入节点崩溃、网络分区等故障，评估系统从各类故障状态的检测速度、恢复完整性与浸泡期间 SLO 达标率。</p>
+                                <p class="workload-detail">
+                                    故障恢复长时浸泡工作负载族。在长时间连续负载中周期性注入节点崩溃、网络分区等故障，评估系统从各类故障状态的检测速度、恢复完整性与浸泡期间 SLO 达标率。</p>
                                 <div class="workload-meta">
                                     <span><i class="wm-icon">📦</i>1,200 reqs</span>
                                     <span><i class="wm-icon">🤖</i>LLM 70%</span>
@@ -752,7 +781,7 @@ python examples/tutorials/hello_world.py</code></pre>
                     </div>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="{{ '/api-reference/' | url }}" class="btn btn-secondary">
                     <i class="fas fa-chart-bar"></i> 查看完整基准测试
@@ -804,7 +833,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                 </div>
                                 <div class="contact-item">
                                     <i class="fas fa-globe"></i>
-                                    <a href="https://faculty.hust.edu.cn/ZHANG_SHUHAO/zh_CN/index/2608525/list/" target="_blank">教师个人主页</a>
+                                    <a href="https://faculty.hust.edu.cn/ZHANG_SHUHAO/zh_CN/index/2608525/list/"
+                                        target="_blank">教师个人主页</a>
                                 </div>
                                 <div class="contact-item">
                                     <i class="fab fa-slack"></i>
@@ -825,7 +855,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                 </div>
                                 <h4>应用开发方向-APP小组</h4>
                             </div>
-                            <p>APP小组以SAGE为核心研究与应用平台，聚焦大语言模型相关算法的研究，我们的方向涵盖RAG、智能Agent、长上下文建模、多模态融合、参数高效微调与模型压缩、以及对齐与可控生成等方向。</p>
+                            <p>APP小组以SAGE为核心研究与应用平台，聚焦大语言模型相关算法的研究，我们的方向涵盖RAG、智能Agent、长上下文建模、多模态融合、参数高效微调与模型压缩、以及对齐与可控生成等方向。
+                            </p>
                         </div>
 
                         <div class="opportunity-card">
@@ -845,7 +876,8 @@ python examples/tutorials/hello_world.py</code></pre>
                                 </div>
                                 <h4>系统运行方向-Kernel小组</h4>
                             </div>
-                            <p>Kernel小组致力于打造SAGE系统的高性能分布式流计算引擎，我们旨在提供高效健壮的运行时环境，具体涵盖从实时预处理、复杂事件处理，到分布式模型推理、结果生成与分发的完整流水线生命周期。</p>
+                            <p>Kernel小组致力于打造SAGE系统的高性能分布式流计算引擎，我们旨在提供高效健壮的运行时环境，具体涵盖从实时预处理、复杂事件处理，到分布式模型推理、结果生成与分发的完整流水线生命周期。
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -858,56 +890,65 @@ python examples/tutorials/hello_world.py</code></pre>
         <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 700;">快速上手演示</h2>
-                <p style="color: #94a3b8; font-size: 1.1rem; max-width: 900px; margin: 0 auto;">从安装到本地运行、分布式部署、API服务 —— 看看SAGE能做什么</p>
+                <p style="color: #94a3b8; font-size: 1.1rem; max-width: 900px; margin: 0 auto;">从安装到本地运行、分布式部署、API服务 ——
+                    看看SAGE能做什么</p>
             </div>
-            
+
             <!-- 2x2 grid layout for 4 demos -->
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem;">
                 <!-- Row 1: Installation Demo -->
                 <div style="display: flex; flex-direction: column;">
-                    <h3 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                    <h3
+                        style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
                         <i class="fas fa-download"></i> 快速安装
                     </h3>
-                    <div style="box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.2); background: #000; flex: 1;">
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.2); background: #000; flex: 1;">
                         <div id="demo-install"></div>
                     </div>
                 </div>
-                
+
                 <!-- Row 1: Local Pipeline Demo -->
                 <div style="display: flex; flex-direction: column;">
-                    <h3 style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                    <h3
+                        style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
                         <i class="fas fa-laptop-code"></i> 本地RAG Pipeline
                     </h3>
-                    <div style="box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.2); background: #000; flex: 1;">
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.2); background: #000; flex: 1;">
                         <div id="demo-local"></div>
                     </div>
                 </div>
-                
+
                 <!-- Row 2: Distributed Pipeline Demo -->
                 <div style="display: flex; flex-direction: column;">
-                    <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                    <h3
+                        style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
                         <i class="fas fa-network-wired"></i> Flownet分布式部署
                     </h3>
-                    <div style="box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.2); background: #000; flex: 1;">
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.2); background: #000; flex: 1;">
                         <div id="demo-distributed"></div>
                     </div>
                 </div>
 
                 <!-- Row 2: Gateway API Demo -->
                 <div style="display: flex; flex-direction: column;">
-                    <h3 style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                    <h3
+                        style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
                         <i class="fas fa-server"></i> OpenAI兼容Gateway
                     </h3>
-                    <div style="box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.2); background: #000; flex: 1;">
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.2); background: #000; flex: 1;">
                         <div id="demo-gateway"></div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Responsive stacking for mobile -->
             <style>
                 @media (max-width: 1024px) {
-                    #demo .container > div:nth-child(2) {
+                    #demo .container>div:nth-child(2) {
                         grid-template-columns: 1fr !important;
                         gap: 2rem !important;
                     }
@@ -1072,7 +1113,7 @@ python examples/tutorials/hello_world.py</code></pre>
     <!-- Asciinema Player JS and Initialization -->
     <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.js"></script>
     <script>
-        (function() {
+        (function () {
             function initPlayers() {
                 // Configuration for 4 demos (2x2 grid)
                 const demos = [
@@ -1101,19 +1142,19 @@ python examples/tutorials/hello_world.py</code></pre>
                         rows: 26
                     }
                 ];
-                
+
                 if (typeof AsciinemaPlayer === 'undefined') {
                     setTimeout(initPlayers, 50);
                     return;
                 }
-                
+
                 demos.forEach(demo => {
                     const element = document.getElementById(demo.id);
                     if (!element) return;
-                    
+
                     // Avoid re-initialization
                     if (element.querySelector('.asciinema-player') || element.innerHTML.trim() !== '') return;
-                    
+
                     // Clear and create player
                     element.innerHTML = '';
                     AsciinemaPlayer.create(demo.file, element, {
@@ -1129,15 +1170,16 @@ python examples/tutorials/hello_world.py</code></pre>
                     });
                 });
             }
-            
+
             // Run on load and support MkDocs instant loading
             window.addEventListener('load', initPlayers);
             document.addEventListener('DOMContentSwitch', initPlayers); // MkDocs Material instant navigation event
-            setTimeout(initPlayers, 100); 
+            setTimeout(initPlayers, 100);
         })();
     </script>
     <!-- Leaderboard Scripts -->
     <script src="{{ '/assets/hf-data-loader.js' | url }}"></script>
     <script src="{{ '/assets/leaderboard.js' | url }}"></script>
 </body>
+
 </html>
