@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGE</title>
+    <link rel="icon" href="/assets/img/isage_light.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/hero.css">
+    <link rel="stylesheet" href="/sections.css">
+    <link rel="stylesheet" href="/animations.css">
+    <link rel="stylesheet" href="/responsive.css">
+    <link rel="stylesheet" href="/leaderboard.css">
+
+    <!-- Asciinema Player CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.css" />
+</head>
+
+<body>
+    <!-- Floating Navigation (appears on scroll) -->
+    <nav class="floating-nav" id="floatingNav">
+        <ul class="floating-nav-links">
+            <li><a href="#demo" title="在线演示" class="nav-icon-play">
+                    <i class="fas fa-play-circle"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
+            <li><a href="#overview" title="核心特性" class="nav-icon-docs">
+                    <i class="fas fa-file-code"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
+            <li><a href="#examples" title="应用案例" class="nav-icon-code">
+                    <i class="fas fa-code-branch"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
+            <li><a href="https://github.com/intellistream" title="GitHub" class="nav-icon-github">
+                    <i class="fab fa-github-alt"></i>
+                    <span class="nav-glow"></span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero">
+        <!-- Starfield background -->
+        <div class="starfield"></div>
+
+        <!-- Dynamic background elements -->
+        <div class="data-nodes">
+            <div class="data-node" style="top: 20%; left: -10px;"></div>
+            <div class="data-node" style="top: 40%; left: -10px;"></div>
+            <div class="data-node" style="top: 60%; left: -10px;"></div>
+            <div class="data-node" style="top: 80%; left: -10px;"></div>
+            <div class="data-node" style="top: 30%; left: -10px;"></div>
+            <div class="data-node" style="top: 70%; left: -10px;"></div>
+        </div>
+
+        <div class="network-lines">
+            <div class="network-line" style="top: 25%; width: 100%;"></div>
+            <div class="network-line" style="top: 50%; width: 100%;"></div>
+            <div class="network-line" style="top: 75%; width: 100%;"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title animate-fadeInUp"
+                style="display: flex; align-items: center; justify-content: center; gap: 0.5em; color: #ffffff;">
+                <img src="/assets/img/isage_light.svg" alt="SAGE Logo"
+                    style="vertical-align: middle; height: 1em; margin: 0; filter: brightness(1.5) contrast(1.2) drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));">
+                SAGE
+            </h1>
+            <p class="hero-subtitle animate-fadeInUp" style="color: #ffffff;">
+                高性能分布式推理框架<br>
+                数据流原生的模块化、透明、可控的LLM工作流推理框架<br>
+                让AI应用开发变得简单、高效、可观测
+            </p>
+
+            <div class="hero-buttons animate-fadeInUp">
+                <a href="#quickstart" class="btn btn-primary">
+                    <span class="btn-icon"><i class="fas fa-rocket"></i></span>
+                    快速开始
+                </a>
+                <a href="#demo" class="btn btn-secondary">
+                    <span class="btn-icon"><i class="fas fa-play-circle"></i></span>
+                    查看演示
+                </a>
+                <a href="https://github.com/intellistream/SAGE" class="btn btn-secondary">
+                    <span class="btn-icon"><i class="fab fa-github-alt"></i></span>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="entry-routing section-animate">
+        <div class="container">
+            <h2 class="section-title">统一入口</h2>
+            <p class="section-subtitle">为避免首页过多、信息重复，对外入口按职责拆分：产品看 SAGE，团队看 IntelliStream，代码看 GitHub。</p>
+
+            <div class="entry-routing-grid">
+                <a class="entry-routing-card primary" href="https://sage.org.ai/">
+                    <div class="entry-routing-icon"><i class="fas fa-compass"></i></div>
+                    <div class="entry-routing-copy">
+                        <h3>sage.org.ai</h3>
+                        <p>SAGE 官方产品首页与文档主入口。第一次访问、安装、学习和查文档，都从这里开始。</p>
+                    </div>
+                </a>
+
+                <a class="entry-routing-card" href="https://vllm-hust.sage.org.ai/">
+                    <div class="entry-routing-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="entry-routing-copy">
+                        <h3>vllm-hust.sage.org.ai</h3>
+                        <p>vLLM-HUST 华科 fork 版本入口，聚焦推理引擎优化、工作站形态与工程化实验。</p>
+                    </div>
+                </a>
+
+                <a class="entry-routing-card" href="https://lab.sage.org.ai/">
+                    <div class="entry-routing-icon"><i class="fas fa-sitemap"></i></div>
+                    <div class="entry-routing-copy">
+                        <h3>lab.sage.org.ai</h3>
+                        <p>IntelliStream 团队与研究门户，用于展示更广的项目版图，而不是承担 SAGE 产品首页职责。</p>
+                    </div>
+                </a>
+
+                <a class="entry-routing-card" href="https://github.com/intellistream">
+                    <div class="entry-routing-icon"><i class="fab fa-github-alt"></i></div>
+                    <div class="entry-routing-copy">
+                        <h3>GitHub Profile</h3>
+                        <p>团队代码入口，用于仓库浏览、Issue、PR、发布和开发协作。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pipeline Building Process Section -->
+    <section id="overview" class="what-is-sage section-animate">
+        <div class="container">
+            <h2 class="section-title">什么是 SAGE？</h2>
+            <p class="section-subtitle">SAGE (Streaming-Augmented Generative Execution)
+                是一个数据流原生的推理框架，<br>专为构建模块化、可控、透明的LLM工作流而设计</p>
+
+            <div class="pipeline-building-content">
+                <!-- 连接线容器 -->
+                <div class="connection-lines">
+                    <svg class="connection-svg" width="100%" height="100%">
+                        <!-- 获取数据源 -> 问题输入 -->
+                        <path class="connection-line" id="line1" d="M 0,0 Q 0,0 0,0" stroke="#3b82f6" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
+                        </path>
+                        <!-- 编码算子 -> 向量检索 -->
+                        <path class="connection-line" id="line2" d="M 0,0 Q 0,0 0,0" stroke="#10b981" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
+                        </path>
+                        <!-- 连接Pipeline -> 提问重构和向量检索之间的箭头 -->
+                        <path class="connection-line" id="line3" d="M 0,0 Q 0,0 0,0" stroke="#f59e0b" stroke-width="2"
+                            fill="none" opacity="0.7" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s"
+                                repeatCount="indefinite" />
+                        </path>
+                    </svg>
+                </div>
+
+                <!-- 上半部分：获取数据源和编码算子 -->
+                <div class="pipeline-top-section">
+                    <div class="step-explanation" id="step-1">
+                        <div class="step-card compact">
+                            <div class="step-number">1</div>
+                            <div class="step-info">
+                                <h3><i class="fas fa-database"></i> 轻松连接各类数据源</h3>
+                                <p>通过连接多种数据源（Socket、File、Kafka 等），实现日志、监控、交易等数据的实时接入，确保数据第一时间进入处理流水线，为后续分析奠定基础。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-explanation" id="step-2">
+                        <div class="step-card compact">
+                            <div class="step-number">2</div>
+                            <div class="step-info">
+                                <h3><i class="fas fa-code"></i> 预定义或自定义编码算子</h3>
+                                <p>借助 SAGE 丰富的预定义算子或自定义算子，灵活实现数据清洗、聚合、转换、建模等逻辑，让开发者能够高效构建可扩展的数据处理流程。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 中央Pipeline可视化 -->
+                <div class="simple-pipeline">
+                    <div class="pipeline-flow">
+                        <div class="pipeline-node query-input" id="query-input">
+                            <i class="fas fa-question-circle"></i>
+                            <span>问题输入</span>
+                        </div>
+                        <div class="pipeline-arrow" id="arrow-1">→</div>
+                        <div class="pipeline-node query-rewrite" id="query-rewrite">
+                            <i class="fas fa-edit"></i>
+                            <span>提问重构</span>
+                        </div>
+                        <div class="pipeline-arrow" id="arrow-2">→</div>
+                        <div class="pipeline-node vector-search" id="vector-search">
+                            <i class="fas fa-search"></i>
+                            <span>向量检索</span>
+                        </div>
+                        <div class="pipeline-arrow" id="arrow-3">→</div>
+                        <div class="pipeline-node compress" id="compress">
+                            <i class="fas fa-compress-alt"></i>
+                            <span>语料压缩</span>
+                        </div>
+                        <div class="pipeline-arrow" id="arrow-4">→</div>
+                        <div class="pipeline-node llm-generation" id="llm-generation">
+                            <i class="fas fa-brain"></i>
+                            <span>LLM生成</span>
+                        </div>
+                        <div class="pipeline-arrow" id="arrow-5">→</div>
+                        <div class="pipeline-node result-output" id="result-output">
+                            <i class="fas fa-comment-dots"></i>
+                            <span>结果输出</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下半部分：连接Pipeline和提交运行 -->
+                <div class="pipeline-bottom-section">
+                    <div class="step-explanation" id="step-3">
+                        <div class="step-card compact">
+                            <div class="step-number">3</div>
+                            <div class="step-info">
+                                <h3><i class="fas fa-link"></i> 快速组装数据处理Pipeline</h3>
+                                <p>使用声明式 API 将算子自由组装成 Pipeline，SAGE 自动完成数据流的编排与转换，无需关心底层细节，轻松实现复杂数据管道。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-explanation" id="step-4">
+                        <div class="step-card compact">
+                            <div class="step-number">4</div>
+                            <div class="step-info">
+                                <h3><i class="fas fa-play-circle"></i> 一键提交并高效运行</h3>
+                                <p>提交至 SAGE 执行引擎，系统自动完成资源分配与优化调度，保障作业高效运行，并支持实时与批量任务的稳定执行。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose SAGE Section -->
+    <section id="highlights" class="why-choose-sage section-animate">
+        <div class="container">
+            <h2 class="section-title">为什么选择 SAGE？</h2>
+            <p class="section-subtitle">SAGE 是首个专为LLM推理设计的数据流框架，提供生产级AI管道解决方案</p>
+
+            <div class="why-grid">
+                <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>首创数据流范式</h3>
+                            <p>首个为LLM推理设计的数据流框架，提供原生的流式处理和异步执行能力</p>
+                        </div>
+                        <div class="why-badge">创新</div>
+                    </div>
+                </div>
+
+                <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>生产级AI管道</h3>
+                            <p>可观测与容错机制，支持大规模部署，让AI应用从原型到生产无缝过渡</p>
+                        </div>
+                        <div class="why-badge">可靠</div>
+                    </div>
+                </div>
+
+                <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>统一内存与计算</h3>
+                            <p>集成多种数据库，提供统一内存管理接口，支持分布式流推理</p>
+                        </div>
+                        <div class="why-badge">高效</div>
+                    </div>
+                </div>
+
+                <!-- <div class="why-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>学术工业桥梁</h3>
+                            <p>结合研究级严谨性和工业级实用性，为AI研究和应用提供统一的开发平台。</p>
+                        </div>
+                        <div class="why-badge">专业</div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="why-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>开放生态系统</h3>
+                            <p>丰富的连接器和扩展接口，轻松集成现有的AI工具链和基础设施。</p>
+                        </div>
+                        <div class="why-badge">开放</div>
+                    </div>
+                </div> -->
+
+                <div class="why-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="why-card-inner">
+                        <div class="why-icon">
+                            <div class="icon-circle">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <div class="why-content">
+                            <h3>弹性可靠运行</h3>
+                            <p>流感知的执行引擎，支持故障恢复和动态调度，确保AI服务的高可用性</p>
+                        </div>
+                        <div class="why-badge">稳定</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Examples Section -->
+    <section id="examples" class="usage-examples section-animate">
+        <div class="container-wide">
+            <h2 class="section-title">使用示例</h2>
+            <p class="section-subtitle">通过实际案例了解SAGE的强大能力</p>
+
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-video">
+                        <!-- Article Monitoring Animation Container -->
+                        <div id="articleMonitoringAnimation" class="article-monitoring-container">
+                            <!-- Animation will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="example-content">
+                        <div class="example-icon">📰</div>
+                        <h3 class="example-title">
+                            <a href="/guides/" style="color: inherit; text-decoration: none;">
+                                文章监控系统
+                            </a>
+                        </h3>
+                        <p class="example-description">
+                            源源不断地从arxiv拔文章下来，然后提取标题、摘要，通过词袋匹配等方法初级筛选，再通过语义进行筛选，把用户感兴趣/关注领域的文章提供给用户</p>
+                        <div class="example-features">
+                            <span class="feature-tag">实时数据流处理</span>
+                            <span class="feature-tag">多级筛选</span>
+                            <span class="feature-tag">语义分析</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <div class="example-video">
+                        <!-- Smart Home Animation Container -->
+                        <div id="smartHomeAnimation" class="smart-home-container">
+                            <!-- Animation will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="example-content">
+                        <div class="example-icon">🏠</div>
+                        <h3 class="example-title">
+                            <a href="/guides/" style="color: inherit; text-decoration: none;">
+                                分布式智能家居系统
+                            </a>
+                        </h3>
+                        <p class="example-description">
+                            展示SAGE的互联互通能力，通过IoT设备网络实现智能家居自动化。洗衣机器人与网络交互，环境监测器、洗衣机和晾衣架协调完成洗衣流程。</p>
+                        <div class="example-features">
+                            <span class="feature-tag">自动化流程</span>
+                            <span class="feature-tag">环境感知</span>
+                            <span class="feature-tag">设备互联</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-card">
+                    <div class="example-video">
+                        <!-- Auto-Scaling Animation Container -->
+                        <div id="autoScalingAnimation" class="auto-scaling-container">
+                            <!-- Animation will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="example-content">
+                        <div class="example-icon">⚡</div>
+                        <h3 class="example-title">
+                            <a href="/guides/" style="color: inherit; text-decoration: none;">
+                                智能扩缩容聊天系统
+                            </a>
+                        </h3>
+                        <p class="example-description">展示SAGE的高资源利用能力，通过云基础设施扩缩容可视化。随着用户负载增加，系统智能扩容，实现资源优化和负载均衡。</p>
+                        <div class="example-features">
+                            <span class="feature-tag">智能扩缩容</span>
+                            <span class="feature-tag">资源监控</span>
+                            <span class="feature-tag">负载均衡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Quick Start Section -->
+    <section id="quickstart" class="quickstart section-animate">
+        <div class="container">
+            <h2 class="section-title">快速开始</h2>
+            <p class="section-subtitle">完整的安装和使用指南，让您快速上手SAGE</p>
+
+            <div class="quickstart-content">
+                <div class="prerequisites">
+                    <h3><i class="fas fa-list-check"></i> 环境要求</h3>
+                    <ul>
+                        <li><strong>操作系统：</strong>Ubuntu ≥ 22.04</li>
+                        <li><strong>Python版本：</strong>≥ 3.11.10「推荐使用conda」</li>
+                    </ul>
+                </div>
+                <div class="installation-methods">
+                    <div class="method-tabs">
+                        <button class="tab-button active" data-tab="wheel">Pip安装</button>
+                        <button class="tab-button" data-tab="developer">开发者安装(推荐)</button>
+                    </div>
+
+                    <div class="tab-content active" id="wheel">
+                        <div class="code-block">
+                            <pre><code># 1. 创建并激活conda环境
+conda create -n sage python=3.11.10
+conda activate sage
+
+# 2. 安装SAGE
+pip install isage
+
+# 3. 克隆SAGE仓库
+git clone git@github.com:intellistream/SAGE.git
+cd SAGE
+
+# 4. 运行Hello World示例
+python examples/tutorials/hello_world.py</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="developer">
+                        <div class="code-block">
+                            <pre><code># 1. 克隆仓库 「请提前确保装有conda」
+git clone https://github.com/intellistream/SAGE.git
+cd SAGE
+
+# 2. 采用安装脚本快速安装
+./quickstart.sh
+
+# 3. 运行Hello World示例
+python examples/tutorials/hello_world.py</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="/getting-started/" class="btn btn-secondary"
+                        style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">
+                        <i class="fas fa-book"></i>
+                        查看完整安装文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Performance Leaderboard Section -->
+    <section id="leaderboard" class="section-animate">
+        <div class="container">
+            <div class="leaderboard-section">
+                <h2>📊 Performance Leaderboard</h2>
+                <p>
+                    Track SAGE's version evolution with real-world performance metrics. Compare performance across
+                    different versions, resource configurations, and standard RAG/Agent workloads.
+                </p>
+
+                <!-- Tab Navigation -->
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="single-chip">单机单卡</button>
+                    <button class="tab-button" data-tab="multi-chip">单机多卡</button>
+                    <button class="tab-button" data-tab="multi-node">多机多卡</button>
+                </div>
+
+                <!-- Loading State -->
+                <div id="leaderboard-loading" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading leaderboard data...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="leaderboard-error" class="empty-state" style="display: none">
+                    <div class="empty-state-icon">⚠️</div>
+                    <h3>Failed to Load Data</h3>
+                    <p>Please refresh the page or check your internet connection.</p>
+                </div>
+
+                <!-- Main Content -->
+                <div id="leaderboard-content" style="display: none">
+                    <p id="leaderboard-data-stats" style="margin: 8px 0 12px; color: #4a5568; font-size: 13px">
+                        Loaded 0 entries • Showing 0 entries
+                    </p>
+
+                    <!-- Filters -->
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="filter-version">Version</label>
+                            <select id="filter-version">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-backend">Backend</label>
+                            <select id="filter-backend">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-workload">Workload</label>
+                            <select id="filter-workload">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-nodes">Nodes</label>
+                            <select id="filter-nodes">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-parallelism">Parallelism</label>
+                            <select id="filter-parallelism">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="table-container">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>SAGE Ver</th>
+                                    <th>SageLLM Ver</th>
+                                    <th>Model</th>
+                                    <th>Workload</th>
+                                    <th>Backend</th>
+                                    <th>Nodes</th>
+                                    <th>Parallelism</th>
+                                    <th>Latency (ms) ↓</th>
+                                    <th>QPS ↑</th>
+                                    <th>Memory (MB) ↓</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state" style="display: none">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No Results Found</h3>
+                        <p>Try adjusting your filters to see more data.</p>
+                    </div>
+
+                    <p id="leaderboard-last-updated" style="margin-top: 12px; color: #718096; font-size: 13px">
+                        Last updated: -
+                    </p>
+                </div>
+
+                <!-- Workload Descriptions Toggle -->
+                <div class="workload-desc-section">
+                    <button class="workload-desc-toggle" onclick="toggleWorkloadDesc()" aria-expanded="false"
+                        aria-controls="workload-desc-panel">
+                        <span class="wdt-left">
+                            <span class="wdt-icon">🧪</span>
+                            <span class="wdt-texts">
+                                <span class="wdt-title">Benchmark Workload Suite</span>
+                                <span class="wdt-subtitle">点击展开 Q1–Q8 实验场景详细说明</span>
+                            </span>
+                        </span>
+                        <span class="wdt-right">
+                            <span class="wdt-count">8 workloads</span>
+                            <svg class="wdt-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="workload-desc-panel" class="workload-desc-panel">
+                        <div class="wdp-intro">
+                            <p>以下 8 类工作负载覆盖 RAG 流水线、调度策略、弹性扩缩、故障恢复等典型分布式推理场景，提供可重现的标准化评测基准。每项实验均在 2× A100 GPU、64 核
+                                CPU、256 GB 内存环境下运行。</p>
+                        </div>
+                        <div class="workload-desc-grid">
+                            <div class="workload-card" data-q="1">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q1</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">PipelineChain</span>
+                                        <span class="workload-tag">e2e_pipeline</span>
+                                    </div>
+                                    <span class="workload-icon">🔗</span>
+                                </div>
+                                <p class="workload-detail">端到端 RAG 流水线工作负载族。模拟完整的检索增强生成场景：用户请求依次经过 Embedding、向量检索、Rerank
+                                    和 LLM 生成各阶段，测量全流程端到端延迟与吞吐量。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,000 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 60%</span>
+                                    <span><i class="wm-icon">⚡</i>40 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="2">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q2</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">ControlMix</span>
+                                        <span class="workload-tag">control_plane</span>
+                                    </div>
+                                    <span class="workload-icon">⚖️</span>
+                                </div>
+                                <p class="workload-detail">混合 LLM + Embedding 调度工作负载族。将聊天生成与向量编码请求混合发送至 Control
+                                    Plane，评估统一调度器对两类异构请求的优先级决策、资源分配与 SLO 满足率。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,000 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 70%</span>
+                                    <span><i class="wm-icon">⚡</i>50 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="3">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q3</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">NoisyNeighbor</span>
+                                        <span class="workload-tag">isolation</span>
+                                    </div>
+                                    <span class="workload-icon">🔇</span>
+                                </div>
+                                <p class="workload-detail">多租户干扰/隔离工作负载族。在同一实例中注入高强度干扰租户，测试 SAGE 对正常优先级请求的隔离保护能力，评估 p99
+                                    延迟劣化程度与资源抢占策略有效性。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>600 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 70%</span>
+                                    <span><i class="wm-icon">⚡</i>50 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="4">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q4</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">ScaleFrontier</span>
+                                        <span class="workload-tag">scalability</span>
+                                    </div>
+                                    <span class="workload-icon">📈</span>
+                                </div>
+                                <p class="workload-detail">横向扩容吞吐/延迟工作负载族。逐步增加节点数与并行度，测量系统线性扩展能力。对比
+                                    FIFO、Priority、SLO-Aware、Hybrid 四种调度策略在不同规模下的性能表现。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,500 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 70%</span>
+                                    <span><i class="wm-icon">⚡</i>70 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="5">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q5</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">HeteroResilience</span>
+                                        <span class="workload-tag">heterogeneity</span>
+                                    </div>
+                                    <span class="workload-icon">🖥️</span>
+                                </div>
+                                <p class="workload-detail">异构部署与故障恢复工作负载族。在 GPU/CPU
+                                    混合节点环境中发送请求，模拟节点故障与重启，评估系统的异构感知调度以及在局部故障下的自动恢复和请求重路由能力。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,000 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 60%</span>
+                                    <span><i class="wm-icon">⚡</i>45 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="6">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q6</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">BurstTown</span>
+                                        <span class="workload-tag">burst_priority</span>
+                                    </div>
+                                    <span class="workload-icon">💥</span>
+                                </div>
+                                <p class="workload-detail">
+                                    突发混合优先级事务工作负载族。模拟业务高峰期流量突增场景，混合高/低优先级请求以极高速率注入，评估系统在峰值负载下的优先级抢占调度与尾延迟控制能力。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,400 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 75%</span>
+                                    <span><i class="wm-icon">⚡</i>90 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="7">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q7</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">ReconfigDrill</span>
+                                        <span class="workload-tag">reconfiguration</span>
+                                    </div>
+                                    <span class="workload-icon">🔧</span>
+                                </div>
+                                <p class="workload-detail">
+                                    在线热重配置演练工作负载族。在持续负载下触发引擎参数变更（并行度、模型切换、资源限额调整），测量重配置操作对服务延迟的瞬态影响与恢复时间，验证零停机重配置能力。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>900 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 65%</span>
+                                    <span><i class="wm-icon">⚡</i>55 req/s</span>
+                                </div>
+                            </div>
+                            <div class="workload-card" data-q="8">
+                                <div class="workload-card-header">
+                                    <span class="workload-badge">Q8</span>
+                                    <div class="workload-title-group">
+                                        <span class="workload-name">RecoverySoak</span>
+                                        <span class="workload-tag">recovery</span>
+                                    </div>
+                                    <span class="workload-icon">🛡️</span>
+                                </div>
+                                <p class="workload-detail">
+                                    故障恢复长时浸泡工作负载族。在长时间连续负载中周期性注入节点崩溃、网络分区等故障，评估系统从各类故障状态的检测速度、恢复完整性与浸泡期间 SLO 达标率。</p>
+                                <div class="workload-meta">
+                                    <span><i class="wm-icon">📦</i>1,200 reqs</span>
+                                    <span><i class="wm-icon">🤖</i>LLM 70%</span>
+                                    <span><i class="wm-icon">⚡</i>65 req/s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/api-reference/" class="btn btn-secondary">
+                    <i class="fas fa-chart-bar"></i> 查看完整基准测试
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer & Collaboration Section -->
+    <section id="team" class="developer-collaboration section-animate">
+        <div class="container">
+            <h2 class="section-title">开发团队与合作</h2>
+            <p class="section-subtitle">来自华中科技大学的IntelliStream课题组</p>
+
+            <div class="collaboration-content">
+                <div class="team-info">
+                    <div class="team-card">
+                        <img src="/assets/img/ours.jpg" alt="Team Photo" class="team-photo">
+                        <div class="team-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>IntelliStream课题组</h3>
+                        <p><strong>华中科技大学计算机科学与技术学院</strong></p>
+                        <p>专注于分布式系统与智能数据流处理研究</p>
+                        <div class="team-details">
+                            <p><i class="fas fa-map-marker-alt"></i> 地址：华中科技大学计算机学院408室</p>
+                        </div>
+                    </div>
+
+                    <div class="research-areas">
+                        <h3><i class="fas fa-handshake"></i> 联系我们</h3>
+                        <div class="contact-info-card">
+                            <div class="contact-header">
+                                <div class="contact-icon">
+                                    <img src="/assets/img/shuhao.jpg" alt="张书豪教授" class="contact-photo">
+                                </div>
+                                <div class="contact-title">
+                                    <h4>团队负责人：张书豪 教授</h4>
+                                </div>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>shuhao_zhang@hust.edu.cn</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fab fa-qq"></i>
+                                    <span>420444843 633549582「SAGE讨论群」</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-globe"></i>
+                                    <a href="https://faculty.hust.edu.cn/ZHANG_SHUHAO/zh_CN/index/2608525/list/"
+                                        target="_blank">教师个人主页</a>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fab fa-slack"></i>
+                                    <a href="https://intellistream.slack.com" target="_blank">SAGE Slack频道</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collaboration-opportunities">
+                    <h3><i class="fas fa-microscope"></i> 研究方向</h3>
+                    <div class="opportunities-grid">
+                        <div class="opportunity-card">
+                            <div class="opportunity-header">
+                                <div class="opportunity-icon">
+                                    <i class="fas fa-sign-language"></i>
+                                </div>
+                                <h4>应用开发方向-APP小组</h4>
+                            </div>
+                            <p>APP小组以SAGE为核心研究与应用平台，聚焦大语言模型相关算法的研究，我们的方向涵盖RAG、智能Agent、长上下文建模、多模态融合、参数高效微调与模型压缩、以及对齐与可控生成等方向。
+                            </p>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div class="opportunity-header">
+                                <div class="opportunity-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>中间件方向-Middleware小组</h4>
+                            </div>
+                            <p>Middleware小组专注于为SAGE平台提供高效的中间件解决方案，我们负责构建和优化核心技术，包括向量数据库、大模型记忆组件以及高性能向量计算引擎。</p>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div class="opportunity-header">
+                                <div class="opportunity-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>系统运行方向-Kernel小组</h4>
+                            </div>
+                            <p>Kernel小组致力于打造SAGE系统的高性能分布式流计算引擎，我们旨在提供高效健壮的运行时环境，具体涵盖从实时预处理、复杂事件处理，到分布式模型推理、结果生成与分发的完整流水线生命周期。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Demo Section -->
+    <section id="demo" class="terminal-demo-section" style="padding: 6rem 0; background:rgb(12, 16, 26);">
+        <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 700;">快速上手演示</h2>
+                <p style="color: #94a3b8; font-size: 1.1rem; max-width: 900px; margin: 0 auto;">从安装到本地运行、分布式部署、API服务 ——
+                    看看SAGE能做什么</p>
+            </div>
+
+            <!-- 2x2 grid layout for 4 demos -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem;">
+                <!-- Row 1: Installation Demo -->
+                <div style="display: flex; flex-direction: column;">
+                    <h3
+                        style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                        <i class="fas fa-download"></i> 快速安装
+                    </h3>
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.2); background: #000; flex: 1;">
+                        <div id="demo-install"></div>
+                    </div>
+                </div>
+
+                <!-- Row 1: Local Pipeline Demo -->
+                <div style="display: flex; flex-direction: column;">
+                    <h3
+                        style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                        <i class="fas fa-laptop-code"></i> 本地RAG Pipeline
+                    </h3>
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.2); background: #000; flex: 1;">
+                        <div id="demo-local"></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Distributed Pipeline Demo -->
+                <div style="display: flex; flex-direction: column;">
+                    <h3
+                        style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                        <i class="fas fa-network-wired"></i> Flownet分布式部署
+                    </h3>
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.2); background: #000; flex: 1;">
+                        <div id="demo-distributed"></div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Gateway API Demo -->
+                <div style="display: flex; flex-direction: column;">
+                    <h3
+                        style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.8rem; text-align: center; font-weight: 600;">
+                        <i class="fas fa-server"></i> OpenAI兼容Gateway
+                    </h3>
+                    <div
+                        style="box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.3); border-radius: 8px; overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.2); background: #000; flex: 1;">
+                        <div id="demo-gateway"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsive stacking for mobile -->
+            <style>
+                @media (max-width: 1024px) {
+                    #demo .container>div:nth-child(2) {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- How to Contribute Section -->
+    <section class="how-to-contribute section-animate">
+        <div class="container">
+            <h2 class="section-title">如何贡献</h2>
+            <p class="section-subtitle">加入SAGE社区，共同构建下一代AI基础设施</p>
+
+            <div class="contribute-content">
+                <div class="contribute-ways">
+                    <div class="contribute-card">
+                        <div class="contribute-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>代码提交</h3>
+                        <p>参与SAGE Kernel、Middleware、Application、Tools等版块的开发工作</p>
+                        <ul>
+                            <li>新算子和连接器开发</li>
+                            <li>性能优化和bug修复</li>
+                            <li>测试用例编写</li>
+                            <li>代码审查和重构</li>
+                        </ul>
+                        <a href="https://github.com/intellistream/SAGE" class="contribute-link">
+                            <i class="fab fa-github"></i> 查看代码仓库
+                        </a>
+                    </div>
+
+                    <div class="contribute-card">
+                        <div class="contribute-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>社区建设</h3>
+                        <p>参与SAGE 的社区讨论、问题解答、经验分享</p>
+                        <ul>
+                            <li>问题反馈和讨论</li>
+                            <li>使用经验分享</li>
+                            <li>社区活动组织</li>
+                            <li>新用户指导</li>
+                        </ul>
+                        <a href="https://github.com/intellistream/SAGE/discussions" class="contribute-link">
+                            <i class="fas fa-comments"></i> 加入社区
+                        </a>
+                    </div>
+
+                    <div class="contribute-card">
+                        <div class="contribute-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>创新想法</h3>
+                        <p>提出新的功能建议，架构层面的改进，创新新的应用场景</p>
+                        <ul>
+                            <li>新功能需求提议</li>
+                            <li>架构设计建议</li>
+                            <li>创新应用场景</li>
+                            <li>技术路线讨论</li>
+                        </ul>
+                        <a href="https://github.com/intellistream/SAGE/pulls" class="contribute-link">
+                            <i class="fas fa-rocket"></i> 提交想法
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contribution-process">
+                    <h3><i class="fas fa-route"></i> 贡献流程</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-circle">1</div>
+                            <div class="step-content">
+                                <h4>Fork 仓库</h4>
+                                <p>fork SAGE仓库到您的账户</p>
+                            </div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-circle">2</div>
+                            <div class="step-content">
+                                <h4>创建分支</h4>
+                                <p>为您的改动创建新的分支</p>
+                            </div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-circle">3</div>
+                            <div class="step-content">
+                                <h4>提交更改</h4>
+                                <p>编写、测试并提交您的代码</p>
+                            </div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-circle">4</div>
+                            <div class="step-content">
+                                <h4>创建PR</h4>
+                                <p>创建PR并等待团队审查</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats section-animate">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">内置算子</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">性能提升</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">数据源类型</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">扩展可能</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/getting-started/">快速开始</a>
+                <a href="/guides/">用户指南</a>
+                <a href="/tutorials/basic/streaming-101/">教程</a>
+                <a href="https://github.com/intellistream/SAGE">GitHub</a>
+                <a href="https://grid.hust.edu.cn/">CGCL Lab</a>
+            </div>
+            <div class="copyright">
+                Copyright © 2025 SAGE | <a href="https://grid.hust.edu.cn/" target="_blank">CGCL Lab</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/script.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+    </script>
+
+    <!-- Asciinema Player JS and Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.8.0/dist/bundle/asciinema-player.js"></script>
+    <script>
+        (function () {
+            function initPlayers() {
+                // Configuration for 4 demos (2x2 grid)
+                const demos = [
+                    {
+                        id: 'demo-install',
+                        file: '/assets/demo-install.cast',
+                        cols: 60,
+                        rows: 18
+                    },
+                    {
+                        id: 'demo-local',
+                        file: '/assets/demo-local.cast',
+                        cols: 60,
+                        rows: 22
+                    },
+                    {
+                        id: 'demo-distributed',
+                        file: '/assets/demo-distributed.cast',
+                        cols: 64,
+                        rows: 20
+                    },
+                    {
+                        id: 'demo-gateway',
+                        file: '/assets/demo-gateway.cast',
+                        cols: 62,
+                        rows: 26
+                    }
+                ];
+
+                if (typeof AsciinemaPlayer === 'undefined') {
+                    setTimeout(initPlayers, 50);
+                    return;
+                }
+
+                demos.forEach(demo => {
+                    const element = document.getElementById(demo.id);
+                    if (!element) return;
+
+                    // Avoid re-initialization
+                    if (element.querySelector('.asciinema-player') || element.innerHTML.trim() !== '') return;
+
+                    // Clear and create player
+                    element.innerHTML = '';
+                    AsciinemaPlayer.create(demo.file, element, {
+                        cols: demo.cols,
+                        rows: demo.rows,
+                        fit: "width",
+                        terminalLineHeight: 1.3,
+                        autoPlay: true,
+                        loop: true,
+                        theme: 'dracula',
+                        poster: "npt:0:00",
+                        speed: 1.0  // Normal speed
+                    });
+                });
+            }
+
+            // Run on load and support MkDocs instant loading
+            window.addEventListener('load', initPlayers);
+            document.addEventListener('DOMContentSwitch', initPlayers); // MkDocs Material instant navigation event
+            setTimeout(initPlayers, 100);
+        })();
+    </script>
+    <!-- Leaderboard Scripts -->
+    <script src="/assets/hf-data-loader.js"></script>
+    <script src="/assets/leaderboard.js"></script>
+</body>
+
+</html>

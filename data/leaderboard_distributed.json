@@ -1,0 +1,248 @@
+[
+  {
+    "entry_id": "sage-dist-001",
+    "sagellm_version": "1.2.0",
+    "config_type": "distributed",
+    "hardware": {
+      "vendor": "NVIDIA",
+      "chip_model": "NVIDIA A100 80GB",
+      "chip_count": 16,
+      "interconnect": "InfiniBand",
+      "chips_per_node": 8,
+      "intra_node_interconnect": "NVLink",
+      "memory_per_chip_gb": 80,
+      "total_memory_gb": 1280
+    },
+    "model": {
+      "name": "Qwen2.5-72B",
+      "parameters": "72B",
+      "precision": "FP16",
+      "quantization": "None"
+    },
+    "workload": {
+      "input_length": 2048,
+      "output_length": 512,
+      "batch_size": 64,
+      "concurrent_requests": 16,
+      "dataset": "default"
+    },
+    "metrics": {
+      "ttft_ms": 125.2,
+      "tbt_ms": 0.12,
+      "tpot_ms": 0.12,
+      "throughput_tps": 8520.5,
+      "peak_mem_mb": 594200,
+      "error_rate": 0.0,
+      "prefix_hit_rate": 0.92,
+      "kv_used_tokens": 100000,
+      "kv_used_bytes": 25600000,
+      "evict_count": 0,
+      "evict_ms": 0.0,
+      "spec_accept_rate": null
+    },
+    "cluster": {
+      "node_count": 2,
+      "interconnect": "InfiniBand HDR"
+    },
+    "versions": {
+      "protocol": "1.0.0",
+      "backend": "1.2.0",
+      "core": "1.2.0",
+      "control_plane": "1.0.0",
+      "gateway": "1.0.0",
+      "kv_cache": "1.0.0",
+      "comm": "1.0.0",
+      "compression": "1.0.0",
+      "benchmark": "1.2.0"
+    },
+    "environment": {
+      "os": "Linux 6.2.0-26-generic",
+      "python_version": "3.11.0",
+      "pytorch_version": "2.1.0+cu121",
+      "cuda_version": "12.1",
+      "cann_version": null,
+      "driver_version": "535.104.05"
+    },
+    "kv_cache_config": {
+      "enabled": true,
+      "eviction_policy": "LRU",
+      "budget_tokens": 131072,
+      "prefix_cache_enabled": true
+    },
+    "metadata": {
+      "submitted_at": "2026-01-22T10:00:00+00:00",
+      "submitter": "SAGE benchmark",
+      "data_source": "automated-benchmark",
+      "reproducible_cmd": "sage-benchmark run --model qwen2.5-72b --backend cuda --tp 4 --pp 2 --nodes 2",
+      "git_commit": null,
+      "release_date": "2026-01-22",
+      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "notes": "2 nodes, 8 GPUs each, TP4+PP2",
+      "verified": true
+    }
+  },
+  {
+    "entry_id": "sage-dist-002",
+    "sagellm_version": "1.2.0",
+    "config_type": "distributed",
+    "hardware": {
+      "vendor": "NVIDIA",
+      "chip_model": "NVIDIA A100 80GB",
+      "chip_count": 16,
+      "interconnect": "InfiniBand",
+      "chips_per_node": 8,
+      "intra_node_interconnect": "NVLink",
+      "memory_per_chip_gb": 80,
+      "total_memory_gb": 1280
+    },
+    "model": {
+      "name": "LLaMA-3-70B",
+      "parameters": "70B",
+      "precision": "FP16",
+      "quantization": "None"
+    },
+    "workload": {
+      "input_length": 2048,
+      "output_length": 512,
+      "batch_size": 64,
+      "concurrent_requests": 16,
+      "dataset": "default"
+    },
+    "metrics": {
+      "ttft_ms": 138.5,
+      "tbt_ms": 0.13,
+      "tpot_ms": 0.13,
+      "throughput_tps": 7850.3,
+      "peak_mem_mb": 558600,
+      "error_rate": 0.0,
+      "prefix_hit_rate": 0.89,
+      "kv_used_tokens": 95000,
+      "kv_used_bytes": 24320000,
+      "evict_count": 0,
+      "evict_ms": 0.0,
+      "spec_accept_rate": null
+    },
+    "cluster": {
+      "node_count": 2,
+      "interconnect": "InfiniBand HDR"
+    },
+    "versions": {
+      "protocol": "1.0.0",
+      "backend": "1.2.0",
+      "core": "1.2.0",
+      "control_plane": "1.0.0",
+      "gateway": "1.0.0",
+      "kv_cache": "1.0.0",
+      "comm": "1.0.0",
+      "compression": "1.0.0",
+      "benchmark": "1.2.0"
+    },
+    "environment": {
+      "os": "Linux 6.2.0-26-generic",
+      "python_version": "3.11.0",
+      "pytorch_version": "2.1.0+cu121",
+      "cuda_version": "12.1",
+      "cann_version": null,
+      "driver_version": "535.104.05"
+    },
+    "kv_cache_config": {
+      "enabled": true,
+      "eviction_policy": "LRU",
+      "budget_tokens": 131072,
+      "prefix_cache_enabled": true
+    },
+    "metadata": {
+      "submitted_at": "2026-01-22T14:00:00+00:00",
+      "submitter": "SAGE benchmark",
+      "data_source": "automated-benchmark",
+      "reproducible_cmd": "sage-benchmark run --model llama-3-70b --backend cuda --tp 4 --pp 2 --nodes 2",
+      "git_commit": null,
+      "release_date": "2026-01-22",
+      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "notes": "2 nodes, 8 GPUs each, TP4+PP2",
+      "verified": true
+    }
+  },
+  {
+    "entry_id": "sage-dist-003",
+    "sagellm_version": "1.2.0",
+    "config_type": "distributed",
+    "hardware": {
+      "vendor": "NVIDIA",
+      "chip_model": "NVIDIA A100 80GB",
+      "chip_count": 32,
+      "interconnect": "InfiniBand",
+      "chips_per_node": 8,
+      "intra_node_interconnect": "NVLink",
+      "memory_per_chip_gb": 80,
+      "total_memory_gb": 2560
+    },
+    "model": {
+      "name": "DeepSeek-V2-236B",
+      "parameters": "236B",
+      "precision": "FP16",
+      "quantization": "None"
+    },
+    "workload": {
+      "input_length": 2048,
+      "output_length": 512,
+      "batch_size": 32,
+      "concurrent_requests": 8,
+      "dataset": "default"
+    },
+    "metrics": {
+      "ttft_ms": 185.8,
+      "tbt_ms": 0.24,
+      "tpot_ms": 0.24,
+      "throughput_tps": 4280.8,
+      "peak_mem_mb": 943300,
+      "error_rate": 0.0,
+      "prefix_hit_rate": 0.86,
+      "kv_used_tokens": 80000,
+      "kv_used_bytes": 20480000,
+      "evict_count": 0,
+      "evict_ms": 0.0,
+      "spec_accept_rate": null
+    },
+    "cluster": {
+      "node_count": 4,
+      "interconnect": "InfiniBand HDR"
+    },
+    "versions": {
+      "protocol": "1.0.0",
+      "backend": "1.2.0",
+      "core": "1.2.0",
+      "control_plane": "1.0.0",
+      "gateway": "1.0.0",
+      "kv_cache": "1.0.0",
+      "comm": "1.0.0",
+      "compression": "1.0.0",
+      "benchmark": "1.2.0"
+    },
+    "environment": {
+      "os": "Linux 6.2.0-26-generic",
+      "python_version": "3.11.0",
+      "pytorch_version": "2.1.0+cu121",
+      "cuda_version": "12.1",
+      "cann_version": null,
+      "driver_version": "535.104.05"
+    },
+    "kv_cache_config": {
+      "enabled": true,
+      "eviction_policy": "LRU",
+      "budget_tokens": 262144,
+      "prefix_cache_enabled": true
+    },
+    "metadata": {
+      "submitted_at": "2026-01-23T10:00:00+00:00",
+      "submitter": "SAGE benchmark",
+      "data_source": "automated-benchmark",
+      "reproducible_cmd": "sage-benchmark run --model deepseek-v2-236b --backend cuda --tp 4 --pp 2 --ep 4 --nodes 4",
+      "git_commit": null,
+      "release_date": "2026-01-23",
+      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "notes": "4 nodes MoE with expert parallelism",
+      "verified": true
+    }
+  }
+]
