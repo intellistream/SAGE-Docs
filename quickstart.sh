@@ -109,12 +109,12 @@ else
     echo -e "${RED}✗ Python not found${NC}"
 fi
 
-# Check for sage-pypi-publisher
-if command -v sage-pypi-publisher &> /dev/null; then
-    echo -e "${GREEN}✓ sage-pypi-publisher found${NC}"
+# Check for sagepypi
+if command -v sagepypi &> /dev/null; then
+    echo -e "${GREEN}✓ sagepypi found${NC}"
 else
-    echo -e "${YELLOW}⚠  sage-pypi-publisher not found${NC}"
-    echo -e "${YELLOW}  Optional for PyPI publishing: pip install sage-pypi-publisher${NC}"
+    echo -e "${YELLOW}⚠  sagepypi not found${NC}"
+    echo -e "${YELLOW}  Optional for PyPI publishing: pip install sagepypi${NC}"
 fi
 
 echo ""
@@ -200,8 +200,8 @@ echo -e "  ${GREEN}•${NC} pre-push: Manages version updates and PyPI publishin
 echo ""
 echo -e "${BLUE}${BOLD}Useful Commands:${NC}"
 echo -e "  ${CYAN}./build.sh${NC}                    - Quick rebuild"
-echo -e "  ${CYAN}sage-pypi-publisher build${NC}     - Build distribution packages"
-echo -e "  ${CYAN}sage-pypi-publisher publish${NC}   - Build and publish to PyPI"
+echo -e "  ${CYAN}sagepypi build .${NC}              - Build distribution packages"
+echo -e "  ${CYAN}sagepypi build . --upload --no-dry-run${NC} - Build and publish to PyPI"
 echo ""
 echo -e "${GREEN}Happy coding! 🚀${NC}"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
