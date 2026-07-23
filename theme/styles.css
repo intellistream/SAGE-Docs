@@ -198,7 +198,7 @@ html {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: min(88vh, 820px);
     background: linear-gradient(135deg, #0c1220 0%, #1a2332 50%, #2d3748 100%);
     display: flex;
     align-items: center;

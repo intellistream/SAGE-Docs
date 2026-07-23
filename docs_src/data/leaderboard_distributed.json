@@ -76,7 +76,7 @@
       "reproducible_cmd": "sage-benchmark run --model qwen2.5-72b --backend cuda --tp 4 --pp 2 --nodes 2",
       "git_commit": null,
       "release_date": "2026-01-22",
-      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "changelog_url": "https://github.com/SAGE-Research/SAGE/blob/main/CHANGELOG.md",
       "notes": "2 nodes, 8 GPUs each, TP4+PP2",
       "verified": true
     }
@@ -158,7 +158,7 @@
       "reproducible_cmd": "sage-benchmark run --model llama-3-70b --backend cuda --tp 4 --pp 2 --nodes 2",
       "git_commit": null,
       "release_date": "2026-01-22",
-      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "changelog_url": "https://github.com/SAGE-Research/SAGE/blob/main/CHANGELOG.md",
       "notes": "2 nodes, 8 GPUs each, TP4+PP2",
       "verified": true
     }
@@ -240,7 +240,7 @@
       "reproducible_cmd": "sage-benchmark run --model deepseek-v2-236b --backend cuda --tp 4 --pp 2 --ep 4 --nodes 4",
       "git_commit": null,
       "release_date": "2026-01-23",
-      "changelog_url": "https://github.com/intellistream/sage/blob/main/CHANGELOG.md",
+      "changelog_url": "https://github.com/SAGE-Research/SAGE/blob/main/CHANGELOG.md",
       "notes": "4 nodes MoE with expert parallelism",
       "verified": true
     }

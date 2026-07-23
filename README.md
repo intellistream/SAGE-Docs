@@ -1,6 +1,6 @@
 # sage-docs
 
-本仓库用于发布和维护 [SAGE](https://github.com/intellistream/SAGE) 的对外文档。
+本仓库用于发布和维护 [SAGE](https://github.com/SAGE-Research/SAGE) 的对外文档。
 
 ## 文档入口
 
@@ -9,8 +9,9 @@
 入口约定：
 
 - `sage.org.ai` 是 SAGE 产品与文档主入口
-- `lab.sage.org.ai` 是 IntelliStream 组织门户
-- `github.com/intellistream` 是代码与仓库入口
+- `github.com/SAGE-Research` 是 SAGE 代码与协作入口
+- `datasys.sage.org.ai` 是 DataSys 数据系统主页
+- `lab.sage.org.ai` 是 IntelliStream 研究孵化器主页
 
 ## 内容范围
 
