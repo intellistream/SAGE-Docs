@@ -10,6 +10,7 @@ theme:
 
 nav:
   - 首页: index.md
+  - 成果: achievements.md
   - 关于: about.md
   - 入门: getting-started/index.md
   - 教程:
