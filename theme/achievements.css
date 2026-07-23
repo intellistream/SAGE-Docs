@@ -282,8 +282,10 @@
 
   .mobile-nav a {
     min-height: 48px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     color: inherit;
     border-bottom: 2px solid transparent;
     font-size: 12px;
