@@ -1,6 +1,6 @@
 ---
 template: index.html
-title: SAGE - 高性能分布式推理框架
+title: SAGE - Agent、RAG、工作流与服务编排平台
 hide:
   - navigation
   - toc

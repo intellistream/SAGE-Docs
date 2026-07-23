@@ -1,6 +1,6 @@
 site_name: SAGE Documentation
-site_description: 高性能分布式推理框架 - 数据流原生的模块化、透明、可控的LLM工作流推理框架
-site_author: IntelliStream Lab
+site_description: SAGE - Agent、RAG、工作流与服务编排平台
+site_author: SAGE-Research
 site_url: https://sage.org.ai/
 docs_dir: docs_src
 

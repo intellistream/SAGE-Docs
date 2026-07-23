@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAGE</title>
+    <title>SAGE | Agent, RAG, Workflow and Service Orchestration</title>
+    <meta name="description" content="SAGE is an open-source platform for Agent, RAG, workflow and service orchestration with explicit application-level state semantics.">
+    <meta property="og:url" content="https://sage.org.ai/">
+    <link rel="canonical" href="https://sage.org.ai/">
     <link rel="icon" href="{{ '/assets/img/isage_light.svg' | url }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap"
         rel="stylesheet">
@@ -40,7 +43,7 @@
                     <i class="fas fa-code-branch"></i>
                     <span class="nav-glow"></span>
                 </a></li>
-            <li><a href="https://github.com/intellistream" title="GitHub" class="nav-icon-github">
+            <li><a href="https://github.com/SAGE-Research" title="GitHub" class="nav-icon-github">
                     <i class="fab fa-github-alt"></i>
                     <span class="nav-glow"></span>
                 </a></li>
@@ -76,9 +79,9 @@
                 SAGE
             </h1>
             <p class="hero-subtitle animate-fadeInUp" style="color: #ffffff;">
-                高性能分布式推理框架<br>
-                数据流原生的模块化、透明、可控的LLM工作流推理框架<br>
-                让AI应用开发变得简单、高效、可观测
+                Agent、RAG、工作流与服务编排平台<br>
+                以显式数据流编排检索、工具与模型服务<br>
+                让智能应用保持模块化、可控、透明和可观测
             </p>
 
             <div class="hero-buttons animate-fadeInUp">
@@ -90,7 +93,7 @@
                     <span class="btn-icon"><i class="fas fa-play-circle"></i></span>
                     查看演示
                 </a>
-                <a href="https://github.com/intellistream/SAGE" class="btn btn-secondary">
+                <a href="https://github.com/SAGE-Research/SAGE" class="btn btn-secondary">
                     <span class="btn-icon"><i class="fab fa-github-alt"></i></span>
                     GitHub
                 </a>
@@ -100,39 +103,39 @@
 
     <section class="entry-routing section-animate">
         <div class="container">
-            <h2 class="section-title">统一入口</h2>
-            <p class="section-subtitle">为避免首页过多、信息重复，对外入口按职责拆分：产品看 SAGE，团队看 IntelliStream，代码看 GitHub。</p>
+            <h2 class="section-title">生态边界</h2>
+            <p class="section-subtitle">三个成熟组织形成分层生态；IntelliStream 跨层孵化早期研究，成熟项目按长期技术边界毕业。</p>
 
             <div class="entry-routing-grid">
-                <a class="entry-routing-card primary" href="https://sage.org.ai/">
+                <a class="entry-routing-card primary" href="https://github.com/SAGE-Research">
                     <div class="entry-routing-icon"><i class="fas fa-compass"></i></div>
                     <div class="entry-routing-copy">
-                        <h3>sage.org.ai</h3>
-                        <p>SAGE 官方产品首页与文档主入口。第一次访问、安装、学习和查文档，都从这里开始。</p>
+                        <h3>SAGE</h3>
+                        <p>Agent、RAG、工作流、评测、服务编排与应用级状态语义。</p>
                     </div>
                 </a>
 
-                <a class="entry-routing-card" href="https://vllm-hust.sage.org.ai/">
+                <a class="entry-routing-card" href="https://datasys.sage.org.ai/">
+                    <div class="entry-routing-icon"><i class="fas fa-database"></i></div>
+                    <div class="entry-routing-copy">
+                        <h3>DataSys</h3>
+                        <p>面向持续演化数据的流、动态图、向量索引、在线更新、查询与基准系统。</p>
+                    </div>
+                </a>
+
+                <a class="entry-routing-card" href="https://github.com/vllm-hust">
                     <div class="entry-routing-icon"><i class="fas fa-microchip"></i></div>
                     <div class="entry-routing-copy">
-                        <h3>vllm-hust.sage.org.ai</h3>
-                        <p>vLLM-HUST 华科 fork 版本入口，聚焦推理引擎优化、工作站形态与工程化实验。</p>
+                        <h3>vLLM-HUST</h3>
+                        <p>模型运行时、KV/cache 调度、编译、内核与硬件执行。</p>
                     </div>
                 </a>
 
                 <a class="entry-routing-card" href="https://lab.sage.org.ai/">
-                    <div class="entry-routing-icon"><i class="fas fa-sitemap"></i></div>
+                    <div class="entry-routing-icon"><i class="fas fa-seedling"></i></div>
                     <div class="entry-routing-copy">
-                        <h3>lab.sage.org.ai</h3>
-                        <p>IntelliStream 团队与研究门户，用于展示更广的项目版图，而不是承担 SAGE 产品首页职责。</p>
-                    </div>
-                </a>
-
-                <a class="entry-routing-card" href="https://github.com/intellistream">
-                    <div class="entry-routing-icon"><i class="fab fa-github-alt"></i></div>
-                    <div class="entry-routing-copy">
-                        <h3>GitHub Profile</h3>
-                        <p>团队代码入口，用于仓库浏览、Issue、PR、发布和开发协作。</p>
+                        <h3>IntelliStream</h3>
+                        <p>跨越应用、数据与执行层的研究孵化器，维护早期项目和毕业记录。</p>
                     </div>
                 </a>
             </div>
@@ -145,7 +148,7 @@
         <div class="container">
             <h2 class="section-title">什么是 SAGE？</h2>
             <p class="section-subtitle">SAGE (Streaming-Augmented Generative Execution)
-                是一个数据流原生的推理框架，<br>专为构建模块化、可控、透明的LLM工作流而设计</p>
+                将 Agent、RAG、工具调用与模型服务组织为显式工作流，<br>负责应用编排、服务接入与应用级状态语义</p>
 
             <div class="pipeline-building-content">
                 <!-- 连接线容器 -->
@@ -260,7 +263,7 @@
     <section id="highlights" class="why-choose-sage section-animate">
         <div class="container">
             <h2 class="section-title">为什么选择 SAGE？</h2>
-            <p class="section-subtitle">SAGE 是首个专为LLM推理设计的数据流框架，提供生产级AI管道解决方案</p>
+            <p class="section-subtitle">围绕可组合工作流、显式能力边界与可观测执行构建智能应用</p>
 
             <div class="why-grid">
                 <div class="why-card" data-aos="fade-up" data-aos-delay="100">
@@ -272,8 +275,8 @@
                             <div class="icon-glow"></div>
                         </div>
                         <div class="why-content">
-                            <h3>首创数据流范式</h3>
-                            <p>首个为LLM推理设计的数据流框架，提供原生的流式处理和异步执行能力</p>
+                            <h3>透明工作流</h3>
+                            <p>将检索、工具、推理与输出显式组织为数据流，便于组合、调试和观测</p>
                         </div>
                         <div class="why-badge">创新</div>
                     </div>
@@ -288,8 +291,8 @@
                             <div class="icon-glow"></div>
                         </div>
                         <div class="why-content">
-                            <h3>生产级AI管道</h3>
-                            <p>可观测与容错机制，支持大规模部署，让AI应用从原型到生产无缝过渡</p>
+                            <h3>模块化能力</h3>
+                            <p>核心运行时保持精简，RAG、记忆、意图识别、工具调用和推理引擎按需接入</p>
                         </div>
                         <div class="why-badge">可靠</div>
                     </div>
@@ -304,8 +307,8 @@
                             <div class="icon-glow"></div>
                         </div>
                         <div class="why-content">
-                            <h3>统一内存与计算</h3>
-                            <p>集成多种数据库，提供统一内存管理接口，支持分布式流推理</p>
+                            <h3>状态感知编排</h3>
+                            <p>在应用层表达会话、工作流和语义状态，并与数据服务和模型执行层协同</p>
                         </div>
                         <div class="why-badge">高效</div>
                     </div>
@@ -472,26 +475,23 @@ conda activate sage
 # 2. 安装SAGE
 pip install isage
 
-# 3. 克隆SAGE仓库
-git clone git@github.com:intellistream/SAGE.git
-cd SAGE
-
-# 4. 运行Hello World示例
-python examples/tutorials/hello_world.py</code></pre>
+# 3. 验证安装
+sage doctor
+sage verify</code></pre>
                         </div>
                     </div>
 
                     <div class="tab-content" id="developer">
                         <div class="code-block">
                             <pre><code># 1. 克隆仓库 「请提前确保装有conda」
-git clone https://github.com/intellistream/SAGE.git
+git clone https://github.com/SAGE-Research/SAGE.git
 cd SAGE
 
 # 2. 采用安装脚本快速安装
-./quickstart.sh
+./quickstart.sh --dev --yes
 
-# 3. 运行Hello World示例
-python examples/tutorials/hello_world.py</code></pre>
+# 3. 验证主仓核心能力
+sage verify</code></pre>
                         </div>
                     </div>
                 </div>
@@ -793,8 +793,8 @@ python examples/tutorials/hello_world.py</code></pre>
     <!-- Developer & Collaboration Section -->
     <section id="team" class="developer-collaboration section-animate">
         <div class="container">
-            <h2 class="section-title">开发团队与合作</h2>
-            <p class="section-subtitle">来自华中科技大学的IntelliStream课题组</p>
+            <h2 class="section-title">社区与生态协作</h2>
+            <p class="section-subtitle">SAGE 由 IntelliStream 孵化，现由 SAGE-Research 组织长期维护</p>
 
             <div class="collaboration-content">
                 <div class="team-info">
@@ -803,9 +803,9 @@ python examples/tutorials/hello_world.py</code></pre>
                         <div class="team-icon">
                             <i class="fas fa-university"></i>
                         </div>
-                        <h3>IntelliStream课题组</h3>
+                        <h3>SAGE 开源社区</h3>
                         <p><strong>华中科技大学计算机科学与技术学院</strong></p>
-                        <p>专注于分布式系统与智能数据流处理研究</p>
+                        <p>专注于 Agent、RAG、工作流、服务编排和状态感知智能应用</p>
                         <div class="team-details">
                             <p><i class="fas fa-map-marker-alt"></i> 地址：华中科技大学计算机学院408室</p>
                         </div>
@@ -846,16 +846,16 @@ python examples/tutorials/hello_world.py</code></pre>
                 </div>
 
                 <div class="collaboration-opportunities">
-                    <h3><i class="fas fa-microscope"></i> 研究方向</h3>
+                    <h3><i class="fas fa-layer-group"></i> 分层生态</h3>
                     <div class="opportunities-grid">
                         <div class="opportunity-card">
                             <div class="opportunity-header">
                                 <div class="opportunity-icon">
                                     <i class="fas fa-sign-language"></i>
                                 </div>
-                                <h4>应用开发方向-APP小组</h4>
+                                <h4>SAGE：应用与编排</h4>
                             </div>
-                            <p>APP小组以SAGE为核心研究与应用平台，聚焦大语言模型相关算法的研究，我们的方向涵盖RAG、智能Agent、长上下文建模、多模态融合、参数高效微调与模型压缩、以及对齐与可控生成等方向。
+                            <p>负责 Agent、RAG、工作流、评测、服务编排与应用级状态语义，并通过明确接口使用数据和模型服务。
                             </p>
                         </div>
 
@@ -864,9 +864,9 @@ python examples/tutorials/hello_world.py</code></pre>
                                 <div class="opportunity-icon">
                                     <i class="fas fa-database"></i>
                                 </div>
-                                <h4>中间件方向-Middleware小组</h4>
+                                <h4>DataSys：数据系统</h4>
                             </div>
-                            <p>Middleware小组专注于为SAGE平台提供高效的中间件解决方案，我们负责构建和优化核心技术，包括向量数据库、大模型记忆组件以及高性能向量计算引擎。</p>
+                            <p>负责框架中立的流、动态图、向量索引、在线更新、查询和数据生命周期；SAGE 通过适配器使用这些能力。</p>
                         </div>
 
                         <div class="opportunity-card">
@@ -874,9 +874,9 @@ python examples/tutorials/hello_world.py</code></pre>
                                 <div class="opportunity-icon">
                                     <i class="fas fa-cogs"></i>
                                 </div>
-                                <h4>系统运行方向-Kernel小组</h4>
+                                <h4>vLLM-HUST：推理与硬件执行</h4>
                             </div>
-                            <p>Kernel小组致力于打造SAGE系统的高性能分布式流计算引擎，我们旨在提供高效健壮的运行时环境，具体涵盖从实时预处理、复杂事件处理，到分布式模型推理、结果生成与分发的完整流水线生命周期。
+                            <p>负责模型运行时、KV/cache 调度、编译、内核与硬件执行；SAGE 在服务层提交推理请求和语义提示。
                             </p>
                         </div>
                     </div>
@@ -970,14 +970,14 @@ python examples/tutorials/hello_world.py</code></pre>
                             <i class="fas fa-code-branch"></i>
                         </div>
                         <h3>代码提交</h3>
-                        <p>参与SAGE Kernel、Middleware、Application、Tools等版块的开发工作</p>
+                        <p>参与 SAGE 核心运行时、应用编排、服务接口和开发工具的建设</p>
                         <ul>
                             <li>新算子和连接器开发</li>
                             <li>性能优化和bug修复</li>
                             <li>测试用例编写</li>
                             <li>代码审查和重构</li>
                         </ul>
-                        <a href="https://github.com/intellistream/SAGE" class="contribute-link">
+                        <a href="https://github.com/SAGE-Research/SAGE" class="contribute-link">
                             <i class="fab fa-github"></i> 查看代码仓库
                         </a>
                     </div>
@@ -994,7 +994,7 @@ python examples/tutorials/hello_world.py</code></pre>
                             <li>社区活动组织</li>
                             <li>新用户指导</li>
                         </ul>
-                        <a href="https://github.com/intellistream/SAGE/discussions" class="contribute-link">
+                        <a href="https://github.com/SAGE-Research/SAGE/discussions" class="contribute-link">
                             <i class="fas fa-comments"></i> 加入社区
                         </a>
                     </div>
@@ -1011,7 +1011,7 @@ python examples/tutorials/hello_world.py</code></pre>
                             <li>创新应用场景</li>
                             <li>技术路线讨论</li>
                         </ul>
-                        <a href="https://github.com/intellistream/SAGE/pulls" class="contribute-link">
+                        <a href="https://github.com/SAGE-Research/SAGE/pulls" class="contribute-link">
                             <i class="fas fa-rocket"></i> 提交想法
                         </a>
                     </div>
@@ -1062,23 +1062,23 @@ python examples/tutorials/hello_world.py</code></pre>
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">内置算子</div>
+                    <div class="stat-number">Agent</div>
+                    <div class="stat-label">智能体与工具编排</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-number">10x</div>
-                    <div class="stat-label">性能提升</div>
+                    <div class="stat-number">RAG</div>
+                    <div class="stat-label">检索增强工作流</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">数据源类型</div>
+                    <div class="stat-number">Flow</div>
+                    <div class="stat-label">透明可组合执行</div>
                 </div>
 
                 <div class="stat-item">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">扩展可能</div>
+                    <div class="stat-number">Serve</div>
+                    <div class="stat-label">服务与模型接入</div>
                 </div>
             </div>
         </div>
@@ -1091,11 +1091,11 @@ python examples/tutorials/hello_world.py</code></pre>
                 <a href="{{ '/getting-started/' | url }}">快速开始</a>
                 <a href="{{ '/guides/' | url }}">用户指南</a>
                 <a href="{{ '/tutorials/basic/streaming-101/' | url }}">教程</a>
-                <a href="https://github.com/intellistream/SAGE">GitHub</a>
+                <a href="https://github.com/SAGE-Research/SAGE">GitHub</a>
                 <a href="https://grid.hust.edu.cn/">CGCL Lab</a>
             </div>
             <div class="copyright">
-                Copyright © 2025 SAGE | <a href="https://grid.hust.edu.cn/" target="_blank">CGCL Lab</a>
+                Copyright © 2026 SAGE | <a href="https://grid.hust.edu.cn/" target="_blank">CGCL Lab</a>
             </div>
         </div>
     </footer>
