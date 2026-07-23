@@ -34,7 +34,7 @@ button { font: inherit; }
 .hero-copy { position: relative; z-index: 2; max-width: 780px; }
 .signal, .eyebrow { margin: 0 0 18px; color: var(--accent); font-size: 12px; font-weight: 850; text-transform: uppercase; letter-spacing: 0; }
 .signal { display: flex; align-items: center; gap: 10px; }
-.signal span { width: 28px; height: 2px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.signal > span:first-child { width: 28px; height: 2px; flex: 0 0 28px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
 h1 { margin: 0; font-size: clamp(76px, 11vw, 166px); line-height: .82; letter-spacing: 0; }
 .hero-kicker { margin: 30px 0 12px; max-width: 730px; font-size: clamp(25px, 3vw, 42px); font-weight: 700; line-height: 1.08; letter-spacing: 0; }
 .hero-summary { margin: 0; max-width: 690px; color: #c4d0cf; font-size: 18px; }
