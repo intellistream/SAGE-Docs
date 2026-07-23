@@ -1,0 +1,332 @@
+.publications-page .site-header {
+  background: rgba(7, 11, 12, .72);
+  backdrop-filter: blur(14px);
+}
+
+.nav-current {
+  color: var(--accent) !important;
+}
+
+.language-toggle {
+  min-width: 42px;
+  min-height: 38px;
+  padding: 7px 10px;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible {
+  color: var(--ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.publication-hero {
+  position: relative;
+  min-height: 590px;
+  padding: 158px max(4vw, calc((100vw - var(--max)) / 2)) 70px;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--ink);
+}
+
+.publication-hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+.publication-hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 11, 12, .98) 0%, rgba(7, 11, 12, .88) 44%, rgba(7, 11, 12, .38) 78%, rgba(7, 11, 12, .62) 100%);
+}
+
+.publication-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+}
+
+.publication-hero h1 {
+  max-width: 1040px;
+  font-size: clamp(52px, 8vw, 118px);
+  line-height: .9;
+}
+
+.publication-hero-summary {
+  margin: 32px 0 0;
+  max-width: 720px;
+  color: #c4d0cf;
+  font-size: 18px;
+}
+
+.publication-rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  color: var(--white);
+  background: #162021;
+  border-bottom: 1px solid var(--dark-line);
+}
+
+.publication-rail > div {
+  min-height: 132px;
+  padding: 22px max(20px, 4vw);
+  display: grid;
+  align-content: center;
+  border-right: 1px solid var(--dark-line);
+}
+
+.publication-rail span,
+.publication-meta span {
+  color: var(--accent);
+  font: 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.publication-rail strong {
+  margin-top: 7px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.publication-rail small {
+  margin-top: 7px;
+  color: #91a19f;
+}
+
+.publication-intro {
+  padding: 96px max(4vw, calc((100vw - var(--max)) / 2));
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, .7fr);
+  gap: 56px;
+  align-items: end;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.publication-intro h2,
+.publication-ecosystem h2 {
+  margin: 0;
+  max-width: 850px;
+  font-size: clamp(40px, 5.6vw, 76px);
+  line-height: .98;
+}
+
+.publication-intro > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.publication-section {
+  padding: 100px max(4vw, calc((100vw - var(--max)) / 2)) 120px;
+  display: grid;
+  grid-template-columns: minmax(180px, .42fr) minmax(0, 1.58fr);
+  gap: 64px;
+  background: var(--white);
+}
+
+.publication-year {
+  align-self: start;
+  position: sticky;
+  top: 32px;
+}
+
+.publication-year h2 {
+  margin: 0;
+  font-size: clamp(54px, 6vw, 88px);
+  line-height: .9;
+}
+
+.publication-year > p:last-child {
+  margin: 18px 0 0;
+  color: var(--muted);
+}
+
+.publication-list {
+  border-top: 1px solid var(--line);
+}
+
+.publication-entry {
+  min-height: 270px;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr) 112px;
+  gap: 28px;
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+}
+
+.publication-entry:hover {
+  background: linear-gradient(90deg, transparent, #f2f5f3 8%, #f2f5f3 92%, transparent);
+}
+
+.publication-meta {
+  display: grid;
+  gap: 12px;
+}
+
+.publication-meta strong {
+  font: 700 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.publication-copy h3 {
+  margin: 0 0 16px;
+  max-width: 920px;
+  font-size: clamp(23px, 2.2vw, 34px);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.publication-copy p {
+  margin: 10px 0;
+  max-width: 900px;
+  color: var(--muted);
+}
+
+.publication-authors {
+  color: var(--ink) !important;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.publication-link {
+  display: inline-block;
+  margin-top: 13px;
+  color: #126d70;
+  font-size: 13px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.publication-link:hover,
+.publication-link:focus-visible {
+  text-decoration: underline;
+}
+
+.publication-entry > .tag {
+  justify-self: end;
+}
+
+.publication-ecosystem {
+  padding: 96px max(4vw, calc((100vw - var(--max)) / 2));
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, .7fr);
+  gap: 56px;
+  align-items: end;
+  color: var(--white);
+  background: var(--ink);
+}
+
+.publication-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+  .publications-page .site-header nav a:not(.nav-action):not(.nav-current) {
+    display: none;
+  }
+
+  .publication-section {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-year {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .publications-page .site-header nav {
+    gap: 8px;
+  }
+
+  .publications-page .nav-current,
+  .publications-page .nav-action {
+    display: none;
+  }
+
+  .publication-hero {
+    min-height: 590px;
+    padding-top: 120px;
+    padding-bottom: 54px;
+  }
+
+  .publication-hero-media {
+    object-position: 64% center;
+  }
+
+  .publication-hero-shade {
+    background: rgba(7, 11, 12, .78);
+  }
+
+  .publication-hero h1 {
+    font-size: 56px;
+  }
+
+  .publication-hero-summary {
+    font-size: 16px;
+  }
+
+  .publication-rail {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .publication-rail > div {
+    min-height: 110px;
+    padding: 18px;
+    border-bottom: 1px solid var(--dark-line);
+  }
+
+  .publication-intro,
+  .publication-ecosystem {
+    padding-top: 74px;
+    padding-bottom: 74px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .publication-intro h2,
+  .publication-ecosystem h2 {
+    font-size: 40px;
+  }
+
+  .publication-section {
+    padding-top: 72px;
+    padding-bottom: 82px;
+    gap: 42px;
+  }
+
+  .publication-entry {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .publication-entry > .tag {
+    justify-self: start;
+    grid-row: 2;
+  }
+
+  .publication-copy {
+    grid-row: 3;
+  }
+
+  .publication-actions {
+    justify-content: flex-start;
+  }
+}
