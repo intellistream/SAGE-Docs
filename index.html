@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SAGE is the shared Streaming-Augmented Generative Execution product of the IntelliStream research ecosystem.">
+  <meta property="og:url" content="https://sage.org.ai/">
+  <meta property="og:image" content="https://sage.org.ai/assets/img/ecosystem-infrastructure.png">
+  <link rel="canonical" href="https://sage.org.ai/">
+  <link rel="icon" href="/assets/img/isage_light.svg">
+  <link rel="stylesheet" href="/portal.css">
+  <title>SAGE | Streaming-Augmented Generative Execution</title>
+</head>
+<body class="portal portal-sage">
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="SAGE home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>SAGE</span>
+      <small>Shared flagship product</small>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#platform">Platform</a>
+      <a href="/achievements/">Achievements</a>
+      <a href="#directory">Repository atlas</a>
+      <a href="/getting-started/installation/">Docs</a>
+      <a class="nav-action" href="https://github.com/RIDE-Lab">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <img class="hero-media" src="/assets/img/ecosystem-infrastructure.png" alt="" width="1944" height="809">
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="signal"><span></span> Shared flagship product / SAGE</p>
+        <h1 id="page-title">SAGE</h1>
+        <p class="hero-kicker">Streaming-computing ideas for LLM inference and agent execution.</p>
+        <p class="hero-summary">The IntelliStream research ecosystem's shared flagship product: explicit dataflow, state, backpressure, orchestration, RAG, evaluation, and agent-facing services.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/getting-started/installation/">Start building <span aria-hidden="true">→</span></a>
+          <a class="button button-quiet" href="https://github.com/RIDE-Lab/SAGE">Open core repository <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <dl class="hero-metrics" aria-label="Organization overview">
+        <div><dt>24</dt><dd>public projects</dd></div>
+        <div><dt>05</dt><dd>capability groups</dd></div>
+        <div><dt>L1–L5</dt><dd>learning path</dd></div>
+      </dl>
+    </section>
+
+    <section class="scope-rail" aria-label="SAGE technical scope">
+      <span data-code="01">Agent orchestration</span>
+      <span data-code="02">RAG + memory</span>
+      <span data-code="03">Workflow runtime</span>
+      <span data-code="04">Evaluation</span>
+      <span data-code="05">Studio + tooling</span>
+    </section>
+
+    <section class="section section-dark" id="platform">
+      <div class="section-head">
+        <div><p class="eyebrow">Platform surfaces</p><h2>From intent to running workflow.</h2></div>
+        <p>RIDE Lab stewards SAGE core and agent-facing surfaces. Data engines stay in DataSys; model execution stays in vLLM-HUST.</p>
+      </div>
+      <div class="surface-grid">
+        <a class="surface" href="https://github.com/RIDE-Lab/SAGE">
+          <span class="index">01 / CORE</span><div class="surface-mark">SG</div>
+          <h3>SAGE Core</h3><p>Execution model, operators, services, and shared lifecycle semantics.</p><span class="open">Repository ↗</span>
+        </a>
+        <a class="surface" href="https://github.com/RIDE-Lab/sage-agentic">
+          <span class="index">02 / AGENT</span><div class="surface-mark">AG</div>
+          <h3>Agentic</h3><p>Planning, tool selection, coordination, and composable agent workflows.</p><span class="open">Repository ↗</span>
+        </a>
+        <a class="surface" href="https://github.com/RIDE-Lab/sage-rag">
+          <span class="index">03 / RETRIEVAL</span><div class="surface-mark">RG</div>
+          <h3>RAG</h3><p>Document, chunking, retrieval, refinement, and knowledge workflow primitives.</p><span class="open">Repository ↗</span>
+        </a>
+        <a class="surface" href="https://github.com/RIDE-Lab/sage-studio">
+          <span class="index">04 / EXPERIENCE</span><div class="surface-mark">ST</div>
+          <h3>Studio</h3><p>Visual workflow construction and an inspectable playground for SAGE pipelines.</p><span class="open">Repository ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section directory" id="directory">
+      <div class="section-head">
+        <div><p class="eyebrow">Repository atlas</p><h2>Public projects by capability.</h2></div>
+        <p>The directory separates framework surfaces, reusable libraries, evaluation assets, and developer tools.</p>
+      </div>
+      <div class="filterbar" role="group" aria-label="Filter repositories">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">All <span>24</span></button>
+        <button class="filter" type="button" data-filter="platform" aria-pressed="false">Platform</button>
+        <button class="filter" type="button" data-filter="agent" aria-pressed="false">Agent</button>
+        <button class="filter" type="button" data-filter="rag" aria-pressed="false">RAG + Memory</button>
+        <button class="filter" type="button" data-filter="evaluation" aria-pressed="false">Evaluation</button>
+        <button class="filter" type="button" data-filter="tools" aria-pressed="false">Tools + Apps</button>
+        <button class="filter" type="button" data-filter="learning" aria-pressed="false">Learning</button>
+      </div>
+      <div class="repo-list" aria-live="polite">
+        <a class="repo-row" data-categories="platform" href="https://github.com/RIDE-Lab/SAGE"><span class="repo-name">SAGE</span><span class="repo-role">Framework core and execution model</span><span class="tag">core</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="platform learning" href="https://github.com/RIDE-Lab/SAGE-Docs"><span class="repo-name">SAGE-Docs</span><span class="repo-role">Official product and API documentation</span><span class="tag tag-cyan">docs</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent platform" href="https://github.com/RIDE-Lab/sage-agentic"><span class="repo-name">sage-agentic</span><span class="repo-role">Planning, tools, workflows, coordination</span><span class="tag tag-green">framework</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag platform" href="https://github.com/RIDE-Lab/sage-rag"><span class="repo-name">sage-rag</span><span class="repo-role">Document and retrieval pipelines</span><span class="tag tag-green">framework</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="evaluation platform" href="https://github.com/RIDE-Lab/sage-eval"><span class="repo-name">sage-eval</span><span class="repo-role">Metrics, profilers, and judges</span><span class="tag tag-amber">evaluation</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="tools platform" href="https://github.com/RIDE-Lab/sage-studio"><span class="repo-name">sage-studio</span><span class="repo-role">Visual workflow builder and playground</span><span class="tag tag-coral">product</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="learning" href="https://github.com/RIDE-Lab/sage-tutorials"><span class="repo-name">sage-tutorials</span><span class="repo-role">Layered L1–L5 learning path</span><span class="tag tag-cyan">learning</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent tools" href="https://github.com/RIDE-Lab/sage-agent-vscode"><span class="repo-name">sage-agent-vscode</span><span class="repo-role">Agent development in VS Code</span><span class="tag tag-coral">tool</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent" href="https://github.com/RIDE-Lab/sage-agentic-tooluse"><span class="repo-name">sage-agentic-tooluse</span><span class="repo-role">Tool retrieval and ranking</span><span class="tag tag-green">library</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent evaluation" href="https://github.com/RIDE-Lab/sage-agentic-tooluse-benchmark"><span class="repo-name">tooluse-benchmark</span><span class="repo-role">Agent capability evaluation</span><span class="tag tag-amber">benchmark</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent evaluation" href="https://github.com/RIDE-Lab/sage-agentic-tooluse-sias"><span class="repo-name">tooluse-sias</span><span class="repo-role">Importance-aware continual selection</span><span class="tag">research</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="evaluation" href="https://github.com/RIDE-Lab/sage-benchmark"><span class="repo-name">sage-benchmark</span><span class="repo-role">AI pipeline evaluation suite</span><span class="tag tag-amber">benchmark</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="learning platform" href="https://github.com/RIDE-Lab/sage-examples"><span class="repo-name">sage-examples</span><span class="repo-role">Runnable framework examples</span><span class="tag tag-cyan">examples</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="tools" href="https://github.com/RIDE-Lab/sage-finetune"><span class="repo-name">sage-finetune</span><span class="repo-role">Lightweight model fine-tuning toolkit</span><span class="tag tag-green">toolkit</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="tools" href="https://github.com/RIDE-Lab/sage-github-manager"><span class="repo-name">sage-github-manager</span><span class="repo-role">AI-assisted repository operations</span><span class="tag tag-coral">tool</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="agent" href="https://github.com/RIDE-Lab/sage-libs-intent"><span class="repo-name">sage-libs-intent</span><span class="repo-role">Intent recognition library</span><span class="tag tag-green">library</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="tools agent" href="https://github.com/RIDE-Lab/sage-mate"><span class="repo-name">sage-mate</span><span class="repo-role">Always-on faculty-twin application</span><span class="tag tag-coral">app</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag evaluation" href="https://github.com/RIDE-Lab/sage-rag-benchmark"><span class="repo-name">sage-rag-benchmark</span><span class="repo-role">Retrieval workflow evaluation</span><span class="tag tag-amber">benchmark</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag evaluation" href="https://github.com/RIDE-Lab/sage-refiner-benchmark"><span class="repo-name">sage-refiner-benchmark</span><span class="repo-role">Refinement component evaluation</span><span class="tag tag-amber">benchmark</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag learning" href="https://github.com/RIDE-Lab/sage-wiki"><span class="repo-name">sage-wiki</span><span class="repo-role">Knowledge and ecosystem wiki</span><span class="tag tag-cyan">knowledge</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag" href="https://github.com/RIDE-Lab/sageRefiner"><span class="repo-name">sageRefiner</span><span class="repo-role">Retrieval result refinement</span><span class="tag tag-green">library</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="tools" href="https://github.com/RIDE-Lab/sagepypi"><span class="repo-name">sagepypi</span><span class="repo-role">Monorepo package compiler and publisher</span><span class="tag tag-coral">tooling</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag" href="https://github.com/RIDE-Lab/wiki-link-retrieval"><span class="repo-name">wiki-link-retrieval</span><span class="repo-role">Curated link-graph expansion</span><span class="tag">research</span><span class="arrow">↗</span></a>
+        <a class="repo-row" data-categories="rag evaluation" href="https://github.com/RIDE-Lab/neuromem-bench"><span class="repo-name">neuromem-bench</span><span class="repo-role">Long-running memory evaluation</span><span class="tag tag-amber">benchmark</span><span class="arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section quickstart" id="quickstart">
+      <div class="section-head">
+        <div><p class="eyebrow">Start with the core</p><h2>Install. Compose. Observe.</h2></div>
+        <p>The homepage routes to the maintained learning path; detailed APIs and examples stay in SAGE Docs.</p>
+      </div>
+      <div class="command-shell">
+        <div class="command-meta"><span>01 / INSTALL</span><span>PYTHON</span></div>
+        <pre><code>pip install isage</code></pre>
+        <div class="command-actions">
+          <a class="button button-primary" href="/getting-started/installation/">Installation guide →</a>
+          <a class="button button-line" href="https://github.com/RIDE-Lab/sage-tutorials">L1–L5 tutorials ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ecosystem" id="ecosystem">
+      <div class="section-head">
+        <div><p class="eyebrow">Shared product governance</p><h2>One SAGE. Clear stewardship.</h2></div>
+        <p>SAGE spans the ecosystem as a shared product. RIDE Lab stewards its core; DataSys and vLLM-HUST retain their data-system and inference ownership.</p>
+      </div>
+      <div class="architecture">
+        <a href="https://lab.sage.org.ai/"><span>00</span><strong>IntelliStream</strong><small>Cross-layer research incubator</small></a>
+        <a href="https://ride-lab.github.io/"><span>01</span><strong>RIDE Lab</strong><small>Agent systems and SAGE core stewardship</small></a>
+        <a href="https://datasys.sage.org.ai/"><span>02</span><strong>DataSys</strong><small>Streams, graphs, vectors, indexes</small></a>
+        <a href="https://vllm-hust.sage.org.ai/"><span>03</span><strong>vLLM-HUST</strong><small>Runtime, scheduling, kernels, hardware</small></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>SAGE</strong><span>Streaming-Augmented Generative Execution.</span></div>
+    <nav aria-label="Footer navigation"><a href="/getting-started/installation/">Docs</a><a href="https://github.com/RIDE-Lab">GitHub</a><a href="https://github.com/RIDE-Lab/.github/blob/main/CONTRIBUTING.md">Contribute</a></nav>
+  </footer>
+  <script src="/portal.js"></script>
+</body>
+</html>
