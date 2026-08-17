@@ -1,6 +1,6 @@
 ---
 template: index.html
-title: SAGE - Agent、RAG、工作流与服务编排平台
+title: SAGE - Streaming-Augmented Generative Execution
 hide:
   - navigation
   - toc

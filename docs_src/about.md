@@ -1,8 +1,8 @@
 # SAGE - Streaming-Augmented Generative Execution
 
-> 用于构建透明、可组合、流优先 AI 系统的主仓框架
+> 以流计算思维赋能大模型推理与智能体执行
 
-**SAGE** 是围绕 `isage` 主包构建的流式 AI 应用框架。当前产品边界集中在单一主仓，重点放在：
+**SAGE**（Streaming-Augmented Generative Execution）是 IntelliStream 研究生态的共同旗舰产品，也是围绕 `isage` 主包构建的流式 AI 应用框架。RIDE Lab 负责核心仓库的主要工程维护；DataSys 与 vLLM-HUST 分别保有数据系统和推理底座的技术所有权。当前产品边界集中在单一主仓，重点放在：
 
 - `sage.foundation`：共享配置、端口、日志与契约
 - `sage.stream`：流式抽象、组合与变换
@@ -61,5 +61,7 @@ sage serve gateway --json
 ## 仓库角色
 
 SAGE 主仓是核心实现与发布面。
+
+主仓位于 `RIDE-Lab` GitHub namespace，表示 RIDE Lab 是核心工程 steward，不表示 SAGE 是某个单一组织的排他性产品。跨组织协作仍遵守各自的实现边界。
 
 示例、教程、benchmark、文档站点等仓库都应围绕单一主仓 `isage` 构建，而不是重新依赖历史 split-package 布局。
