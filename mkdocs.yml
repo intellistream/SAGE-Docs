@@ -1,6 +1,6 @@
 site_name: SAGE Documentation
-site_description: SAGE - Agent、RAG、工作流与服务编排平台
-site_author: SAGE-Research
+site_description: SAGE - Streaming-Augmented Generative Execution
+site_author: IntelliStream research ecosystem
 site_url: https://sage.org.ai/
 docs_dir: docs_src
 
